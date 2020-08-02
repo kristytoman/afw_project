@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="afw_project.Customer_Cart"
+             Title="Your cart">
+
+    <ContentPage.Content>
+        <Grid>
+        <ListView x:Name="productslist" ItemsSource="" Grid.Row="0" Grid.Column="0">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="2">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="4*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image x:Name="product_pic" Source="" 
+                                   Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"/>
+                            <Label x:Name="product_name" Text="{}"
+                                   Grid.Row="0" Grid.Column="1"/>
+                            <Label x:Name="product_amount" Text="{}"
+                                   Grid.Row="1" Grid.Column="1"/>
+                            <Label x:Name="product_price" Text="{}"
+                                   Grid.Row="0" Grid.Column="2"/>
+                            <Label x:Name="product_sale" Text="{}"
+                                   Grid.Row="1" Grid.Column="2"/>
+                            <Label x:Name="final_price" Text="{}"
+                                   Grid.Row="2" Grid.Column="2"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+            <Label Text="Total:"/>
+            <Label x:Name="total_price" Text="{}"/>
+            <Button Text="Next"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

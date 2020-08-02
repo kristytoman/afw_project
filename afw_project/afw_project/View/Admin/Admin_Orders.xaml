@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="afw_project.View.Admin.Admin_Orders">
+
+    <ContentPage Title="All orders">
+        <ListView ItemsSource="">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label x:Name="order_id" Text=""/>
+                            <Label x:Name="order_state" Text=""/>
+                            <Label x:Name="order_price" Text=""/>
+                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage>
+    
+    
+    <ContentPage Title="Waiting">
+        <ListView ItemsSource="">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label x:Name="order_id" Text=""/>
+                            <Label x:Name="order_state" Text=""/>
+                            <Label x:Name="order_price" Text=""/>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage>
+    
+    
+    <ContentPage Title="Sent">
+        <ListView ItemsSource="">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label x:Name="order_id" Text=""/>
+                            <Label x:Name="order_state" Text=""/>
+                            <Label x:Name="order_price" Text=""/>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage>
+    
+    
+    <ContentPage Title="Received">
+        <ListView ItemsSource="">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label x:Name="order_id" Text=""/>
+                            <Label x:Name="order_state" Text=""/>
+                            <Label x:Name="order_price" Text=""/>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage>
+    
+    
+    <ContentPage Title="Cancelled">
+        <ListView ItemsSource="">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label x:Name="order_id" Text=""/>
+                            <Label x:Name="order_state" Text=""/>
+                            <Label x:Name="order_price" Text=""/>
+
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage>
+</TabbedPage>

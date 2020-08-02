@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="afw_project.View.Admin.Admin_Products">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="0.5*"/>
+        </Grid.ColumnDefinitions>
+        <ListView x:Name="Products" 
+            ItemsSource="{Binding ProductsList}" 
+                  Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="2"
+                  VerticalOptions="FillAndExpand">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Image BackgroundColor="Green" Margin="10" Source=""
+                               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding Name}"
+                               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding Description}"
+                               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding Price}"
+                               Grid.Row="3" Grid.Column="0"/>
+                            <Label Text="{Binding Sale}"
+                               Grid.Row="3" Grid.Column="1"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Button Text="+" Command="{Binding OpenNewProduct}" Grid.Row="6" Grid.Column="1"/>
+    </Grid>
+
+</ContentPage>

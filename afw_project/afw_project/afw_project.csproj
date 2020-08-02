@@ -1,0 +1,90 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DebugType>pdbonly</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.5" />
+    <PackageReference Include="MySql.Data.EntityFrameworkCore" Version="8.0.20" />
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.1080" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="View\View_MainMenu.xaml.cs">
+      <DependentUpon>View_MainMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Admin\Admin_Products.xaml.cs">
+      <DependentUpon>Admin_Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Admin\Admin_NewProduct.xaml.cs">
+      <DependentUpon>Admin_NewProduct.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\View_MainPage.xaml.cs">
+      <DependentUpon>View_MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Customer\Customer_Login.xaml.cs">
+      <DependentUpon>Customer_Login.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Customer\Customer_Orders.xaml.cs">
+      <DependentUpon>Customer_Orders.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Customer\Customer_Cart.xaml.cs">
+      <DependentUpon>Customer_Cart.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Customer\Customer_SignUp.xaml.cs">
+      <DependentUpon>Customer_SignUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Customer\Customer_Products.xaml.cs">
+      <DependentUpon>Customer_Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\View_Products.xaml.cs">
+      <DependentUpon>View_Products.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="View\Admin\Admin_Orders.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Admin\Admin_Sales.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\View_MainPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Admin\Admin_Products.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\View_MainMenu.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Admin\Admin_NewProduct.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Customer\Customer_Login.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Customer\Customer_Orders.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Customer\Customer_Cart.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Customer\Customer_SignUp.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\Customer\Customer_Products.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\View_Products.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+  </ItemGroup>
+</Project>

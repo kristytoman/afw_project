@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             x:Class="afw_project.Customer_Products">
+            
+    <StackLayout Padding="10">
+        <ListView x:Name="Products"
+                  ItemsSource="{Binding ProductsList}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Image BackgroundColor="Green" Margin="10" Source=""
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            
+                            <Label Text="{Binding Name}"
+                                   Style=""
+                                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            
+                            <Label Text="{Binding Description}"
+                                   Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
+                            
+                            <Label Text="{Binding Price}"
+                                   Grid.Row="3" Grid.Column="0"/>
+                            
+                            <Label Text="{Binding Sale}"
+                                   Grid.Row="3" Grid.Column="1"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+    </StackLayout>
+</ContentPage>
