@@ -123,7 +123,7 @@ namespace afw_project
         /// <summary>
         /// Gets all products from the database.
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of products or null.</returns>
         public static List<Product> GetAll()
         {
             try

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using afw_project.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -84,7 +85,7 @@ namespace afw_project
         public Customer(string email, string password, string firstName, string lastName, string phone, string street, string building, string city, string code, string country)
         {
             Email = email;
-            Password = GetHash(password);
+            Password = ContextCredentials.GetHash(password);
             FirstName = firstName;
             LastName = lastName;
             Phone = phone;
@@ -95,21 +96,7 @@ namespace afw_project
             Country = country;
         }
 
-        /// <summary>
-        /// Encrypt the customer's password.
-        /// </summary>
-        /// <param name="source">Plain password of the customer.</param>
-        /// <returns>Password value in SHA256.</returns>
-        private static string GetHash(string source)
-        {
-            using (SHA256 sha256Hash = SHA256.Create())
-            {
-                byte[] sourceBytes = Encoding.UTF8.GetBytes(source);
-                byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
-                string hash = BitConverter.ToString(hashBytes).Replace("-", string.Empty);
-                return hash;
-            }
-        }
+        
 
         /// <summary>
         /// Finds the user identified by login in the database.
@@ -122,7 +109,7 @@ namespace afw_project
             Context db = new Context();
             try
             {
-                Customer user = db.Customers.Where(u => u.Email == email && GetHash(password) == u.Password).Single();
+                Customer user = db.Customers.Where(u => u.Email == email && ContextCredentials.GetHash(password) == u.Password).Single();
                 return user;
             }
             catch

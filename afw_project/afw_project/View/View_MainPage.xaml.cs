@@ -19,6 +19,7 @@ namespace afw_project.View.Admin
            
         }
 
+        
         /// <summary>
         /// Opens a new page specified in target type of a menu list element
         /// </summary>

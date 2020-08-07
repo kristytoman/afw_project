@@ -36,7 +36,12 @@ namespace afw_project.View_Model
         /// </summary>
         public VM_ProductMainPage()
         {
-            categories = new ObservableCollection<Category>(Category.GetCategories());
+            categories = new ObservableCollection<Category>();
+            List<Category> results = Category.GetCategories();
+            if (results != null)
+            {
+                categories = new ObservableCollection<Category>(results);
+            }
         }
 
         /// <summary>

@@ -1,12 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:afw_project.View_Model"
              x:Class="afw_project.Customer_Cart"
              Title="Your cart">
-
+    <ContentPage.BindingContext>
+        <local:VM_Cart/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
-        <ListView x:Name="productslist" ItemsSource="" Grid.Row="0" Grid.Column="0">
+        <ListView x:Name="productslist" ItemsSource="{Binding Cart_products}" Grid.Row="0" Grid.Column="0">
 
             <ListView.ItemTemplate>
                 <DataTemplate>

@@ -1,5 +1,6 @@
-﻿using afw_project.View.Admin;
-using System;
+﻿using afw_project.Model;
+using afw_project.View;
+using afw_project.View.Admin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -11,12 +12,21 @@ namespace afw_project
         public App()
         {
             InitializeComponent();
+            if (!ContextCredentials.GetSavedCredentials())
+            {
+                MainPage = new View_Init();
+            }
+            else
+            {
+                MainPage = new View_MainPage();
 
-            MainPage = new View_MainPage();
+            }
+
         }
 
         protected override void OnStart()
         {
+            
         }
 
         protected override void OnSleep()

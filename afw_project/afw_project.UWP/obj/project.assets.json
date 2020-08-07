@@ -648,6 +648,15 @@
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
       },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        }
+      },
       "runtime.native.System.Data.SqlClient.sni/4.4.0": {
         "type": "package",
         "dependencies": {
@@ -1717,6 +1726,18 @@
           }
         }
       },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
+        },
+        "compile": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        }
+      },
       "Xamarin.Forms/4.7.0.1080": {
         "type": "package",
         "dependencies": {
@@ -1748,6 +1769,8 @@
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
+          "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.7.0.1080"
         },
         "compile": {
@@ -2396,6 +2419,15 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -3860,6 +3892,18 @@
           "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll": {}
         }
       },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
+        },
+        "compile": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        }
+      },
       "Xamarin.Forms/4.7.0.1080": {
         "type": "package",
         "dependencies": {
@@ -3891,6 +3935,8 @@
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
+          "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.7.0.1080"
         },
         "compile": {
@@ -4539,6 +4585,15 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -6046,6 +6101,18 @@
           "runtimes/win10-arm/native/Microsoft.Graphics.Canvas.dll": {}
         }
       },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
+        },
+        "compile": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        }
+      },
       "Xamarin.Forms/4.7.0.1080": {
         "type": "package",
         "dependencies": {
@@ -6077,6 +6144,8 @@
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
+          "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.7.0.1080"
         },
         "compile": {
@@ -6725,6 +6794,15 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -8232,6 +8310,18 @@
           "lib/uap10.0/Microsoft.Graphics.Canvas.winmd": {}
         }
       },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
+        },
+        "compile": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        }
+      },
       "Xamarin.Forms/4.7.0.1080": {
         "type": "package",
         "dependencies": {
@@ -8263,6 +8353,8 @@
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
+          "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.7.0.1080"
         },
         "compile": {
@@ -8911,6 +9003,15 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -10378,6 +10479,18 @@
           "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll": {}
         }
       },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
+        },
+        "compile": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        }
+      },
       "Xamarin.Forms/4.7.0.1080": {
         "type": "package",
         "dependencies": {
@@ -10409,6 +10522,8 @@
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
+          "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.7.0.1080"
         },
         "compile": {
@@ -11057,6 +11172,15 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -12567,6 +12691,18 @@
           "runtimes/win10-x64/native/Microsoft.Graphics.Canvas.dll": {}
         }
       },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
+        },
+        "compile": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        }
+      },
       "Xamarin.Forms/4.7.0.1080": {
         "type": "package",
         "dependencies": {
@@ -12598,6 +12734,8 @@
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
+          "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.7.0.1080"
         },
         "compile": {
@@ -13246,6 +13384,15 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.any.System.Collections/4.3.0": {
@@ -14713,6 +14860,18 @@
           "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll": {}
         }
       },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
+        },
+        "compile": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        }
+      },
       "Xamarin.Forms/4.7.0.1080": {
         "type": "package",
         "dependencies": {
@@ -14744,6 +14903,8 @@
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
+          "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.7.0.1080"
         },
         "compile": {
@@ -15392,6 +15553,15 @@
         },
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
+        }
+      },
+      "Newtonsoft.Json/12.0.3": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Newtonsoft.Json.dll": {}
         }
       },
       "runtime.aot.System.Collections/4.3.0": {
@@ -16902,6 +17072,18 @@
           "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll": {}
         }
       },
+      "Xamarin.Essentials/1.5.3.2": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
+        },
+        "compile": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        },
+        "runtime": {
+          "lib/uap10.0.16299/Xamarin.Essentials.dll": {}
+        }
+      },
       "Xamarin.Forms/4.7.0.1080": {
         "type": "package",
         "dependencies": {
@@ -16933,6 +17115,8 @@
           "Microsoft.EntityFrameworkCore": "3.1.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "3.1.5",
           "MySql.Data.EntityFrameworkCore": "8.0.20",
+          "Newtonsoft.Json": "12.0.3",
+          "Xamarin.Essentials": "1.5.3.2",
           "Xamarin.Forms": "4.7.0.1080"
         },
         "compile": {
@@ -18222,6 +18406,37 @@
         "lib/netstandard1.0/_._",
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
+      ]
+    },
+    "Newtonsoft.Json/12.0.3": {
+      "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
+      "type": "package",
+      "path": "newtonsoft.json/12.0.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.md",
+        "lib/net20/Newtonsoft.Json.dll",
+        "lib/net20/Newtonsoft.Json.xml",
+        "lib/net35/Newtonsoft.Json.dll",
+        "lib/net35/Newtonsoft.Json.xml",
+        "lib/net40/Newtonsoft.Json.dll",
+        "lib/net40/Newtonsoft.Json.xml",
+        "lib/net45/Newtonsoft.Json.dll",
+        "lib/net45/Newtonsoft.Json.xml",
+        "lib/netstandard1.0/Newtonsoft.Json.dll",
+        "lib/netstandard1.0/Newtonsoft.Json.xml",
+        "lib/netstandard1.3/Newtonsoft.Json.dll",
+        "lib/netstandard1.3/Newtonsoft.Json.xml",
+        "lib/netstandard2.0/Newtonsoft.Json.dll",
+        "lib/netstandard2.0/Newtonsoft.Json.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.dll",
+        "lib/portable-net45+win8+wp8+wpa81/Newtonsoft.Json.xml",
+        "newtonsoft.json.12.0.3.nupkg.sha512",
+        "newtonsoft.json.nuspec",
+        "packageIcon.png"
       ]
     },
     "runtime.any.System.Collections/4.3.0": {
@@ -26092,6 +26307,54 @@
         "runtimes/win10-x86/native/Microsoft.Graphics.Canvas.dll",
         "win2d.uwp.1.20.0.nupkg.sha512",
         "win2d.uwp.nuspec"
+      ]
+    },
+    "Xamarin.Essentials/1.5.3.2": {
+      "sha512": "BSLgDJUOPFRwTpQaftM+s4qb/MsTjrqXulEYDOcK6KF3i0Orf75zo3RwRfqnQ8WfpoEFxW/v0jgcPWCvOMgHxg==",
+      "type": "package",
+      "path": "xamarin.essentials/1.5.3.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "icon.png",
+        "lib/monoandroid10.0/Xamarin.Essentials.dll",
+        "lib/monoandroid10.0/Xamarin.Essentials.pdb",
+        "lib/monoandroid10.0/Xamarin.Essentials.xml",
+        "lib/monoandroid80/Xamarin.Essentials.dll",
+        "lib/monoandroid80/Xamarin.Essentials.pdb",
+        "lib/monoandroid80/Xamarin.Essentials.xml",
+        "lib/monoandroid81/Xamarin.Essentials.dll",
+        "lib/monoandroid81/Xamarin.Essentials.pdb",
+        "lib/monoandroid81/Xamarin.Essentials.xml",
+        "lib/monoandroid90/Xamarin.Essentials.dll",
+        "lib/monoandroid90/Xamarin.Essentials.pdb",
+        "lib/monoandroid90/Xamarin.Essentials.xml",
+        "lib/netstandard1.0/Xamarin.Essentials.dll",
+        "lib/netstandard1.0/Xamarin.Essentials.pdb",
+        "lib/netstandard1.0/Xamarin.Essentials.xml",
+        "lib/netstandard2.0/Xamarin.Essentials.dll",
+        "lib/netstandard2.0/Xamarin.Essentials.pdb",
+        "lib/netstandard2.0/Xamarin.Essentials.xml",
+        "lib/tizen40/Xamarin.Essentials.dll",
+        "lib/tizen40/Xamarin.Essentials.pdb",
+        "lib/tizen40/Xamarin.Essentials.xml",
+        "lib/uap10.0.16299/Xamarin.Essentials.dll",
+        "lib/uap10.0.16299/Xamarin.Essentials.pdb",
+        "lib/uap10.0.16299/Xamarin.Essentials.pri",
+        "lib/uap10.0.16299/Xamarin.Essentials.xml",
+        "lib/xamarinios10/Xamarin.Essentials.dll",
+        "lib/xamarinios10/Xamarin.Essentials.pdb",
+        "lib/xamarinios10/Xamarin.Essentials.xml",
+        "lib/xamarintvos10/Xamarin.Essentials.dll",
+        "lib/xamarintvos10/Xamarin.Essentials.pdb",
+        "lib/xamarintvos10/Xamarin.Essentials.xml",
+        "lib/xamarinwatchos10/Xamarin.Essentials.dll",
+        "lib/xamarinwatchos10/Xamarin.Essentials.pdb",
+        "lib/xamarinwatchos10/Xamarin.Essentials.xml",
+        "readme.txt",
+        "xamarin.essentials.1.5.3.2.nupkg.sha512",
+        "xamarin.essentials.nuspec"
       ]
     },
     "Xamarin.Forms/4.7.0.1080": {

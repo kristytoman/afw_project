@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="afw_project.View.View_Init">
+    
+    <ContentPage.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Text="Welcome to your new e-shop!"
+                   Grid.Row="1" Grid.Column="1"/>
+
+            <Label Text="Please take the few steps to initialize the database:"
+                   Grid.Row="2" Grid.Column="1"/>
+
+            <Entry Placeholder="Server name" Text="{Binding ServerName}"
+                   Grid.Row="3" Grid.Column="1"/>
+            <Entry Placeholder="Database name" Text="{Binding DatabaseName}"
+                   Grid.Row="3" Grid.Column="2"/>
+            <Entry Placeholder="Database user" Text="{Binding DatabaseUser}"
+                   Grid.Row="4" Grid.Column="1"/>
+            <Entry Placeholder="Database password" Text="{Binding DatabasePassword}" IsPassword="True"
+                   Grid.Row="4" Grid.Column="2"/>
+
+            <Label Text="And set the user credentials for administrator:"
+                   Grid.Row="5" Grid.Column="1"/>
+            
+            <Entry Placeholder="E-shop Username" Unfocused="Username_Unfocused"
+                   Grid.Row="6" Grid.Column="1"/>
+            <Label Text="{Binding Error_username}" TextColor="Red"
+                   Grid.Row="7" Grid.Column="1"/>
+            <Entry Placeholder="E-shop Password" IsPassword="True" Unfocused="Password_Unfocused"
+                   Grid.Row="6" Grid.Column="2"/>
+            <Label Text="{Binding Error_password}" TextColor="Red"
+                   Grid.Row="7" Grid.Column="2"/>
+
+            <Button Text="Save" Command="{Binding Save}"
+                    Grid.Row="8" Grid.Column="2"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

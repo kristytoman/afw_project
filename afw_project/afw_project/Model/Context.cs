@@ -1,9 +1,19 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Xamarin.Essentials;
+using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
+using System.IO;
+using Newtonsoft.Json;
+using afw_project.Model;
 
 namespace afw_project
 {
+    
+   
     class Context : DbContext
     {
+        
         /// <summary>
         ///
         /// </summary>
@@ -29,13 +39,12 @@ namespace afw_project
         /// </summary>
         public DbSet<ProductOrder> ProductOrders { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        public Context()
+
+        public Context() 
         {
-            Database.EnsureCreated();
+            
         }
+       
 
         /// <summary>
         /// 
@@ -43,7 +52,7 @@ namespace afw_project
         /// <param name="optionsBuilder"></param>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost;database=eshop;user=root;"); // connection string security
+            optionsBuilder.UseMySQL(ContextCredentials.Connection);
         }
 
         /// <summary>

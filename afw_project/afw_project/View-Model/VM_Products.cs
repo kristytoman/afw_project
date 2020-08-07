@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace afw_project.View_Model
 {
@@ -21,14 +22,24 @@ namespace afw_project.View_Model
         /// <param name="title">Name of the page.</param>
         public VM_Products(string title)
         {
+            List<Product> results;
+
             if (title == "All")
             {
-                productsList = new ObservableCollection<Product>(Product.GetAll());
+                results = Product.GetAll();
             }
             else
             {
                 category = new Category(title);
-                productsList = new ObservableCollection<Product>(category.GetProducts());
+                results = category.GetProducts();
+            }
+            if (results == null)
+            {
+                productsList = new ObservableCollection<Product>();
+            }
+            else
+            {
+                productsList = new ObservableCollection<Product>(results);
             }
         }
 

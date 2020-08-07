@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="afw_project.View.Admin.Admin_Orders">
-
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+            xmlns:local="clr-namespace:afw_project.View_Model"
+            x:Class="afw_project.View.Admin.Admin_Orders">
+    <TabbedPage.BindingContext>
+        <local:VM_Admin_Orders/>
+    </TabbedPage.BindingContext>
     <ContentPage Title="All orders">
-        <ListView ItemsSource="">
+        <ListView ItemsSource="{Binding Orders}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -22,7 +25,7 @@
     
     
     <ContentPage Title="Waiting">
-        <ListView ItemsSource="">
+        <ListView ItemsSource="{Binding Orders}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -40,7 +43,7 @@
     
     
     <ContentPage Title="Sent">
-        <ListView ItemsSource="">
+        <ListView ItemsSource="{Binding Orders}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -58,7 +61,7 @@
     
     
     <ContentPage Title="Received">
-        <ListView ItemsSource="">
+        <ListView ItemsSource="{Binding Orders}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -76,7 +79,7 @@
     
     
     <ContentPage Title="Cancelled">
-        <ListView ItemsSource="">
+        <ListView ItemsSource="{Binding Orders}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
