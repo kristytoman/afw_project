@@ -1,19 +1,70 @@
-﻿using System.Collections.Generic;
+﻿using afw_project.Model;
+using afw_project.View.Admin;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Xamarin.Forms;
 
 namespace afw_project.View_Model
 {
+    public class ProductView : VM_Base
+    {
+        public int ID { get; private set; }
+        public string Name { get; set; }
+        public string Amount { get; set; }
+        public string Price { get; set; }
+        public string Sale { get; set; }
+        private readonly string shortDescription;
+        private readonly string longDescription;
+        public string Description 
+        { 
+            get 
+            { 
+                if (isSelected) return longDescription;
+                return shortDescription; 
+            } 
+        }
+        private bool isSelected;
+        public bool IsSelected
+        {
+            get
+            {
+                return isSelected;
+            }
+            set
+            {
+                isSelected = value;
+                    OnPropertyChanged();
+                
+            }
+        }
+
+        public string Category { get; set; }
+
+        public ProductView(Product template)
+        {
+            ID = template.ID;
+            Name = template.Name;
+            Amount = template.Amount.ToString();
+            Price = template.Price.ToString() + " EUR";
+            Sale = template.Sale != 0 ? template.Sale.ToString() + " %" : "";
+            Category = "";
+            shortDescription = template.Description.Substring(0, template.Description.Length < 50 ? template.Description.Length : 50);
+            longDescription = template.Description;
+            isSelected = false;
+
+        }
+    }
     class VM_Products : VM_Base
     {
         /// <summary>
         /// List of products from a database.
         /// </summary>
-        private ObservableCollection<Product> productsList;
+        private ObservableCollection<ProductView> productsList;
 
         /// <summary>
         /// Page category. Null if content page is for all products.
         /// </summary>
-        private Category category;
+        private readonly Category category;
 
 
         /// <summary>
@@ -22,7 +73,7 @@ namespace afw_project.View_Model
         /// <param name="title">Name of the page.</param>
         public VM_Products(string title)
         {
-            List<Product> results;
+            List<ProductView> results;
 
             if (title == "All")
             {
@@ -35,20 +86,47 @@ namespace afw_project.View_Model
             }
             if (results == null)
             {
-                productsList = new ObservableCollection<Product>();
+                productsList = new ObservableCollection<ProductView>();
             }
             else
             {
-                productsList = new ObservableCollection<Product>(results);
+                productsList = new ObservableCollection<ProductView>(results);
             }
+
+            
         }
 
+        public void DeleteSelectedItem(ProductView item)
+        {
+            if (ContextCredentials.CheckTheAdmin(App.User.Email, App.User.Password))
+            {
+                if(Product.DeleteProduct(item.ID))
+                {
+                    Application.Current.MainPage.DisplayAlert
+                    (
+                       "Succesful operation",
+                       "Product was marked as deleted",
+                       "OK"
+                    );
+                    ((View_MainPage)Application.Current.MainPage).Detail = new View_Products();
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert
+                    (
+                       "Something went wrong",
+                       "We were unable to delete the product",
+                       "OK"
+                    );
+                }
+            }
+        }
         
 
         /// <summary>
         /// Gets or sets the list of products from the database.
         /// </summary>
-        public ObservableCollection<Product> ProductsList
+        public ObservableCollection<ProductView> ProductsList
         {
             get
             {

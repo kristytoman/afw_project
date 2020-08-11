@@ -20,27 +20,34 @@
         <ListView x:Name="Products" 
             ItemsSource="{Binding ProductsList}" 
                   Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="2"
-                  VerticalOptions="FillAndExpand">
+                  VerticalOptions="FillAndExpand" HasUnevenRows="True"
+                  ItemSelected="Products_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid>
-                            <Image BackgroundColor="Green" Margin="10" Source=""
-                               Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
-                            <Label Text="{Binding Name}"
-                               Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-                            <Label Text="{Binding Description}"
-                               Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"/>
-                            <Label Text="{Binding Price}"
-                               Grid.Row="3" Grid.Column="0"/>
-                            <Label Text="{Binding Sale}"
-                               Grid.Row="3" Grid.Column="1"/>
+                            <Grid>
+                                <Label Text="{Binding Name}"
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding Description}"
+                                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding Price}"
+                                   Grid.Row="2" Grid.Column="0"/>
+                                <Label Text="{Binding Sale}"
+                                   Grid.Row="2" Grid.Column="1"/>
+                            </Grid>
+
+                            <Grid x:Name="grid_edit" IsVisible="{Binding IsSelected}">
+                                <Button Text="Edit" Clicked="Edit_Clicked"
+                                        Grid.Row="3" Grid.Column="0"/>
+                                <Button Text="Delete" Clicked="Delete_Clicked"
+                                        BackgroundColor="Red"
+                                        Grid.Row="3" Grid.Column="1"/>
+                            </Grid>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="+" Command="{Binding OpenNewProduct}" Grid.Row="6" Grid.Column="1"/>
     </Grid>
-
 </ContentPage>

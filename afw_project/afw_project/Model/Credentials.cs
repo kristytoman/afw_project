@@ -31,7 +31,7 @@ namespace afw_project.Model
         /// <summary>
         /// Gets or sets the username for  the administrator
         /// </summary>
-        private static string Admin_ID { get; set; }
+        public static string Admin_ID { get; set; }
 
         /// <summary>
         /// Gets or sets the password for the administrator
@@ -54,6 +54,24 @@ namespace afw_project.Model
             }
         }
 
+        public static bool CheckTheAdmin(string id, string password)
+        {
+            if (id==null || password==null)
+            {
+                return false;
+            }
+            if (Admin_ID==null || Admin_Password==null)
+            {
+                if (!GetSavedCredentials())
+                {
+                    return false;
+                }
+            }
+            if (Admin_ID != id) return false;
+            if (Admin_Password != GetHash(password)) return false;
+            return true;
+        }
+
         /// <summary>
         /// Gets the credentials saved in the file
         /// </summary>
@@ -67,6 +85,9 @@ namespace afw_project.Model
                 Connection = credentials.connection;
 
                 Context db = new Context();
+                db.Database.EnsureCreated();
+                Admin_ID = credentials.admin_ID;
+                Admin_Password = credentials.admin_password;
                 return true;
             }
             catch (Exception)
@@ -74,7 +95,6 @@ namespace afw_project.Model
                 return false;
             }
         }
-
 
         /// <summary>
         /// Saves the information in the file.
@@ -86,14 +106,15 @@ namespace afw_project.Model
         {
             Connection = connectionString;
             Admin_ID = admin_ID;
-            Admin_Password = admin_password;
+            Admin_Password = GetHash(admin_password);
             try
             {
                 Credentials credentials = new Credentials { admin_ID = Admin_ID, connection = Connection, admin_password = Admin_Password };
-                using (RSACryptoServiceProvider RSA = new RSACryptoServiceProvider())
+                string text = JsonConvert.SerializeObject(credentials);
+                File.WriteAllText(connection_file, text);
+                using (Context db = new Context())
                 {
-                    string text = JsonConvert.SerializeObject(credentials);
-                    File.WriteAllText(connection_file, text);
+                    db.Database.EnsureCreated();
                 }
             }
             catch (Exception)

@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace afw_project
 {
-    class VM_Base : INotifyPropertyChanged
+    public class VM_Base : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

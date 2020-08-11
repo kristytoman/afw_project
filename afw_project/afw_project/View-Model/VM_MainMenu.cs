@@ -1,4 +1,6 @@
-﻿using afw_project.View.Admin;
+﻿using afw_project.Model;
+using afw_project.View.Admin;
+using Google.Protobuf.WellKnownTypes;
 using System.Collections.ObjectModel;
 
 namespace afw_project.View_Model
@@ -12,7 +14,7 @@ namespace afw_project.View_Model
         {
             get
             {
-                return VM_Login.LoggedUser == null;
+                return App.User.Password == null || App.User.Password == string.Empty;
             }
         }
 
@@ -23,7 +25,7 @@ namespace afw_project.View_Model
         {
             get
             {
-                return VM_Login.LoggedUser != null;
+                return App.User.Password != null && App.User.Password != string.Empty;
             }
         }
 
@@ -37,13 +39,13 @@ namespace afw_project.View_Model
         /// </summary>
         public VM_MainMenu()
         {
-            if (IsLoggedIn && VM_Login.LoggedUser.Email == "admin")
+            if (ContextCredentials.CheckTheAdmin(App.User.Email,App.User.Password))
             {
                 MenuItems = new ObservableCollection<View_MasterMenuItem>(new[]
                 {
                     new View_MasterMenuItem { Id = 1,   Title = "Your products",      TargetType = typeof(View_Products) },
-                    new View_MasterMenuItem { Id = 2,   Title = "Customers' orders" },
-                    new View_MasterMenuItem { Id = 3,   Title = "Season Sales" },
+                    new View_MasterMenuItem { Id = 2,   Title = "Customers' orders",  TargetType = typeof(Admin_Orders) },
+                    new View_MasterMenuItem { Id = 3,   Title = "Season Sales",       TargetType = typeof(Admin_Sales) },
                 });
             }
             else

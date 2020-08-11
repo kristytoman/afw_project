@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-
 namespace afw_project
 {
-    class Order
+    public class Order
     {
         /// <summary>
         /// Gets or sets the ID of the order.
@@ -17,14 +15,19 @@ namespace afw_project
         public int Price { get; set; }
 
         /// <summary>
-        /// Gets or sets the order's state.
-        /// </summary>
-        public int State { get; set; }
-
-        /// <summary>
-        /// Gets or sets order's timestamp.
+        /// Gets or sets the time of ordering.
         /// </summary>
         public DateTime OrderTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time of sending the order.
+        /// </summary>
+        public DateTime SendTime { get; set; }
+
+        /// <summary>
+        /// Gets or sets the time of receiving the order.
+        /// </summary>
+        public DateTime ReceivedTime { get; set; }
 
         /// <summary>
         /// Gets or sets order's owner.

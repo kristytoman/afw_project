@@ -9,9 +9,14 @@ namespace afw_project
 {
     public partial class App : Application
     {
+        /// <summary>
+        /// Gets or sets the current user account that is using the application.
+        /// </summary>
+        public static Customer User { get; set; }
         public App()
         {
             InitializeComponent();
+            User = new Customer();
             if (!ContextCredentials.GetSavedCredentials())
             {
                 MainPage = new View_Init();
@@ -19,24 +24,7 @@ namespace afw_project
             else
             {
                 MainPage = new View_MainPage();
-
             }
-
-        }
-
-        protected override void OnStart()
-        {
-            
-        }
-
-        protected override void OnSleep()
-        {
-            // Handle when your app sleeps
-        }
-
-        protected override void OnResume()
-        {
-            // Handle when your app resumes
         }
     }
 }

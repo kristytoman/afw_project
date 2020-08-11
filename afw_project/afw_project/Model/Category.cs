@@ -1,4 +1,5 @@
-﻿using System;
+﻿using afw_project.View_Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,7 +8,7 @@ namespace afw_project
     /// <summary>
     /// Database object for products' categories.
     /// </summary>
-    class Category
+    public class Category
     {
         /// <summary>
         /// Gets or sets the ID of the category.
@@ -79,15 +80,23 @@ namespace afw_project
         /// Gets products from the category.
         /// </summary>
         /// <returns>List of products or null if a mistake occured.</returns>
-        public List<Product> GetProducts()
+        public List<ProductView> GetProducts()
         {
             try
             {
                 using (Context db = new Context())
                 {
-                    Products = db.Products.Where(p => p.Category.Name == Name).ToList();
+                    List<ProductView> results = new List<ProductView>();
+                    foreach (Product p in db.Products.Where(p => p.Category.Name == Name && p.Amount>=0).ToList())
+                    {
+                        results.Add(new ProductView(p));
+                    }
+                    if (results.Count == 0)
+                    {
+                        return null;
+                    }
+                    else return results;
                 }
-                return Products;
             }
             catch (Exception)
             {

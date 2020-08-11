@@ -51,7 +51,7 @@ namespace afw_project.View.Admin
         /// <param name="e"></param>
         private void LogOut_Clicked(object sender, EventArgs e)
         {
-            VM_Login.LoggedUser = null;
+            App.User = new Customer();
             DisplayAlert("Log out", "You were succesfully logged out.", "OK");
             Application.Current.MainPage = new View_MainPage();
         }

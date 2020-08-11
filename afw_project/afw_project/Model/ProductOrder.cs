@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace afw_project
 {
-    class ProductOrder
+    public class ProductOrder
     {
         /// <summary>
         /// Gets or sets the ID of the order.

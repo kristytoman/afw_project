@@ -1,10 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Xamarin.Essentials;
-using System;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
-using System.IO;
-using Newtonsoft.Json;
 using afw_project.Model;
 
 namespace afw_project

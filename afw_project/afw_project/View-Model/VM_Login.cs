@@ -1,15 +1,11 @@
-﻿using afw_project.View.Admin;
+﻿using afw_project.Model;
+using afw_project.View.Admin;
 using Xamarin.Forms;
 
 namespace afw_project.View_Model
 {
     class VM_Login : VM_Base
     {
-        /// <summary>
-        /// Gets or sets the current user account that is using the application.
-        /// </summary>
-        public static Customer LoggedUser { get; set; }
-
         /// <summary>
         /// Bindable string to get the user's input email address
         /// </summary>
@@ -32,16 +28,23 @@ namespace afw_project.View_Model
         {
             Login = new Command(LogUserIn);
         }
-        
+
         /// <summary>
         /// Tries to get user with the input credentials from the database
         /// </summary>
         private void LogUserIn()
         {
-            LoggedUser = Customer.GetCustomer(Email, Password);
+            if (ContextCredentials.CheckTheAdmin(Email, Password))
+            {
+                App.User = new Customer(Email,Password);
+                Application.Current.MainPage = new View_MainPage();
+                return;
+            }
+
+            App.User = Customer.GetCustomer(Email, Password);
 
             /// Unsuccesful operation
-            if (LoggedUser == null)
+            if (App.User == null)
             {
                 Application.Current.MainPage.DisplayAlert
                (
@@ -51,23 +54,8 @@ namespace afw_project.View_Model
                );
                 return;
             }
-            
-            /// Succesful operation
-            Application.Current.MainPage.DisplayAlert
-              (
-                  "Succesfull login",
-                  "You are succesfully logged in",
-                  "OK"
-              );
 
-            if (LoggedUser.Email == "admin") /// Admin login
-            {
-                App.Current.MainPage = new View_MainPage();
-            }
-            else /// Customer login
-            {
-                App.Current.MainPage = new View_MainPage();
-            }
+            Application.Current.MainPage = new View_MainPage();
         }
     }
 }

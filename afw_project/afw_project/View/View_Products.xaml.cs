@@ -1,4 +1,5 @@
-﻿using afw_project.View.Admin;
+﻿using afw_project.Model;
+using afw_project.View.Admin;
 using afw_project.View_Model;
 using Xamarin.Forms.Xaml;
 
@@ -17,19 +18,18 @@ namespace afw_project
         /// 
         /// Creates subpages containing all categories and products.
         /// </summary>
-        public View_Products ()
+        public View_Products()
         {
             /// Creates a new view-model.
             viewModel = new VM_ProductMainPage();
             BindingContext = viewModel;
-            if (VM_Login.LoggedUser != null && VM_Login.LoggedUser.Email == "admin")
+            if (ContextCredentials.CheckTheAdmin(App.User.Email, App.User.Password))
             {
                 Title = "Your products";
                 ToolbarItems.Add(new Xamarin.Forms.ToolbarItem("Add", "", viewModel.GetNewProductPage));
             }
 
             InitializeComponent();
-            
             
             /// Creates tabs for all inherited pages.
             viewModel.GetPages(Children);

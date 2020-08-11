@@ -1,4 +1,5 @@
-﻿using afw_project.View.Admin;
+﻿using afw_project.Model;
+using afw_project.View.Admin;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -49,9 +50,9 @@ namespace afw_project.View_Model
         /// </summary>
         public void GetNewProductPage()
         {
-            if (VM_Login.LoggedUser.Email == "admin")
+            if (ContextCredentials.CheckTheAdmin(App.User.Email,App.User.Password))
             {
-                ((View_MainPage)App.Current.MainPage).Detail = new Admin_NewProduct();
+                ((View_MainPage)Application.Current.MainPage).Detail = new Admin_ProductForm();
             }
         }
 
@@ -61,7 +62,7 @@ namespace afw_project.View_Model
         /// <param name="children">List of children pages of a main product page.</param>
         public void GetPages(IList<Page> children)
         {
-            if (VM_Login.LoggedUser != null && VM_Login.LoggedUser.Email == "admin")
+            if (ContextCredentials.CheckTheAdmin(App.User.Email, App.User.Password))
             {
                 children.Add(new Admin_Products("All"));
                 foreach (Category category in Categories)

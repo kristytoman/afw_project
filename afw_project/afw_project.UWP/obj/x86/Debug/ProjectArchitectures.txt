@@ -1,1 +1,0 @@
-C:\Users\krist\source\repos\afw_project\afw_project\afw_project.UWP\afw_project.UWP.csproj;x86

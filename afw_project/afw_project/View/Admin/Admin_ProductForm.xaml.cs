@@ -7,32 +7,40 @@ using Xamarin.Forms.Xaml;
 namespace afw_project.View.Admin
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Admin_NewProduct : ContentPage
+    public partial class Admin_ProductForm : ContentPage
     {
         // used twice - global or parent??
         //
         /// <summary>
         /// Color for valid entry.
         /// </summary>
-        Color validColor = Color.Green;
+        readonly Color validColor = Color.Green;
         //
         /// <summary>
         /// Color for invalid entry.
         /// </summary>
-        Color invalidColor = Color.Red;
+        readonly Color invalidColor = Color.Red;
         //
         //
 
-        private VM_NewProduct viewModel;
+        private readonly VM_ProductForm viewModel;
 
         /// <summary>
         /// Initializing new NewProduct page.
         /// </summary>
-        public Admin_NewProduct()
+        public Admin_ProductForm()
         {
             InitializeComponent();
-            viewModel = new VM_NewProduct();
+            viewModel = new VM_ProductForm();
             BindingContext = viewModel;
+        }
+
+        public Admin_ProductForm(ProductView product)
+        {
+            InitializeComponent();
+            viewModel = new VM_ProductForm(product);
+            BindingContext = viewModel;
+            
         }
 
         // used twice - global or parent?

@@ -1,13 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using afw_project.View_Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace afw_project
 {
-    class Product
+    public class Product
     {
         /// <summary>
         /// Gets or sets the ID of the product.
@@ -91,6 +89,29 @@ namespace afw_project
             }
         }
 
+        public static bool ChangeProduct(int id, string name, string categoryName, string description, int price, int amount)
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    Product product = db.Products.First(p => p.ID == id);
+                    product.Name = name;
+                    product.Description = description;
+                    product.Price = price;
+                    product.Amount = amount;
+                    product.Category = new Category(categoryName);
+                    db.Attach(product.Category);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         /// <summary>
         /// Entries the product into the database.
         /// </summary>
@@ -124,18 +145,45 @@ namespace afw_project
         /// Gets all products from the database.
         /// </summary>
         /// <returns>List of products or null.</returns>
-        public static List<Product> GetAll()
+        public static List<ProductView> GetAll()
         {
             try
             {
                 using (Context db = new Context())
                 {
-                    return db.Products.ToList();
+                    List<ProductView> results = new List<ProductView>();
+                    foreach (Product p in db.Products.Where(p=>p.Amount>=0).ToList())
+                    {
+                        results.Add(new ProductView(p));
+                    }
+                    if (results.Count == 0)
+                    {
+                        return null;
+                    }
+                    else return results;
                 }
             }
             catch
             {
                 return null;
+            }
+        }
+
+        public static bool DeleteProduct(int id)
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    Product product = db.Products.First(p => p.ID == id);
+                    product.Amount = -1;
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
     }

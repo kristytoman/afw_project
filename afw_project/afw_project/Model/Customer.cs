@@ -2,12 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace afw_project
 {
-    class Customer
+    public class Customer
     {
         /// <summary>
         /// Gets or sets the ID of the customer.
@@ -96,7 +94,15 @@ namespace afw_project
             Country = country;
         }
 
-        
+        public Customer() 
+        { 
+        }
+
+        public Customer(string email, string password)
+        {
+            Email = email;
+            Password = password;
+        }
 
         /// <summary>
         /// Finds the user identified by login in the database.
