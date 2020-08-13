@@ -26,26 +26,24 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Image x:Name="product_pic" Source="" 
-                                   Grid.Row="0" Grid.Column="0" Grid.RowSpan="3"/>
-                            <Label x:Name="product_name" Text="{}"
+                            <Label x:Name="product_name" Text="{Binding Name}"
                                    Grid.Row="0" Grid.Column="1"/>
-                            <Label x:Name="product_amount" Text="{}"
+                            <Entry x:Name="product_amount" Text="{Binding Amount}" Unfocused="{Binding ChangeTheAmount}"
                                    Grid.Row="1" Grid.Column="1"/>
-                            <Label x:Name="product_price" Text="{}"
+                            <Label x:Name="product_price" Text="{Binding Price}"
                                    Grid.Row="0" Grid.Column="2"/>
-                            <Label x:Name="product_sale" Text="{}"
+                            <Label x:Name="product_sale" Text="{Binding Sale}"
                                    Grid.Row="1" Grid.Column="2"/>
-                            <Label x:Name="final_price" Text="{}"
+                            <Label x:Name="final_price" Text="{Binding FinalPrice}"
                                    Grid.Row="2" Grid.Column="2"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-            <Label Text="Total:"/>
-            <Label x:Name="total_price" Text="{}"/>
-            <Button Text="Next"/>
+            <Label Text="Total:" Grid.Row="1" Grid.Column="1"/>
+            <Label x:Name="total_price" Text="{Binding FinalCost}" Grid.Row="1" Grid.Column="2"/>
+            <Button Text="Next" Grid.Row="2" Grid.Column="2"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -1,5 +1,6 @@
 ﻿using afw_project.Model;
 using afw_project.View.Admin;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -13,6 +14,7 @@ namespace afw_project.View_Model
         public string Amount { get; set; }
         public string Price { get; set; }
         public string Sale { get; set; }
+        public string FinalPrice { get; set; }
         private readonly string shortDescription;
         private readonly string longDescription;
         public string Description 
@@ -50,7 +52,14 @@ namespace afw_project.View_Model
             Category = "";
             shortDescription = template.Description.Substring(0, template.Description.Length < 50 ? template.Description.Length : 50);
             longDescription = template.Description;
+            FinalPrice = Math.Round((double)(template.Price - template.Price * template.Sale / 100), 2).ToString();
             isSelected = false;
+
+        }
+        public ProductView(Product template, int amount,int sale) : this(template)
+        {
+            Amount = amount.ToString();
+            Sale = sale.ToString();
 
         }
     }
@@ -120,6 +129,11 @@ namespace afw_project.View_Model
                     );
                 }
             }
+        }
+
+        public void AddToCart(int id)
+        {
+            
         }
         
 

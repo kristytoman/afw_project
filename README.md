@@ -10,7 +10,7 @@
 ## Requirements
 ### Functional requirements
 - [ ] Client side
-  - [ ] Adding a product to a cart
+  - [x] Adding a product to a cart
   - [x] Using an existing user account
   - [x] Creating new user account
   - [ ] Counting a product sale
@@ -21,11 +21,11 @@
   - [ ] Creating new order
   - [ ] Viewing existing orders
 - [ ] Administrator side
-  - [ ] Products
+  - [x] Products
     - [x] Creating new product
     - [x] Viewing products
-    - [ ] Editing products
-    - [ ] Deleting products
+    - [x] Editing products
+    - [x] Deleting products
   - [ ] Orders
     - [ ] Viewing all orders
     - [ ] Accepting orders

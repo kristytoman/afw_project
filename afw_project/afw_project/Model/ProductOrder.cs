@@ -18,6 +18,9 @@ namespace afw_project
         /// </summary>
         public int ProductID { get; set; }
 
+
+        public int Amount { get; set; }
+
         /// <summary>
         ///  Gets or sets the order's instance.
         /// </summary>

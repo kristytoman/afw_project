@@ -13,10 +13,17 @@ namespace afw_project
         /// Gets or sets the current user account that is using the application.
         /// </summary>
         public static Customer User { get; set; }
+
+        /// <summary>
+        /// Gets or sets the current user's cart.
+        /// </summary>
+        public static Order Cart { get; set; }
+
         public App()
         {
             InitializeComponent();
             User = new Customer();
+            Cart = new Order { Customer = User };
             if (!ContextCredentials.GetSavedCredentials())
             {
                 MainPage = new View_Init();

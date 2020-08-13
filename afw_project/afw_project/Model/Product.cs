@@ -186,5 +186,20 @@ namespace afw_project
                 return false;
             }
         }
+
+        public static Product GetProduct(int id)
+        {
+            try
+            {
+                using(Context db = new Context())
+                {
+                    return db.Products.First(p => p.ID == id);
+                }
+            }
+            catch(Exception)
+            {
+                return null;
+            }
+        }
     }
 }

@@ -1,5 +1,9 @@
-﻿using System;
+﻿using afw_project.View_Model;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http.Headers;
+
 namespace afw_project
 {
     public class Order
@@ -35,11 +39,59 @@ namespace afw_project
         public Customer Customer { get; set; }
 
         // Gets or sets the ordered products.
-        public IList<ProductOrder> ProductOrders { get; set; }
+        public List<ProductOrder> ProductOrders { get; set; }
 
         /// <summary>
         /// Creates new order instance.
         /// </summary>
-        public Order() { }
+        public Order() 
+        {
+            ProductOrders = new List<ProductOrder>();
+        }
+
+        public bool AddProduct(int id)
+        {
+            try
+            {
+                if (ProductOrders.Where(p => p.Product.ID == id).Count() == 1)
+                {
+                    ProductOrders.First(p => p.Product.ID == id).Amount++;
+                    return true;
+                    
+                }
+                else if (ProductOrders.Where(p => p.Product.ID == id).Count() == 0)
+                {
+                    Product product = Product.GetProduct(id);
+                    ProductOrders.Add(new ProductOrder { Product = product, Order = this, Amount = 1, Sale = product.Sale });
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch(Exception)
+            {
+                    return false;
+                
+            }
+        }
+
+        public List<ProductOrder> GetOrderProducts()
+        {
+            try
+            {
+                return ProductOrders;
+
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+        public void ChangeAmountOfProduct(bool signed, int id, int amount)
+        {
+            ProductOrders.First(p => p.Product.ID == id).Amount = amount;
+        }
     }
 }

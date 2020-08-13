@@ -42,5 +42,13 @@ namespace afw_project
             item.IsSelected = true;
             selectedItem = item;
         }
+
+        private void AddToCart_Clicked(object sender, System.EventArgs e)
+        {
+            if (!App.Cart.AddProduct(selectedItem.ID))
+            {
+                DisplayAlert("Something went wrong", "We were unable to put this item in the cart", "OK");
+            }
+        }
     }
 }
