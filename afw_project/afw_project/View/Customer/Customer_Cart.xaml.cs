@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using afw_project.View.Admin;
+using afw_project.View_Model;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace afw_project
@@ -11,6 +13,7 @@ namespace afw_project
         /// </summary>
         public Customer_Cart()
         {
+            BindingContext = new VM_Cart();
             InitializeComponent();
         }
     }

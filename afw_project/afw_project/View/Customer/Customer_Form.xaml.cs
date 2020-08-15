@@ -6,7 +6,7 @@ using Xamarin.Forms.Xaml;
 namespace afw_project
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Customer_SignUp : ContentPage
+    public partial class Customer_Form : ContentPage
     {
         /// <summary>
         /// Color for valid entry.
@@ -21,17 +21,17 @@ namespace afw_project
         /// <summary>
         /// View-model for the sign up page.
         /// </summary>
-        VM_SignUp viewModel;
+        readonly VM_CustomerForm viewModel;
 
         /// <summary>
         /// Initializing new Sign Up page.
         /// </summary>
-        public Customer_SignUp()
+        public Customer_Form(bool isSignUp)
         {
             InitializeComponent();
 
             /// Creates and binds the view-model.
-            viewModel = new VM_SignUp();
+            viewModel = new VM_CustomerForm(isSignUp);
             BindingContext = viewModel;
         }
 

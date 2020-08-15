@@ -41,7 +41,7 @@ namespace afw_project.View.Admin
         /// <param name="e"></param>
         private void SignUp_Clicked(object sender, EventArgs e)
         {
-            ((View_MainPage)Parent).Detail = new Customer_SignUp();
+            ((View_MainPage)Parent).Detail = new Customer_Form(true);
         }
 
         /// <summary>

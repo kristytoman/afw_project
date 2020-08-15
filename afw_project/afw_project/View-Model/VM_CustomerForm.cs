@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace afw_project
 {
-    class VM_SignUp : VM_Base
+    class VM_CustomerForm : VM_Base
     {
         /// <summary>
         /// Validatable object with email input.
@@ -274,14 +274,35 @@ namespace afw_project
         /// <summary>
         /// Bindable command for adding new customer account into the e-shop database.
         /// </summary>
-        public Command AddCustomer { get; set; }
+        public Command Finish { get; set; }
 
+        public readonly bool isSignUp;
+
+        /// <summary>
+        /// Name of the button.
+        /// </summary>
+        public string ButtonName 
+        { 
+            get
+            {
+                if (isSignUp)
+                {
+                    return "Sign up";
+                }
+                else
+                {
+                    return "Send order";
+                }
+            }
+
+        }
         /// <summary>
         /// Creates a new View Model for a Sign Up page.
         /// </summary>
-        public VM_SignUp()
+        public VM_CustomerForm(bool isSignUp)
         {
-            AddCustomer = new Command(CreateNewCustomer);
+            Finish = new Command(CreateNewCustomer);
+            this.isSignUp = isSignUp;
         }
 
         /// <summary>
@@ -390,7 +411,7 @@ namespace afw_project
         public bool CheckInput()
         {
             if (!email.isValid) return false;
-            if (!password.isValid) return false;
+            if (isSignUp && !password.isValid) return false;
             if (!firstName.isValid) return false;
             if (!lastName.isValid) return false;
             if (!phone.isValid) return false;

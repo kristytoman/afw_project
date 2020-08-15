@@ -5,7 +5,7 @@ using System.Text;
 
 namespace afw_project.View_Model
 {
-    class VM_Customer_Orders : VM_Base
+    class VM_Orders_Admin : VM_Base
     {
         public ObservableCollection<Order> Orders { get; set; }
     }

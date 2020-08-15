@@ -54,7 +54,7 @@ namespace afw_project.View_Model
                );
                 return;
             }
-
+            App.Cart.Customer = App.User;
             Application.Current.MainPage = new View_MainPage();
         }
     }

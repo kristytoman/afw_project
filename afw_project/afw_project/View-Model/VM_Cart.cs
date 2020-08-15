@@ -1,4 +1,5 @@
-﻿using System;
+﻿using afw_project.View.Admin;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
@@ -10,7 +11,8 @@ namespace afw_project.View_Model
         /// <summary>
         /// view model connected to the cart item.
         /// </summary>
-        private VM_Cart viewModel;
+        private readonly VM_Cart viewModel;
+
 
         /// <summary>
         /// Gets or sets the ID of the product in the cart.
@@ -26,7 +28,6 @@ namespace afw_project.View_Model
         /// Amount of ordered goods of this type.
         /// </summary>
         private int amount;
-
         /// <summary>
         /// Gets or sets the mount of ordered goods of this type.
         /// </summary>
@@ -53,13 +54,12 @@ namespace afw_project.View_Model
         /// <summary>
         /// Original price of one product.
         /// </summary>
-        private double originalPrice;
+        private readonly double originalPrice;
 
         /// <summary>
         /// Original cost of the ordered goods.
         /// </summary>
         private double summedPrice;
-
         /// <summary>
         /// Gets or sets the original cost of the ordered goods.
         /// </summary>
@@ -89,7 +89,6 @@ namespace afw_project.View_Model
         /// Total price of all products with a sale.
         /// </summary>
         private double finalPrice;
-
         /// <summary>
         /// Gets or sets the total price of all products with a sale.
         /// </summary>
@@ -109,26 +108,31 @@ namespace afw_project.View_Model
             }
         }
 
+
         /// <summary>
         /// Creates a new cart item and count the price.
         /// </summary>
-        /// <param name="viewModel"></param>
-        /// <param name="id"></param>
-        /// <param name="name"></param>
-        /// <param name="amount"></param>
-        /// <param name="price"></param>
-        /// <param name="sale"></param>
+        /// <param name="viewModel">View-model of the current cart page.</param>
+        /// <param name="id">ID of the product.</param>
+        /// <param name="name">Name of the product.</param>
+        /// <param name="amount">Amount of the ordered product.</param>
+        /// <param name="price">Original price of the product.</param>
+        /// <param name="sale">Sale of the product.</param>
         public CartItem(VM_Cart viewModel, int id, string name, int amount, int price, int sale)
         {
             this.viewModel = viewModel;
+
             ID = id;
             Name = name;
             originalPrice = price;
             this.amount = amount;
-            SummedPrice = originalPrice * Amount;
             Sale = sale;
+
+            SummedPrice = originalPrice * Amount;
             FinalPrice = Math.Round((double)(SummedPrice - SummedPrice * Sale / 100), 2);
         }
+
+
 
         /// <summary>
         /// Sends the new amount of the item to the model.
@@ -141,6 +145,12 @@ namespace afw_project.View_Model
 
 
 
+
+    /***********************************************************************************************************/
+
+
+
+
     class VM_Cart : VM_Base
     {
         /// <summary>
@@ -149,15 +159,9 @@ namespace afw_project.View_Model
         public ObservableCollection<CartItem> Cart_products { get; set; }
 
         /// <summary>
-        /// Command to finish the order.
-        /// </summary>
-        public Command Continue { get; set; }
-
-        /// <summary>
         /// Total cost of all the wanted items.
         /// </summary>
         private double finalCost;
-
         /// <summary>
         /// Gets or sets the total cost of all wanted items.
         /// </summary>
@@ -178,24 +182,20 @@ namespace afw_project.View_Model
         }
 
         /// <summary>
-        /// Changes the total cost of the order.
+        /// Command to finish the order.
         /// </summary>
-        /// <param name="difference">Number to add to the total cost.</param>
-        public void ChangeCost(double difference)
-        {
-            if (FinalCost + difference > 0)
-            {
-                FinalCost += difference;
-            }
-        }
+        public Command Continue { get; set; }
+
+
 
         /// <summary>
         /// Creates new view-model for the customer's cart.
         /// </summary>
         public VM_Cart()
         {
-            List<ProductOrder> output = App.Cart.GetOrderProducts();
             FinalCost = 0;
+
+            List<ProductOrder> output = App.Cart.GetOrderProducts();
             Cart_products = new ObservableCollection<CartItem>();
             if (output != null)
             {
@@ -215,6 +215,47 @@ namespace afw_project.View_Model
                     );
                     ChangeCost(Cart_products[Cart_products.Count - 1].FinalPrice);
                 }
+
+                Continue = new Command(SaveChanges);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Changes the total cost of the order.
+        /// </summary>
+        /// <param name="difference">Number to add to the total cost.</param>
+        public void ChangeCost(double difference)
+        {
+            if (FinalCost + difference > 0)
+            {
+                FinalCost += difference;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Save the final amount of the products to order.
+        /// </summary>
+        private void SaveChanges()
+        {
+            foreach(CartItem item in Cart_products)
+            {
+                item.ChangeTheAmount();
+            }
+
+            if (App.User.Password != null && App.User.Password != string.Empty)
+            {
+                App.Cart.SendTheOrder();
+                App.Cart = new Order { Customer = App.User };
+                ((View_MainPage)Application.Current.MainPage).Detail = new View_Products();
+
+            }
+            else
+            {
+                ((View_MainPage)Application.Current.MainPage).Detail = new Customer_Form(false);
             }
         }
     }

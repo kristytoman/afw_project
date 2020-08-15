@@ -4,7 +4,7 @@
             xmlns:local="clr-namespace:afw_project.View_Model"
             x:Class="afw_project.View.Admin.Admin_Orders">
     <TabbedPage.BindingContext>
-        <local:VM_Admin_Orders/>
+        <local:VM_Orders_Admin/>
     </TabbedPage.BindingContext>
     <ContentPage Title="All orders">
         <ListView ItemsSource="{Binding Orders}">

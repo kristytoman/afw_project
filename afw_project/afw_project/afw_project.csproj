@@ -40,8 +40,8 @@
     <Compile Update="View\Customer\Customer_Cart.xaml.cs">
       <DependentUpon>Customer_Cart.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\Customer\Customer_SignUp.xaml.cs">
-      <DependentUpon>Customer_SignUp.xaml</DependentUpon>
+    <Compile Update="View\Customer\Customer_Form.xaml.cs">
+      <DependentUpon>Customer_Form.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\Customer\Customer_Products.xaml.cs">
       <DependentUpon>Customer_Products.xaml</DependentUpon>
@@ -82,7 +82,7 @@
     <EmbeddedResource Update="View\Customer\Customer_Cart.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Customer\Customer_SignUp.xaml">
+    <EmbeddedResource Update="View\Customer\Customer_Form.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\Customer\Customer_Products.xaml">

@@ -5,7 +5,7 @@
              x:Class="afw_project.Customer_Orders"
              Title="Your orders">
     <ContentPage.BindingContext>
-        <local:VM_Customer_Orders/>
+        <local:VM_Orders_Customer/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
