@@ -12,12 +12,12 @@ namespace afw_project.View.Admin
         /// <summary>
         /// View model of the current page.
         /// </summary>
-        VM_Products viewModel;
+        readonly VM_Products viewModel;
 
         /// <summary>
         /// Selected product in a list of products.
         /// </summary>
-        ProductView selectedItem;
+        ProductItem selectedItem;
 
 
         /// <summary>
@@ -53,7 +53,7 @@ namespace afw_project.View.Admin
                 selectedItem.IsSelected = false;
             }
 
-            if (!(lw.SelectedItem is ProductView item))
+            if (!(lw.SelectedItem is ProductItem item))
             {
                 return;
             }

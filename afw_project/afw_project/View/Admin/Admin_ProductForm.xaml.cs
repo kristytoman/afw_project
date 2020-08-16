@@ -35,7 +35,7 @@ namespace afw_project.View.Admin
             BindingContext = viewModel;
         }
 
-        public Admin_ProductForm(ProductView product)
+        public Admin_ProductForm(ProductItem product)
         {
             InitializeComponent();
             viewModel = new VM_ProductForm(product);

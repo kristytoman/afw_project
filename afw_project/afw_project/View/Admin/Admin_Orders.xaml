@@ -1,97 +1,79 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
-            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-            xmlns:local="clr-namespace:afw_project.View_Model"
-            x:Class="afw_project.View.Admin.Admin_Orders">
-    <TabbedPage.BindingContext>
-        <local:VM_Orders_Admin/>
-    </TabbedPage.BindingContext>
-    <ContentPage Title="All orders">
-        <ListView ItemsSource="{Binding Orders}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Label x:Name="order_id" Text=""/>
-                            <Label x:Name="order_state" Text=""/>
-                            <Label x:Name="order_price" Text=""/>
-                            
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ContentPage>
-    
-    
-    <ContentPage Title="Waiting">
-        <ListView ItemsSource="{Binding Orders}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Label x:Name="order_id" Text=""/>
-                            <Label x:Name="order_state" Text=""/>
-                            <Label x:Name="order_price" Text=""/>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="afw_project.View.Admin.Admin_Orders">
+    <ContentPage.Content>
+        <ListView x:Name="orderList" 
+                  ItemsSource="{Binding Orders}" 
+                  HasUnevenRows="True" 
+                  SelectionMode="None"
+                  IsGroupingEnabled="True"
+                  GroupDisplayBinding="{Binding ID}">
 
+            <ListView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width=".5*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Label Text="{Binding ID}"
+                                   Grid.Row="0" Grid.Column="1" />
+                            <Label Text="{Binding OrderPrice}"
+                                   Grid.Row="0" Grid.Column="2"/>
+                            <Label Text="{Binding OrderState}"
+                                   Grid.Row="0" Grid.Column="3"/>
+                            <Button Text="Cancel" IsVisible="{Binding IsCancelable}" CommandParameter="{Binding ID}" Command="{Binding Command_cancel}"
+                                    Grid.Row="0" Grid.Column="4"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ContentPage>
-    
-    
-    <ContentPage Title="Sent">
-        <ListView ItemsSource="{Binding Orders}">
+            </ListView.GroupHeaderTemplate>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid>
-                            <Label x:Name="order_id" Text=""/>
-                            <Label x:Name="order_state" Text=""/>
-                            <Label x:Name="order_price" Text=""/>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width=".5*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width=".5*"/>
+                            </Grid.ColumnDefinitions>
 
+                            <Label Text="{Binding Name}" FontAttributes="Bold"
+                                   Grid.Row="0" Grid.Column="1"/>
+                            <Label Text="{Binding OriginalPrice}" TextColor="LightGray"
+                                   Grid.Row="0" Grid.Column="2"/>
+                            <Label Text="{Binding Sale}" TextColor="Green"
+                                   Grid.Row="1" Grid.Column="2"/>
+                            <Label Text="{Binding ProductAmount}" 
+                                   Grid.Row="0" Grid.Column="3"/>
+                            <Label Text="{Binding FinalPrice}" 
+                                   Grid.Row="0" Grid.Column="4"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </ContentPage>
-    
-    
-    <ContentPage Title="Received">
-        <ListView ItemsSource="{Binding Orders}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Label x:Name="order_id" Text=""/>
-                            <Label x:Name="order_state" Text=""/>
-                            <Label x:Name="order_price" Text=""/>
-
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ContentPage>
-    
-    
-    <ContentPage Title="Cancelled">
-        <ListView ItemsSource="{Binding Orders}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid>
-                            <Label x:Name="order_id" Text=""/>
-                            <Label x:Name="order_state" Text=""/>
-                            <Label x:Name="order_price" Text=""/>
-
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-    </ContentPage>
-</TabbedPage>
+    </ContentPage.Content>
+</ContentPage>

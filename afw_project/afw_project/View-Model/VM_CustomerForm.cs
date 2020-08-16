@@ -281,8 +281,8 @@ namespace afw_project
         /// <summary>
         /// Name of the button.
         /// </summary>
-        public string ButtonName 
-        { 
+        public string ButtonName
+        {
             get
             {
                 if (isSignUp)
@@ -421,7 +421,7 @@ namespace afw_project
             if (!code.isValid) return false;
             return true;
         }
-       
+
         /// <summary>
         /// Creates a new user account if all input values are valid and returns back to a product page.
         /// </summary>
@@ -442,7 +442,7 @@ namespace afw_project
             Customer c = new Customer
             (
                 email.Value,
-                password.Value,
+                password.Value == string.Empty ? null : password.Value,
                 firstName.Value,
                 lastName.Value,
                 phone.Value,
@@ -456,23 +456,49 @@ namespace afw_project
             /// Tries to create a new record in a database.
             if (c.CreateNewCustomer())
             {
-                Application.Current.MainPage.DisplayAlert
-                (
-                    "Succesful operation", 
-                    "You are succesfully signed up", 
-                    "OK"
-                );
-                App.Current.MainPage = new View_MainPage();
-            }
-                else
+                if (isSignUp)
                 {
                     Application.Current.MainPage.DisplayAlert
                     (
-                        "Something went wrong", 
-                        "The signing up failed", 
+                        "Succesful operation",
+                        "You are succesfully signed up",
                         "OK"
                     );
+                    Application.Current.MainPage = new View_MainPage();
                 }
+                else
+                {
+                    App.User = c;
+                    App.Cart.Customer = App.User;
+                    if (!App.Cart.SendTheOrder())
+                    {
+                        Application.Current.MainPage.DisplayAlert
+                        (
+                            "Something went wrong",
+                            "We were unable to send the order.",
+                            "OK"
+                        );
+                    }
+                    else
+                    {
+                        Application.Current.MainPage.DisplayAlert
+                        (
+                            "Successful operation",
+                            "Your order has been sent.",
+                            "OK"
+                        );
+                    }
+                }
+            }
+            else
+            {
+                Application.Current.MainPage.DisplayAlert
+                (
+                    "Something went wrong",
+                    "The signing up failed",
+                    "OK"
+                );
+            }
         }
     }
 }

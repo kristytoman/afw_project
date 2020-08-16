@@ -245,7 +245,7 @@ namespace afw_project.View_Model
             isEdited = false;
         }
 
-        public VM_ProductForm(ProductView edited)
+        public VM_ProductForm(ProductItem edited)
         {
             product_id = edited.ID;
             Input_name = edited.Name;

@@ -21,11 +21,10 @@ namespace afw_project
 
             BindingContext = new VM_Products(Title);
         }
-        ProductView selectedItem;
+        ProductItem selectedItem;
         private void Products_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var lw = sender as ListView;
-            if (lw == null)
+            if (!(sender is ListView lw))
             {
                 return;
             }
@@ -34,8 +33,7 @@ namespace afw_project
             {
                 selectedItem.IsSelected = false;
             }
-            ProductView item = lw.SelectedItem as ProductView;
-            if (item == null)
+            if (!(lw.SelectedItem is ProductItem item))
             {
                 return;
             }

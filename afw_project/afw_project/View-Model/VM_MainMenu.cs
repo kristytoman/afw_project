@@ -44,7 +44,7 @@ namespace afw_project.View_Model
                 MenuItems = new ObservableCollection<View_MasterMenuItem>(new[]
                 {
                     new View_MasterMenuItem { Id = 1,   Title = "Your products",      TargetType = typeof(View_Products) },
-                    new View_MasterMenuItem { Id = 2,   Title = "Customers' orders",  TargetType = typeof(Admin_Orders) },
+                    new View_MasterMenuItem { Id = 2,   Title = "Customers' orders",  TargetType = typeof(Admin_Orders_MainPage) },
                     new View_MasterMenuItem { Id = 3,   Title = "Season Sales",       TargetType = typeof(Admin_Sales) },
                 });
             }

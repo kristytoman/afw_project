@@ -145,16 +145,16 @@ namespace afw_project
         /// Gets all products from the database.
         /// </summary>
         /// <returns>List of products or null.</returns>
-        public static List<ProductView> GetAll()
+        public static List<ProductItem> GetAll()
         {
             try
             {
                 using (Context db = new Context())
                 {
-                    List<ProductView> results = new List<ProductView>();
+                    List<ProductItem> results = new List<ProductItem>();
                     foreach (Product p in db.Products.Where(p=>p.Amount>=0).ToList())
                     {
-                        results.Add(new ProductView(p));
+                        results.Add(new ProductItem(p));
                     }
                     if (results.Count == 0)
                     {

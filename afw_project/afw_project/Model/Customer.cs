@@ -83,7 +83,14 @@ namespace afw_project
         public Customer(string email, string password, string firstName, string lastName, string phone, string street, string building, string city, string code, string country)
         {
             Email = email;
-            Password = ContextCredentials.GetHash(password);
+            if (password != null && password != string.Empty)
+            {
+                Password = ContextCredentials.GetHash(password);
+            }
+            else
+            {
+                Password = null;
+            }
             FirstName = firstName;
             LastName = lastName;
             Phone = phone;
@@ -95,7 +102,18 @@ namespace afw_project
         }
 
         public Customer() 
-        { 
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    db.Orders.Where(c => c.ID == ID);
+                }
+            }
+            catch(Exception)
+            {
+
+            }
         }
 
         public Customer(string email, string password)
@@ -144,6 +162,22 @@ namespace afw_project
             catch (Exception)
             {
                 return false;
+            }
+        }
+
+        public List<Order> GetOrders()
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    Orders = db.Orders.Where(c => c.Customer.ID == ID).ToList();
+                    return Orders;
+                }
+            }
+            catch(Exception)
+            {
+                return null;
             }
         }
     }

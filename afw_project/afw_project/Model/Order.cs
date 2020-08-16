@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
+using Xamarin.Forms;
 
 namespace afw_project
 {
@@ -48,7 +49,7 @@ namespace afw_project
         /// <summary>
         /// Creates new order instance.
         /// </summary>
-        public Order() 
+        public Order()
         {
             ProductOrders = new List<ProductOrder>();
         }
@@ -97,7 +98,15 @@ namespace afw_project
         {
             try
             {
-                return ProductOrders;
+                using (Context db = new Context())
+                {
+                    ProductOrders = db.ProductOrders.Where(o => o.OrderID == ID).ToList();
+                    foreach (ProductOrder item in ProductOrders)
+                    {
+                        item.Product = db.Products.Where(p => p.ID == item.ProductID).First();
+                    }
+                    return ProductOrders;
+                }
             }
             catch (Exception)
             {
@@ -106,14 +115,13 @@ namespace afw_project
         }
 
 
-        //update this method
         /// <summary>
         /// Changes the amount of the product in the order.
         /// </summary>
         /// <param name="signed"></param>
         /// <param name="id"></param>
         /// <param name="amount"></param>
-        public void ChangeAmountOfProduct(bool signed, int id, int amount)
+        public void ChangeAmountOfProduct(int id, int amount)
         {
             ProductOrders.First(p => p.Product.ID == id).Amount = amount;
         }
@@ -121,26 +129,127 @@ namespace afw_project
         /// <summary>
         /// Saves the order in the database
         /// </summary>
-        public void SendTheOrder()
+        public bool SendTheOrder()
         {
             OrderTime = DateTime.Now;
             SendTime = null;
             ReceivedTime = null;
             Price = 0;
-            using (Context db = new Context())
+            try
             {
-                db.Attach(Customer);
-                foreach (ProductOrder item in ProductOrders)
+                using (Context db = new Context())
                 {
-                    Price += (item.Product.Price - item.Sale * item.Product.Price) * item.Amount;
-                    item.Order = this;
-                    item.ProductID = item.Product.ID;
-                    db.ProductOrders.Add(item);
-                    db.Products.Attach(item.Product);
-                }
-                db.Orders.Add(this);
+                    db.Attach(Customer);
+                    foreach (ProductOrder item in ProductOrders)
+                    {
+                        Price += (item.Product.Price - item.Sale * item.Product.Price) * item.Amount;
 
-                db.SaveChanges();
+                        item.Order = this;
+                        item.ProductID = item.Product.ID;
+
+                        db.ProductOrders.Add(item);
+                        db.Products.Attach(item.Product);
+                    }
+                    db.Orders.Add(this);
+
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static bool CancelTheOrder(int id)
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    db.Orders.Where(o => o.ID == id).First().SendTime=DateTime.MinValue;
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
+
+        public static List<Order> GetAllOrders()
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    return db.Orders.Where(o=>o.OrderTime!=null).ToList();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static List<Order> GetWaitingOrders()
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    return db.Orders.Where(o => o.OrderTime!=null && o.SendTime == null && o.ReceivedTime == null).ToList();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static List<Order> GetSentOrders()
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    return db.Orders.Where(o => o.SendTime!=null && o.SendTime!= DateTime.MinValue && o.ReceivedTime == null).ToList();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public static List<Order> GetCancelledOrders()
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    return db.Orders.Where(o => o.SendTime == DateTime.MinValue).ToList();
+                }
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        public static List<Order> GetFulfilledOrders()
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    return db.Orders.Where(o => o.SendTime != null && o.SendTime != DateTime.MinValue && o.ReceivedTime!=null).ToList();
+                }
+            }
+            catch
+            {
+                return null;
             }
         }
     }

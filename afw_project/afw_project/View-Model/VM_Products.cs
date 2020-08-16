@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace afw_project.View_Model
 {
-    public class ProductView : VM_Base
+    public class ProductItem : VM_Base
     {
         public int ID { get; private set; }
         public string Name { get; set; }
@@ -35,14 +35,13 @@ namespace afw_project.View_Model
             set
             {
                 isSelected = value;
-                    OnPropertyChanged();
-                
+                OnPropertyChanged();
             }
         }
 
         public string Category { get; set; }
 
-        public ProductView(Product template)
+        public ProductItem(Product template)
         {
             ID = template.ID;
             Name = template.Name;
@@ -56,7 +55,7 @@ namespace afw_project.View_Model
             isSelected = false;
 
         }
-        public ProductView(Product template, int amount,int sale) : this(template)
+        public ProductItem(Product template, int amount,int sale) : this(template)
         {
             Amount = amount.ToString();
             Sale = sale.ToString();
@@ -68,7 +67,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// List of products from a database.
         /// </summary>
-        private ObservableCollection<ProductView> productsList;
+        private ObservableCollection<ProductItem> productsList;
 
         /// <summary>
         /// Page category. Null if content page is for all products.
@@ -82,7 +81,7 @@ namespace afw_project.View_Model
         /// <param name="title">Name of the page.</param>
         public VM_Products(string title)
         {
-            List<ProductView> results;
+            List<ProductItem> results;
 
             if (title == "All")
             {
@@ -95,17 +94,17 @@ namespace afw_project.View_Model
             }
             if (results == null)
             {
-                productsList = new ObservableCollection<ProductView>();
+                productsList = new ObservableCollection<ProductItem>();
             }
             else
             {
-                productsList = new ObservableCollection<ProductView>(results);
+                productsList = new ObservableCollection<ProductItem>(results);
             }
 
             
         }
 
-        public void DeleteSelectedItem(ProductView item)
+        public void DeleteSelectedItem(ProductItem item)
         {
             if (ContextCredentials.CheckTheAdmin(App.User.Email, App.User.Password))
             {
@@ -131,16 +130,10 @@ namespace afw_project.View_Model
             }
         }
 
-        public void AddToCart(int id)
-        {
-            
-        }
-        
-
         /// <summary>
         /// Gets or sets the list of products from the database.
         /// </summary>
-        public ObservableCollection<ProductView> ProductsList
+        public ObservableCollection<ProductItem> ProductsList
         {
             get
             {

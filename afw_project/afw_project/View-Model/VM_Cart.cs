@@ -139,7 +139,7 @@ namespace afw_project.View_Model
         /// </summary>
         public void ChangeTheAmount()
         {
-            App.Cart.ChangeAmountOfProduct(App.User.Password != null || App.User.Password != string.Empty, ID, Amount);
+            App.Cart.ChangeAmountOfProduct(ID, Amount);
         }
     }
 
