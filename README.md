@@ -18,8 +18,8 @@
     - [ ] Summer sale
     - [ ] Autumn sale
     - [ ] Winter sale
-  - [ ] Creating new order
-  - [ ] Viewing existing orders
+  - [x] Creating new order
+  - [x] Viewing existing orders
 - [x] Administrator side
   - [x] Products
     - [x] Creating new product

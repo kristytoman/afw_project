@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace afw_project
+namespace afw_project.View_Model
 {
     public class VM_Base : INotifyPropertyChanged
     {

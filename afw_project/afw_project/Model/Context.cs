@@ -1,58 +1,28 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using afw_project.Model;
 
-namespace afw_project
+namespace afw_project.Model
 {
-    
-   
     class Context : DbContext
     {
-        
-        /// <summary>
-        ///
-        /// </summary>
+        #region Database tables
         public DbSet<Category> Categories { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public DbSet<Product> Products { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public DbSet<Customer> Customers { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public DbSet<Order> Orders { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         public DbSet<ProductOrder> ProductOrders { get; set; }
+        #endregion
 
 
-        public Context() 
-        {
-            
-        }
-       
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="optionsBuilder"></param>
+        #region Creating context methods
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseMySQL(ContextCredentials.Connection);
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="modelBuilder"></param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -86,6 +56,6 @@ namespace afw_project
                 entity.HasOne(o => o.Order).WithMany(p => p.ProductOrders).HasForeignKey(k => k.OrderID);
             });
         }
+        #endregion
     }
-
 }

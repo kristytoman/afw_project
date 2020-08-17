@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="afw_project.View.Admin.Sales"
+             Title="Choose your sale">
+    
+    <ContentPage.Content>
+        <Grid>
+            <Picker Title="Select the sale type">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Spring</x:String>
+                        <x:String>Summer</x:String>
+                        <x:String>Autumn</x:String>
+                        <x:String>Winter</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

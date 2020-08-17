@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="afw_project.View.MainMenu"
+             Title="Main menu">
+
+    <StackLayout >
+        <ListView x:Name="mainMenuList" ItemsSource="{Binding MenuItems}"
+            SeparatorVisibility="Default" HasUnevenRows="true">
+
+            <ListView.Header>
+                <Grid BackgroundColor="BlueViolet">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    
+                    <Button Text="Log in" TextColor="AntiqueWhite" 
+                            Clicked="Login_Clicked" 
+                            IsVisible="{Binding IsNotLoggedIn}"
+                            Grid.Row="0" Grid.Column="1"/>
+                    
+                    <Button Text="Log out" TextColor="AntiqueWhite" 
+                            Clicked="LogOut_Clicked" 
+                            IsVisible="{Binding IsLoggedIn}"
+                            Grid.Row="0" Grid.Column="2"/>
+                    
+                    <Button Text="Sign up" TextColor="AntiqueWhite" 
+                            Clicked="SignUp_Clicked" 
+                            IsVisible="{Binding IsNotLoggedIn}"
+                            Grid.Row="0" Grid.Column="2"/>
+                    
+                    <Label Text="E-shop" TextColor="AntiqueWhite"
+                           Style="{DynamicResource SubtitleStyle}"
+                           Grid.Row="2" Grid.Column="1"/>
+                </Grid>
+            </ListView.Header>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                            
+                            <Label Text="{Binding Title}" FontSize="Medium"
+                                   VerticalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+    </StackLayout>
+</ContentPage>

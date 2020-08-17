@@ -3,13 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace afw_project
+namespace afw_project.Model
 {
-    /// <summary>
-    /// Database object for products' categories.
-    /// </summary>
     public class Category
     {
+        #region Database columns
         /// <summary>
         /// Gets or sets the ID of the category.
         /// </summary>
@@ -24,7 +22,10 @@ namespace afw_project
         /// Gets or sets the list of products connected to the category.
         /// </summary>
         public List<Product> Products { get; set; }
+        #endregion
 
+
+        #region Constructors
         /// <summary>
         /// Creates new instance for a category.
         /// </summary>
@@ -33,10 +34,11 @@ namespace afw_project
             Products = new List<Product>();
         }
 
+
         /// <summary>
         /// Creates new instance for the category.
         /// </summary>
-        /// <param name="name">Name of the category/</param>
+        /// <param name="name">Name of the category.</param>
         public Category(string name)
         {
             Name = name;
@@ -56,7 +58,11 @@ namespace afw_project
                 }
             }
         }
+        #endregion
 
+
+
+        #region Get methods
         /// <summary>
         /// Gets all categories in the database.
         /// </summary>
@@ -103,5 +109,6 @@ namespace afw_project
                 return null;
             }
         }
+        #endregion
     }
 }

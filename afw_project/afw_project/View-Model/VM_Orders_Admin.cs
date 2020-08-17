@@ -1,15 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using afw_project.Model;
+using System.Collections.Generic;
 
 namespace afw_project.View_Model
 {
     class VM_Orders_Admin : VM_Base
     {
-        public List<OrderItem> Orders { get; set; }
+        /// <summary>
+        /// Gets or sets the list of orders.
+        /// </summary>
+        public List<OrderItem> List_Orders { get; set; }
 
+
+        /// <summary>
+        /// Creates the view model for orders for admin.
+        /// </summary>
+        /// <param name="name">Title of the page.</param>
         public VM_Orders_Admin(string name)
         {
             List<Order> result;
-            Orders = new List<OrderItem>();
+            List_Orders = new List<OrderItem>();
             switch (name)
             {
                 case "All":
@@ -50,7 +59,7 @@ namespace afw_project.View_Model
                             )
                         );
                     }
-                    Orders.Add(oi);
+                    List_Orders.Add(oi);
                 }
             }
         }

@@ -1,35 +1,34 @@
-﻿using afw_project.Validation;
-using afw_project.View.Admin;
-using afw_project.View_Model.Validation;
+﻿using afw_project.Model;
+using afw_project.View;
+using afw_project.Model.Validation.Objects;
 using Xamarin.Forms;
 
-namespace afw_project
+namespace afw_project.View_Model
 {
     class VM_CustomerForm : VM_Base
     {
+        #region Properties
         /// <summary>
         /// Validatable object with email input.
         /// </summary>
         private Email email;
-
         /// <summary>
         /// Error message to display with invalid email input.
         /// </summary>
         private string error_email;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid email input.
         /// </summary>
         public string Error_email
         {
-            get
-            {
-                return error_email;
-            }
+            get => error_email;
             private set
             {
-                error_email = value;
-                OnPropertyChanged();
+                if (value != error_email)
+                {
+                    error_email = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -38,25 +37,23 @@ namespace afw_project
         /// Validatable object with password input.
         /// </summary>
         private Password password;
-
         /// <summary>
         /// Error message to display with invalid password input.
         /// </summary>
         private string error_password;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid password input.
         /// </summary>
         public string Error_password
         {
-            get
-            {
-                return error_password;
-            }
+            get => error_password;
             private set
             {
-                error_password = value;
-                OnPropertyChanged();
+                if (value != error_password)
+                {
+                    error_password = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -65,25 +62,23 @@ namespace afw_project
         /// Validatable object with first name input.
         /// </summary>
         private Name firstName;
-
         /// <summary>
         /// Error message to display with invalid first name input.
         /// </summary>
         private string error_firstName;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid first name input.
         /// </summary>
         public string Error_firstName
         {
-            get
-            {
-                return error_firstName;
-            }
+            get => error_firstName;
             private set
             {
-                error_firstName = value;
-                OnPropertyChanged();
+                if (value != error_firstName)
+                {
+                    error_firstName = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -92,12 +87,10 @@ namespace afw_project
         /// Validatable object with last name input.
         /// </summary>
         private Name lastName;
-
         /// <summary>
         /// Error message to display with invalid last name input.
         /// </summary>
         private string error_lastName;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid last name input.
         /// </summary>
@@ -109,8 +102,11 @@ namespace afw_project
             }
             private set
             {
-                error_lastName = value;
-                OnPropertyChanged();
+                if (value != error_lastName)
+                {
+                    error_lastName = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -119,25 +115,23 @@ namespace afw_project
         /// Validatable object with phone number input.
         /// </summary>
         private PhoneNumber phone;
-
         /// <summary>
         /// Error message to display with invalid phone number input.
         /// </summary>
         private string error_phone;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid phone number input.
         /// </summary>
         public string Error_phone
         {
-            get
-            {
-                return error_phone;
-            }
+            get => error_phone;
             private set
             {
-                error_phone = value;
-                OnPropertyChanged();
+                if (value != error_phone)
+                {
+                    error_phone = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -146,25 +140,23 @@ namespace afw_project
         /// Validatable object with street address input.
         /// </summary>
         private Name street;
-
         /// <summary>
         /// Error message to display with invalid street address input.
         /// </summary>
         private string error_street;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid street address input.
         /// </summary>
         public string Error_street
         {
-            get
-            {
-                return error_street;
-            }
+            get => error_street;
             private set
             {
-                error_street = value;
-                OnPropertyChanged();
+                if (value != error_street)
+                {
+                    error_street = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -173,25 +165,23 @@ namespace afw_project
         /// Validatable object with building number input.
         /// </summary>
         private Building building;
-
         /// <summary>
         /// Error message to display with invalid building number input.
         /// </summary>
         private string error_building;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid building number input.
         /// </summary>
         public string Error_building
         {
-            get
-            {
-                return error_building;
-            }
+            get => error_building;
             private set
             {
-                error_building = value;
-                OnPropertyChanged();
+                if (value != error_building)
+                {
+                    error_building = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -200,25 +190,23 @@ namespace afw_project
         /// Validatable object with city address input.
         /// </summary>
         private Name city;
-
         /// <summary>
         /// Error message to display with invalid city address input.
         /// </summary>
         private string error_city;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid city address input.
         /// </summary>
         public string Error_city
         {
-            get
-            {
-                return error_city;
-            }
+            get => error_city;
             private set
             {
-                error_city = value;
-                OnPropertyChanged();
+                if (value != error_city)
+                {
+                    error_city = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -227,25 +215,23 @@ namespace afw_project
         /// Validatable object with postal code input.
         /// </summary>
         private Number code;
-
         /// <summary>
         /// Error message to display with invalid postal code input.
         /// </summary>
         private string error_code;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid postal code input.
         /// </summary>
         public string Error_code
         {
-            get
-            {
-                return error_code;
-            }
+            get => error_code;
             private set
             {
-                error_code = value;
-                OnPropertyChanged();
+                if (value != error_code)
+                {
+                    error_code = value;
+                    OnPropertyChanged();
+                }
             }
         }
 
@@ -254,48 +240,42 @@ namespace afw_project
         /// Country address input value.
         /// </summary>
         private string country = "";
-
         /// <summary>
         /// Bindable property that gets or sets the country input.
         /// </summary>
         public string Country
         {
-            get
-            {
-                return country;
-            }
+            get => country;
             set
             {
-                country = value;
-                OnPropertyChanged();
+                if (value != country)
+                {
+                    country = value;
+                    OnPropertyChanged();
+                }
             }
         }
+
+
+        /// <summary>
+        /// Defines whether the page is for sign up
+        /// </summary>
+        public readonly bool isSignUp;
+
+
+        /// <summary>
+        /// Name of the button.
+        /// </summary>
+        public string ButtonName => isSignUp ? "Sign up" : "Send order";
 
         /// <summary>
         /// Bindable command for adding new customer account into the e-shop database.
         /// </summary>
         public Command Finish { get; set; }
+        #endregion
 
-        public readonly bool isSignUp;
 
-        /// <summary>
-        /// Name of the button.
-        /// </summary>
-        public string ButtonName
-        {
-            get
-            {
-                if (isSignUp)
-                {
-                    return "Sign up";
-                }
-                else
-                {
-                    return "Send order";
-                }
-            }
-
-        }
+        #region Constructor
         /// <summary>
         /// Creates a new View Model for a Sign Up page.
         /// </summary>
@@ -304,7 +284,11 @@ namespace afw_project
             Finish = new Command(CreateNewCustomer);
             this.isSignUp = isSignUp;
         }
+        #endregion
 
+
+
+        #region Validation methods
         /// <summary>
         /// Validates the user input and shows/hides the error message for invalid e-mail.
         /// </summary>
@@ -317,6 +301,8 @@ namespace afw_project
             return email.isValid;
         }
 
+
+
         /// <summary>
         /// Validates the user input and shows/hides the error message for invalid password.
         /// </summary>
@@ -328,6 +314,8 @@ namespace afw_project
             Error_password = password.Validate();
             return password.isValid;
         }
+
+
 
         /// <summary>
         /// Validates the user input and shows/hides the error message for invalid input.
@@ -368,6 +356,8 @@ namespace afw_project
             }
         }
 
+
+
         /// <summary>
         /// Validates the user input and shows/hides the error message for invalid phone number.
         /// </summary>
@@ -379,6 +369,8 @@ namespace afw_project
             Error_phone = phone.Validate();
             return phone.isValid;
         }
+
+
 
         /// <summary>
         /// Validates the user input and shows/hides the error message for invalid building number.
@@ -392,6 +384,8 @@ namespace afw_project
             return building.isValid;
         }
 
+
+
         /// <summary>
         /// Validates the user input and shows/hides the error message for invalid postal code.
         /// </summary>
@@ -403,6 +397,8 @@ namespace afw_project
             Error_code = code.Validate();
             return code.isValid;
         }
+
+
 
         /// <summary>
         /// Checks whether all validatable objects are valid.
@@ -421,7 +417,11 @@ namespace afw_project
             if (!code.isValid) return false;
             return true;
         }
+        #endregion
 
+
+
+        #region Finish
         /// <summary>
         /// Creates a new user account if all input values are valid and returns back to a product page.
         /// </summary>
@@ -464,7 +464,7 @@ namespace afw_project
                         "You are succesfully signed up",
                         "OK"
                     );
-                    Application.Current.MainPage = new View_MainPage();
+                    Application.Current.MainPage = new MainPage();
                 }
                 else
                 {
@@ -500,5 +500,6 @@ namespace afw_project
                 );
             }
         }
+        #endregion
     }
 }

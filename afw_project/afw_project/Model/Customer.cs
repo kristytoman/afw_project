@@ -1,12 +1,13 @@
-﻿using afw_project.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace afw_project
+namespace afw_project.Model
 {
     public class Customer
     {
+        #region Database columns
+
         /// <summary>
         /// Gets or sets the ID of the customer.
         /// </summary>
@@ -66,7 +67,10 @@ namespace afw_project
         /// Gets or sets the customer's orders.
         /// </summary>
         public List<Order> Orders { get; set; }
+        #endregion
 
+
+        #region Constructors
         /// <summary>
         /// Creates a new instance for a new customer.
         /// </summary>
@@ -101,7 +105,10 @@ namespace afw_project
             Country = country;
         }
 
-        public Customer() 
+        /// <summary>
+        /// Creates a new instance for a database.
+        /// </summary>
+        public Customer()
         {
             try
             {
@@ -110,18 +117,27 @@ namespace afw_project
                     db.Orders.Where(c => c.ID == ID);
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
 
             }
         }
 
+        /// <summary>
+        /// Creates user after authentication for administrator.
+        /// </summary>
+        /// <param name="email">User identification name.</param>
+        /// <param name="password">User authentication password.</param>
         public Customer(string email, string password)
         {
             Email = email;
             Password = password;
         }
+        #endregion
 
+
+
+        #region Methods
         /// <summary>
         /// Finds the user identified by login in the database.
         /// </summary>
@@ -165,6 +181,10 @@ namespace afw_project
             }
         }
 
+        /// <summary>
+        /// Gets orders of the user.
+        /// </summary>
+        /// <returns>List of user's orders or null.</returns>
         public List<Order> GetOrders()
         {
             try
@@ -175,10 +195,11 @@ namespace afw_project
                     return Orders;
                 }
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return null;
             }
         }
+        #endregion
     }
 }

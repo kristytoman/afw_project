@@ -1,4 +1,5 @@
-﻿using System;
+﻿using afw_project.Model;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -8,38 +9,28 @@ namespace afw_project.View_Model
 {
     class OrderItem : ObservableCollection<Order_ProductItem>, INotifyPropertyChanged
     {
+        private readonly bool isAdmin;
+        
+        #region Item properties
         public int ID { get; set; }
         public string OrderPrice { get; set; }
 
-        private Enum_OrderState orderState;
+        private OrderStateType orderState;
         public string OrderState
         {
             get => orderState.ToString();
             set
             {
 
-                if (int.TryParse(value, out int input) && (Enum_OrderState)input != orderState)
+                if (int.TryParse(value, out int input) && (OrderStateType)input != orderState)
                 {
-                    orderState = (Enum_OrderState)input;
+                    orderState = (OrderStateType)input;
                     OnPropertyChanged();
                 }
             }
         }
+        #endregion
 
-        private readonly bool isAdmin;
-
-        public bool IsVisible => isAdmin && OrderState != "Cancelled" && OrderState != "Fulfilled";
-
-        public string ButtonName
-        {
-            get
-            {
-                if (OrderState == "Ordered") return "Send";
-                if (OrderState == "Send") return "Received";
-                return "";
-            }
-        }
-        public bool IsCancelable => OrderState == Enum_OrderState.Ordered.ToString();
 
         #region Constructor
         public OrderItem(Order template, bool isAdmin)
@@ -52,16 +43,16 @@ namespace afw_project.View_Model
             {
                 if (template.SendTime == null)
                 {
-                    orderState = Enum_OrderState.Ordered;
+                    orderState = OrderStateType.Waiting;
                 }
                 else
                 {
-                    orderState = template.SendTime == DateTime.MinValue ? Enum_OrderState.Cancelled : Enum_OrderState.Shipped;
+                    orderState = template.SendTime == DateTime.MinValue ? OrderStateType.Cancelled : OrderStateType.Shipped;
                 }
             }
             else
             {
-                orderState = Enum_OrderState.Fulfilled;
+                orderState = OrderStateType.Fulfilled;
             }
 
             Command_cancel = new Command(CancelOrder);
@@ -72,31 +63,75 @@ namespace afw_project.View_Model
         }
         #endregion
 
-        #region Button command
-        public Command Command_cancel { get; private set; }
 
+
+        #region Button command
+
+        /// <summary>
+        /// Defines whether the button for cancelling is visible.
+        /// </summary>
+        public bool IsVisible => isAdmin && OrderState != "Cancelled" && OrderState != "Fulfilled";
+
+        /// <summary>
+        /// Defines the name of the continue button.
+        /// </summary>
+        public string ButtonName
+        {
+            get
+            {
+                if (OrderState == "Ordered") return "Send";
+                if (OrderState == "Send") return "Received";
+                return "";
+            }
+        }
+
+        /// <summary>
+        /// Defines whether an item is cancelable or not.
+        /// </summary>
+        public bool IsCancelable => OrderState == OrderStateType.Waiting.ToString();
+
+        /// <summary>
+        /// Command to cancel an order.
+        /// </summary>
+        public Command Command_cancel { get; private set; }
+        
+        /// <summary>
+        /// Command to change order state.
+        /// </summary>
+        public Command Command_change { get; private set; }
+
+
+
+        /// <summary>
+        /// Cancels the order.
+        /// </summary>
         public void CancelOrder()
         {
             Order.CancelTheOrder(ID);
             OrderState = "4";
         }
 
-        public Command Command_change { get; private set; }
 
+
+        /// <summary>
+        /// Changes the order state.
+        /// </summary>
         public void ChangeTheOrderState()
         {
-            if (orderState == Enum_OrderState.Ordered)
+            if (orderState == OrderStateType.Waiting)
             {
                 Order.SendTheOrder(ID);
                 OrderState = "2";
             }
-            if (orderState == Enum_OrderState.Shipped)
+            if (orderState == OrderStateType.Shipped)
             {
                 Order.FulfillTheOrder(ID);
                 OrderState = "3";
             }
         }
         #endregion
+
+
 
         #region NotifyPropertyChanged
 

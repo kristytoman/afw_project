@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="afw_project.View.MainPage"
+             xmlns:pages="clr-namespace:afw_project.View">
+    <MasterDetailPage.Master>
+        <pages:MainMenu x:Name="MainMenuPage"/>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <pages:Products_MainPage x:Name="ProductsMainPage"/>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

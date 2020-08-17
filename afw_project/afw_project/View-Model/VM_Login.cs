@@ -1,11 +1,12 @@
 ﻿using afw_project.Model;
-using afw_project.View.Admin;
+using afw_project.View;
 using Xamarin.Forms;
 
 namespace afw_project.View_Model
 {
     class VM_Login : VM_Base
     {
+        #region Properties
         /// <summary>
         /// Bindable string to get the user's input email address
         /// </summary>
@@ -20,7 +21,10 @@ namespace afw_project.View_Model
         /// Bindable command to log in the user
         /// </summary>
         public Command Login { get; set; }
+        #endregion
 
+
+        #region Constructor
         /// <summary>
         /// Creates a new View-Model for the Login page
         /// </summary>
@@ -28,7 +32,10 @@ namespace afw_project.View_Model
         {
             Login = new Command(LogUserIn);
         }
+        #endregion
 
+
+        #region Finish
         /// <summary>
         /// Tries to get user with the input credentials from the database
         /// </summary>
@@ -37,7 +44,7 @@ namespace afw_project.View_Model
             if (ContextCredentials.CheckTheAdmin(Email, Password))
             {
                 App.User = new Customer(Email,Password);
-                Application.Current.MainPage = new View_MainPage();
+                Application.Current.MainPage = new MainPage();
                 return;
             }
 
@@ -55,7 +62,8 @@ namespace afw_project.View_Model
                 return;
             }
             App.Cart.Customer = App.User;
-            Application.Current.MainPage = new View_MainPage();
+            Application.Current.MainPage = new MainPage();
         }
+        #endregion
     }
 }

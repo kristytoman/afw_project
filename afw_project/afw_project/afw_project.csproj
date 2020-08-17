@@ -19,79 +19,91 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="View\View_MainMenu.xaml.cs">
-      <DependentUpon>View_MainMenu.xaml</DependentUpon>
+    <Compile Update="View\Admin\Sales.xaml.cs">
+      <DependentUpon>Sales.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\Admin\Admin_Products.xaml.cs">
-      <DependentUpon>Admin_Products.xaml</DependentUpon>
+    <Compile Update="View\Admin\Orders_MainPage.xaml.cs">
+      <DependentUpon>Orders_MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\Admin\Admin_ProductForm.xaml.cs">
-      <DependentUpon>Admin_ProductForm.xaml</DependentUpon>
+    <Compile Update="View\Admin\Orders.xaml.cs">
+      <DependentUpon>Orders.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\View_MainPage.xaml.cs">
-      <DependentUpon>View_MainPage.xaml</DependentUpon>
+    <Compile Update="View\Init.xaml.cs">
+      <DependentUpon>Init.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\Customer\Customer_Login.xaml.cs">
-      <DependentUpon>Customer_Login.xaml</DependentUpon>
+    <Compile Update="View\MainMenu.xaml.cs">
+      <DependentUpon>MainMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\Customer\Customer_Orders.xaml.cs">
-      <DependentUpon>Customer_Orders.xaml</DependentUpon>
+    <Compile Update="View\Admin\Products.xaml.cs">
+      <DependentUpon>Products.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\Customer\Customer_Cart.xaml.cs">
-      <DependentUpon>Customer_Cart.xaml</DependentUpon>
+    <Compile Update="View\Admin\ProductForm.xaml.cs">
+      <DependentUpon>ProductForm.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\Customer\Customer_Form.xaml.cs">
-      <DependentUpon>Customer_Form.xaml</DependentUpon>
+    <Compile Update="View\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\Customer\Customer_Products.xaml.cs">
-      <DependentUpon>Customer_Products.xaml</DependentUpon>
+    <Compile Update="View\Customer\Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
-    <Compile Update="View\View_Products.xaml.cs">
-      <DependentUpon>View_Products.xaml</DependentUpon>
+    <Compile Update="View\Customer\Orders.xaml.cs">
+      <DependentUpon>Orders.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Customer\Cart.xaml.cs">
+      <DependentUpon>Cart.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Customer\CustomerForm.xaml.cs">
+      <DependentUpon>CustomerForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Customer\Products.xaml.cs">
+      <DependentUpon>Products.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\Products_MainPage.xaml.cs">
+      <DependentUpon>Products_MainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View\Admin\Admin_Orders.xaml">
+    <EmbeddedResource Update="View\Admin\Orders.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Admin\Admin_Orders_MainPage.xaml">
+    <EmbeddedResource Update="View\Admin\Orders_MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Admin\Admin_Sales.xaml">
+    <EmbeddedResource Update="View\Admin\Sales.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\View_Init.xaml">
+    <EmbeddedResource Update="View\Init.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\View_MainPage.xaml">
+    <EmbeddedResource Update="View\MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Admin\Admin_Products.xaml">
+    <EmbeddedResource Update="View\Admin\Products.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\View_MainMenu.xaml">
+    <EmbeddedResource Update="View\MainMenu.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Admin\Admin_ProductForm.xaml">
+    <EmbeddedResource Update="View\Admin\ProductForm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Customer\Customer_Login.xaml">
+    <EmbeddedResource Update="View\Customer\Login.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Customer\Customer_Orders.xaml">
+    <EmbeddedResource Update="View\Customer\Orders.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Customer\Customer_Cart.xaml">
+    <EmbeddedResource Update="View\Customer\Cart.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Customer\Customer_Form.xaml">
+    <EmbeddedResource Update="View\Customer\CustomerForm.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\Customer\Customer_Products.xaml">
+    <EmbeddedResource Update="View\Customer\Products.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\View_Products.xaml">
+    <EmbeddedResource Update="View\Products_MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

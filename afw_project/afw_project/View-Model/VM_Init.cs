@@ -1,51 +1,51 @@
 ﻿using afw_project.Model;
-using afw_project.Validation;
-using afw_project.View.Admin;
+using afw_project.View;
+using afw_project.Model.Validation.Objects;
 using Xamarin.Forms;
 
 namespace afw_project.View_Model
 {
     class VM_Init : VM_Base
     {
+        #region Properties
         /// <summary>
         /// Server name for the database connection string.
         /// </summary>
         public string ServerName { get; set; }
+
 
         /// <summary>
         /// Database name for the database connection string.
         /// </summary>
         public string DatabaseName { get; set; }
 
+
         /// <summary>
         /// Database user of the database.
         /// </summary>
         public string DatabaseUser { get; set; }
+
 
         /// <summary>
         /// Password for the database user authentication.
         /// </summary>
         public string DatabasePassword { get; set; }
 
+
         /// <summary>
         /// Username for administrator authentication.
         /// </summary>
         private Name username;
-
         /// <summary>
         /// Label to view error if the username was invalid.
         /// </summary>
         private string error_username;
-
         /// <summary>
         /// Gets or sets the error label with invalid username.
         /// </summary>
         public string Error_username
         {
-            get
-            {
-                return error_username;
-            }
+            get => error_username;
             private set
             {
                 if (value != error_username)
@@ -56,25 +56,21 @@ namespace afw_project.View_Model
             }
         }
 
+
         /// <summary>
         /// Password for the administrator authentication.
         /// </summary>
         private Password password;
-
         /// <summary>
         /// Label to view error if the password was invalid.
         /// </summary>
         private string error_password;
-
         /// <summary>
         /// Gets or sets the error label with invalid password.
         /// </summary>
         public string Error_password
         {
-            get
-            {
-                return error_password;
-            }
+            get => error_password;
             private set
             {
                 if (value != error_password)
@@ -85,11 +81,15 @@ namespace afw_project.View_Model
             }
         }
 
+
         /// <summary>
         /// Gets or sets the command for saving the credentials.
         /// </summary>
         public Command Save { get; set; }
+        #endregion
 
+
+        #region Constructor
         /// <summary>
         /// Initialize the view-model for the Init page.
         /// </summary>
@@ -97,7 +97,11 @@ namespace afw_project.View_Model
         {
             Save = new Command(Initialize);
         }
+        #endregion
 
+
+
+        #region Validations
         /// <summary>
         /// Validates the administrator username input.
         /// </summary>
@@ -132,7 +136,11 @@ namespace afw_project.View_Model
             if (!password.isValid) return false;
             return true;
         }
+        #endregion
 
+
+
+        #region Finish
         /// <summary>
         /// Sends the values and initialize the application. 
         /// </summary>
@@ -159,8 +167,9 @@ namespace afw_project.View_Model
             }
             else
             {
-                Application.Current.MainPage = new View_MainPage();
+                Application.Current.MainPage = new MainPage();
             }
         }
+        #endregion
     }
 }

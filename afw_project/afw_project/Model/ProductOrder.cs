@@ -1,8 +1,8 @@
-﻿
-namespace afw_project
+﻿namespace afw_project.Model
 {
     public class ProductOrder
     {
+        #region Database columns
         /// <summary>
         /// Gets or sets the ID of the order.
         /// </summary>
@@ -18,7 +18,9 @@ namespace afw_project
         /// </summary>
         public int ProductID { get; set; }
 
-
+        /// <summary>
+        /// Gets or sets the amount of the ordered product.
+        /// </summary>
         public int Amount { get; set; }
 
         /// <summary>
@@ -30,10 +32,13 @@ namespace afw_project
         /// Gets or sets the sale of the product in the current order.
         /// </summary>
         public int Sale { get; set; }
+        #endregion
 
+        #region Constructor
         /// <summary>
-        /// Creates a new instance for the relation between product and order.
+        /// Database constructor
         /// </summary>
-        public ProductOrder() { }
+        public ProductOrder(){ }
+        #endregion
     }
 }

@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:afw_project.View_Model"
+             x:Class="afw_project.View.Customer.Login"
+             Title="Login">
+    
+    <ContentPage.BindingContext>
+        <local:VM_Login/>
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Content>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.25*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="0.3*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Text="Enter your log in information"
+                   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
+            
+            <Entry Placeholder="Email" Text="{Binding Email}"
+                   Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+            
+            <Entry Placeholder="Password" Text="{Binding Password}" IsPassword="True" 
+                   Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"/>
+            
+            <Button Text="Log in" Command="{Binding Login}"
+                    Grid.Row="4" Grid.Column="2"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

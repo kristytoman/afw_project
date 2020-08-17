@@ -3,10 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace afw_project
+namespace afw_project.Model
 {
     public class Product
     {
+        #region Database columns
         /// <summary>
         /// Gets or sets the ID of the product.
         /// </summary>
@@ -37,7 +38,6 @@ namespace afw_project
         /// </summary>
         public string Description { get; set; }
 
-
         /// <summary>
         /// Gets or sets the product's category.
         /// </summary>
@@ -47,15 +47,9 @@ namespace afw_project
         /// Gets or sets the product's orders.
         /// </summary>
         public List<ProductOrder> ProductOrders { get; set; }
+        #endregion
 
-        /// <summary>
-        /// Creates a product's instance.
-        /// </summary>
-        public Product()
-        {
-
-        }
-
+        #region Constructors
         /// <summary>
         /// Creates a new product's instance for the admin.
         /// </summary>
@@ -89,6 +83,55 @@ namespace afw_project
             }
         }
 
+        /// <summary>
+        /// Database constructor.
+        /// </summary>
+        public Product() { }
+        #endregion
+
+
+
+        #region Product modification
+        /// <summary>
+        /// Entries the product into the database.
+        /// </summary>
+        /// <returns>True if successful, false if any mistake occured.</returns>
+        public bool CreateNewProduct()
+        {
+            if (Category != null)
+            {
+                Context db = new Context();
+                try
+                {
+                    db.Attach(Category);
+                    Category.Products.Add(this);
+
+                    if (db.SaveChanges() == 0)
+                    {
+                        return false;
+                    }
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+            return false;
+        }
+
+
+
+        /// <summary>
+        /// Changes the product information.
+        /// </summary>
+        /// <param name="id">Identification number of the product.</param>
+        /// <param name="name">Name of the product.</param>
+        /// <param name="categoryName">Name of the product's category.</param>
+        /// <param name="description">Product's description.</param>
+        /// <param name="price">Price of the product.</param>
+        /// <param name="amount">Amount of the product.</param>
+        /// <returns>True if succesfull, false if not.</returns>
         public static bool ChangeProduct(int id, string name, string categoryName, string description, int price, int amount)
         {
             try
@@ -112,35 +155,35 @@ namespace afw_project
             }
         }
 
+
+
         /// <summary>
-        /// Entries the product into the database.
+        /// Marks the product as deleted.
         /// </summary>
-        /// <returns>True if successful, false if any mistake occured.</returns>
-        public bool CreateNewProduct()
+        /// <param name="id">Identification number of the product.</param>
+        /// <returns></returns>
+        public static bool DeleteProduct(int id)
         {
-            if (Category == null)
-            {
-                return false;
-            }
-            Context db = new Context();
             try
             {
-                db.Attach(Category);
-                Category.Products.Add(this);
-
-                if (db.SaveChanges() == 0)
+                using (Context db = new Context())
                 {
-                    return false;
+                    Product product = db.Products.First(p => p.ID == id);
+                    product.Amount = -1;
+                    db.SaveChanges();
+                    return true;
                 }
-                return true;
             }
-            catch
+            catch (Exception)
             {
                 return false;
             }
         }
+        #endregion
 
 
+
+        #region  Products view
         /// <summary>
         /// Gets all products from the database.
         /// </summary>
@@ -169,24 +212,11 @@ namespace afw_project
             }
         }
 
-        public static bool DeleteProduct(int id)
-        {
-            try
-            {
-                using (Context db = new Context())
-                {
-                    Product product = db.Products.First(p => p.ID == id);
-                    product.Amount = -1;
-                    db.SaveChanges();
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
+        /// <summary>
+        /// Gets a product by ID.
+        /// </summary>
+        /// <param name="id">Identification number of the product.</param>
+        /// <returns>Product instance or null.</returns>
         public static Product GetProduct(int id)
         {
             try
@@ -201,5 +231,6 @@ namespace afw_project
                 return null;
             }
         }
+        #endregion
     }
 }

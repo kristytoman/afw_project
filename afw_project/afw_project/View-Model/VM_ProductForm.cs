@@ -1,48 +1,56 @@
-﻿using afw_project.Validation;
-using afw_project.View.Admin;
-using afw_project.View_Model.Validation;
+﻿using afw_project.Model;
+using afw_project.View;
+using afw_project.Model.Validation.Objects;
 using Xamarin.Forms;
 
 namespace afw_project.View_Model
 {
     class VM_ProductForm : VM_Base
     {
+        #region Properties
+        /// <summary>
+        /// Identification number for the product.
+        /// </summary>
         private readonly int product_id;
+
+
+
         /// <summary>
         /// Validatable object with name input.
         /// </summary>
         private Description validation_name;
-
         /// <summary>
         /// Error message to display with invalid name input.
         /// </summary>
         private string error_name;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid product name input.
         /// </summary>
         public string Error_name
         {
-            get
-            {
-                return error_name;
-            }
+            get => error_name;
             private set
             {
-                error_name = value;
-                OnPropertyChanged();
+                if (error_name != value)
+                {
+                    error_name = value;
+                    OnPropertyChanged();
+                }
             }
         }
+        /// <summary>
+        /// String value of the name. 
+        /// </summary>
         private string input_name;
+        /// <summary>
+        /// Bindable property that gets or sets the string value of the name.
+        /// </summary>
         public string Input_name
         {
-            get
-            {
-                return input_name;
-            }
+            get => input_name;
             set
             {
-                if (value!=input_name)
+                if (value != input_name)
                 {
                     input_name = value;
                     OnPropertyChanged();
@@ -51,38 +59,37 @@ namespace afw_project.View_Model
         }
 
 
+
         /// <summary>
         /// Validatable object with category input.
         /// </summary>
         private Name validation_category;
-
         /// <summary>
         /// Error message to display with invalid category input.
         /// </summary>
         private string error_category;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid product category input.
         /// </summary>
         public string Error_category
         {
-            get
-            {
-                return error_category;
-            }
+            get => error_category;
             private set
             {
                 error_category = value;
                 OnPropertyChanged();
             }
         }
+        /// <summary>
+        /// String value of the category.
+        /// </summary>
         private string input_category;
+        /// <summary>
+        /// Bindable property that gets or sets the string value of the category.
+        /// </summary>
         public string Input_category
         {
-            get
-            {
-                return input_category;
-            }
+            get => input_category;
             set
             {
                 if (value != input_category)
@@ -93,39 +100,38 @@ namespace afw_project.View_Model
             }
         }
 
+
+
         /// <summary>
         /// Validatable object with description input.
         /// </summary>
         private Description validation_description;
-
         /// <summary>
         /// Error message to display with invalid description input.
         /// </summary>
         private string error_description;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid product description input.
         /// </summary>
         public string Error_description
         {
-            get
-            {
-                return error_description;
-            }
+            get => error_description;
             private set
             {
                 error_description = value;
                 OnPropertyChanged();
             }
         }
-
+        /// <summary>
+        /// String value of the description
+        /// </summary>
         private string input_description;
+        /// <summary>
+        /// Bindable property that gets or sets the string value of the description.
+        /// </summary>
         public string Input_description
         {
-            get
-            {
-                return input_description;
-            }
+            get => input_description;
             set
             {
                 if (value != input_description)
@@ -135,23 +141,39 @@ namespace afw_project.View_Model
                 }
             }
         }
+
+
+
         /// <summary>
         /// Validatable object with price input.
         /// </summary>
         private Number validation_price;
-
         /// <summary>
         /// Error message to display with invalid price input.
         /// </summary>
         private string error_price;
-
+        /// <summary>
+        /// Bindable property that gets or sets the error message to display with invalid product price input.
+        /// </summary>
+        public string Error_price
+        {
+            get => error_price;
+            private set
+            {
+                error_price = value;
+                OnPropertyChanged();
+            }
+        }
+        /// <summary>
+        /// String value of the price.
+        /// </summary>
         private string input_price;
+        /// <summary>
+        /// Bindable property that gets or sets the string value of the price.
+        /// </summary>
         public string Input_price
         {
-            get
-            {
-                return input_price;
-            }
+            get => input_price;
             set
             {
                 if (value != input_price)
@@ -161,56 +183,40 @@ namespace afw_project.View_Model
                 }
             }
         }
-        /// <summary>
-        /// Bindable property that gets or sets the error message to display with invalid product price input.
-        /// </summary>
-        public string Error_price
-        {
-            get
-            {
-                return error_price;
-            }
-            private set
-            {
-                error_price = value;
-                OnPropertyChanged();
-            }
-        }
+
 
 
         /// <summary>
         /// Validatable object with amount input.
         /// </summary>
         private Number validation_amount;
-
         /// <summary>
         /// Error message to display with invalid amount input.
         /// </summary>
         private string error_amount;
-
         /// <summary>
         /// Bindable property that gets or sets the error message to display with invalid product amount input.
         /// </summary>
         public string Error_amount
         {
-            get
-            {
-                return error_amount;
-            }
+            get => error_amount;
             private set
             {
-                error_amount = value;
+                if (error_amount != value)
+                    error_amount = value;
                 OnPropertyChanged();
             }
         }
-
+        /// <summary>
+        /// String value of the amount
+        /// </summary>
         private string input_amount;
+        /// <summary>
+       /// Bindable property that gets or sets the string value of the amount.
+       /// </summary>
         public string Input_amount
         {
-            get
-            {
-                return input_amount;
-            }
+            get => input_amount;
             set
             {
                 if (value != input_amount)
@@ -220,22 +226,29 @@ namespace afw_project.View_Model
                 }
             }
         }
+
+        
+
+        /// <summary>
+        /// Defines whether the product is edited or not.
+        /// </summary>
         private readonly bool isEdited;
-        public string Button
-        {
-            get
-            {
-                if (isEdited)
-                    return "Save changes";
-                else
-                    return "Add product";
-            }
-        }
+
+
+        /// <summary>
+        /// Bindable property that gets or sets the text of the button.
+        /// </summary>
+        public string Button => isEdited ? "Save changes" : "Add product";
+
+
         /// <summary>
         /// Bindable command for adding new product into the e-shop database.
         /// </summary>
         public Command Commit { get; set; }
+        #endregion
 
+
+        #region Constructors
         /// <summary>
         ///  Creates a new View Model for a New product page.
         /// </summary>
@@ -245,6 +258,11 @@ namespace afw_project.View_Model
             isEdited = false;
         }
 
+
+        /// <summary>
+        /// Creates a new View-model for an edited product.
+        /// </summary>
+        /// <param name="edited"></param>
         public VM_ProductForm(ProductItem edited)
         {
             product_id = edited.ID;
@@ -267,6 +285,11 @@ namespace afw_project.View_Model
             Commit = new Command(AddNewProduct);
 
         }
+        #endregion
+
+
+
+        #region Validations
         /// <summary>
         /// Validates the admin input and shows/hides the error message for invalid description.
         /// </summary>
@@ -337,7 +360,11 @@ namespace afw_project.View_Model
             if (!validation_amount.isValid) return false;
             return true;
         }
+        #endregion
 
+
+
+        #region Finish
         /// <summary>
         /// Creates a new user account if all input values are valid and returns back to a product page.
         /// </summary>
@@ -372,7 +399,7 @@ namespace afw_project.View_Model
                        "Product was added to the database",
                        "OK"
                     );
-                    ((View_MainPage)Application.Current.MainPage).Detail = new View_Products();
+                    ((MainPage)Application.Current.MainPage).Detail = new Products_MainPage();
                 }
                 else
                 {
@@ -388,7 +415,7 @@ namespace afw_project.View_Model
             {
                 if (Product.ChangeProduct(product_id, validation_name.Value, validation_category.Value, validation_description.Value, int.Parse(validation_price.Value), int.Parse(validation_amount.Value)))
                 {
-                    ((View_MainPage)Application.Current.MainPage).Detail = new View_Products();
+                    ((MainPage)Application.Current.MainPage).Detail = new Products_MainPage();
                 }
                 else
                 {
@@ -401,5 +428,6 @@ namespace afw_project.View_Model
                 }
             }
         }
+        #endregion
     }
 }

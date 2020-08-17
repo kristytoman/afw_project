@@ -1,4 +1,5 @@
 ﻿using afw_project.Model;
+using afw_project.View;
 using afw_project.View.Admin;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -8,43 +9,32 @@ namespace afw_project.View_Model
 {
     class VM_ProductMainPage : VM_Base
     {
-        /// <summary>
-        /// List of existing categories in the database.
-        /// </summary>
-        private ObservableCollection<Category> categories;
-
+        #region Properties
         /// <summary>
         /// Gets or sets the list of existing categories in the database.
         /// </summary>
-        public ObservableCollection<Category> Categories
-        {
-            get
-            {
-                return categories;
-            }
-            set
-            {
-                if (categories!=value)
-                {
-                    categories = value;
-                    OnPropertyChanged();
-                }
-            }
-        }
+        public ObservableCollection<Category> Categories { get; set; }
+        #endregion
 
+
+        #region Constructor
         /// <summary>
         /// Creates new view-model for the product main page.
         /// </summary>
         public VM_ProductMainPage()
         {
-            categories = new ObservableCollection<Category>();
+            Categories = new ObservableCollection<Category>();
             List<Category> results = Category.GetCategories();
             if (results != null)
             {
-                categories = new ObservableCollection<Category>(results);
+                Categories = new ObservableCollection<Category>(results);
             }
         }
+        #endregion
 
+
+
+        #region Methods
         /// <summary>
         /// Open a page for new product.
         /// </summary>
@@ -52,7 +42,7 @@ namespace afw_project.View_Model
         {
             if (ContextCredentials.CheckTheAdmin(App.User.Email,App.User.Password))
             {
-                ((View_MainPage)Application.Current.MainPage).Detail = new Admin_ProductForm();
+                ((MainPage)Application.Current.MainPage).Detail = new ProductForm();
             }
         }
 
@@ -64,23 +54,23 @@ namespace afw_project.View_Model
         {
             if (ContextCredentials.CheckTheAdmin(App.User.Email, App.User.Password))
             {
-                children.Add(new Admin_Products("All"));
+                children.Add(new View.Admin.Products("All"));
                 foreach (Category category in Categories)
                 {
 
-                    children.Add(new Admin_Products(category.Name));
+                    children.Add(new View.Admin.Products(category.Name));
                 }
             }
             else
             {
-                children.Add(new Customer_Products("All"));
+                children.Add(new View.Customer.Products("All"));
                 foreach (Category category in Categories)
                 {
 
-                    children.Add(new Customer_Products(category.Name));
+                    children.Add(new View.Customer.Products(category.Name));
                 }
             }
         }
-
+        #endregion
     }
 }

@@ -1,14 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using afw_project.Model;
+using System.Collections.Generic;
 
 namespace afw_project.View_Model
 {
     class VM_Orders_Customer : VM_Base
     {
-        public List<OrderItem> Orders { get; private set; }
+        /// <summary>
+        /// Gets or sets the list of orders for customer.
+        /// </summary>
+        public List<OrderItem> List_Orders { get; private set; }
+
+
+        /// <summary>
+        /// Creates a new view model for customer's orders.
+        /// </summary>
         public VM_Orders_Customer()
         {
             List<Order> result = App.User.GetOrders();
-            Orders = new List<OrderItem>();
+            List_Orders = new List<OrderItem>();
             if (result != null)
             {
                 foreach (Order item in result)
@@ -30,7 +39,7 @@ namespace afw_project.View_Model
                             )
                         );
                     }
-                    Orders.Add(oi);
+                    List_Orders.Add(oi);
                 }
             }
         }

@@ -1,6 +1,5 @@
 ﻿using afw_project.Model;
 using afw_project.View;
-using afw_project.View.Admin;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -26,11 +25,11 @@ namespace afw_project
             Cart = new Order { Customer = User };
             if (!ContextCredentials.GetSavedCredentials())
             {
-                MainPage = new View_Init();
+                MainPage = new Init();
             }
             else
             {
-                MainPage = new View_MainPage();
+                MainPage = new MainPage();
             }
         }
     }

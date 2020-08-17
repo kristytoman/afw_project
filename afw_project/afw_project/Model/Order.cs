@@ -1,15 +1,13 @@
-﻿using afw_project.View_Model;
-using Microsoft.EntityFrameworkCore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
-using Xamarin.Forms;
 
-namespace afw_project
+namespace afw_project.Model
 {
     public class Order
     {
+        #region Database columns
+        
         /// <summary>
         /// Gets or sets the ID of the order.
         /// </summary>
@@ -45,6 +43,10 @@ namespace afw_project
         /// </summary>
         public List<ProductOrder> ProductOrders { get; set; }
 
+        #endregion
+
+
+        #region Constructor
 
         /// <summary>
         /// Creates new order instance.
@@ -54,10 +56,14 @@ namespace afw_project
             ProductOrders = new List<ProductOrder>();
         }
 
+        #endregion
 
+
+
+        #region Cart methods
 
         /// <summary>
-        /// Add products to the order.
+        /// Adds products to the order.
         /// </summary>
         /// <param name="id">ID of the selected product.</param>
         /// <returns>True if successful, False if an error occured.</returns>
@@ -115,6 +121,7 @@ namespace afw_project
         }
 
 
+
         /// <summary>
         /// Changes the amount of the product in the order.
         /// </summary>
@@ -125,6 +132,8 @@ namespace afw_project
         {
             ProductOrders.First(p => p.Product.ID == id).Amount = amount;
         }
+
+
 
         /// <summary>
         /// Saves the order in the database
@@ -162,6 +171,16 @@ namespace afw_project
             }
         }
 
+        #endregion
+
+
+
+        #region Orders modification
+
+        /// <summary>
+        /// Sets the order as cancelled.
+        /// </summary>
+        /// <param name="id">ID of the order to change.</param>
         public static void CancelTheOrder(int id)
         {
             try
@@ -176,6 +195,13 @@ namespace afw_project
             {
             }
         }
+
+
+
+        /// <summary>
+        /// Sets the order as shipped.
+        /// </summary>
+        /// <param name="id">ID of the order to change.</param>
         public static void SendTheOrder(int id)
         {
             try
@@ -192,6 +218,13 @@ namespace afw_project
             {
             }
         }
+
+
+
+        /// <summary>
+        /// Sets the order as fulfilled.
+        /// </summary>
+        /// <param name="id">ID of the order to change.</param>
         public static void FulfillTheOrder(int id)
         {
             try
@@ -207,6 +240,12 @@ namespace afw_project
             }
         }
 
+
+
+        /// <summary>
+        /// Gets all the orders from the databse.
+        /// </summary>
+        /// <returns>List of Orders or null.</returns>
         public static List<Order> GetAllOrders()
         {
             try
@@ -222,6 +261,12 @@ namespace afw_project
             }
         }
 
+
+
+        /// <summary>
+        /// Gets all the orders that haven't been shipped.
+        /// </summary>
+        /// <returns>List of Orders or null.</returns>
         public static List<Order> GetWaitingOrders()
         {
             try
@@ -237,6 +282,12 @@ namespace afw_project
             }
         }
 
+
+
+        /// <summary>
+        /// Gets all the orders that has been shipped but not received.
+        /// </summary>
+        /// <returns>List of Orders or null.</returns>
         public static List<Order> GetSentOrders()
         {
             try
@@ -252,6 +303,12 @@ namespace afw_project
             }
         }
 
+
+
+        /// <summary>
+        /// Gets all the cancelled orders.
+        /// </summary>
+        /// <returns>List of Orders or null.</returns>
         public static List<Order> GetCancelledOrders()
         {
             try
@@ -266,6 +323,13 @@ namespace afw_project
                 return null;
             }
         }
+
+
+
+        /// <summary>
+        /// Gets all the finished orders.
+        /// </summary>
+        /// <returns>List of orders or null.</returns>
         public static List<Order> GetFulfilledOrders()
         {
             try
@@ -280,5 +344,7 @@ namespace afw_project
                 return null;
             }
         }
+
+        #endregion
     }
 }
