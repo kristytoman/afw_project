@@ -28,7 +28,7 @@ namespace afw_project.Validation
         /// <summary>
         /// Sets the type of name object.
         /// </summary>
-        private string type;
+        private readonly string type;
 
         /// <summary>
         /// Creates new validatable object to test the name input.

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace afw_project.View_Model
 {
@@ -13,7 +10,7 @@ namespace afw_project.View_Model
         {
             List<Order> result;
             Orders = new List<OrderItem>();
-            switch(name)
+            switch (name)
             {
                 case "All":
                     result = Order.GetAllOrders();
@@ -38,7 +35,7 @@ namespace afw_project.View_Model
             {
                 foreach (Order item in result)
                 {
-                    OrderItem oi = new OrderItem(item);
+                    OrderItem oi = new OrderItem(item, true);
                     foreach (ProductOrder product in item.GetOrderProducts())
                     {
                         oi.Add

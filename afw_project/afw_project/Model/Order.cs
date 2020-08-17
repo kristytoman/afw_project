@@ -162,7 +162,7 @@ namespace afw_project
             }
         }
 
-        public static bool CancelTheOrder(int id)
+        public static void CancelTheOrder(int id)
         {
             try
             {
@@ -170,12 +170,40 @@ namespace afw_project
                 {
                     db.Orders.Where(o => o.ID == id).First().SendTime=DateTime.MinValue;
                     db.SaveChanges();
-                    return true;
                 }
             }
             catch(Exception)
             {
-                return false;
+            }
+        }
+        public static void SendTheOrder(int id)
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    Order item = db.Orders.Where(o => o.ID == id).First();
+                    item.SendTime = DateTime.Now;
+                    item.ReceivedTime = null;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+        public static void FulfillTheOrder(int id)
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    db.Orders.Where(o => o.ID == id).First().ReceivedTime = DateTime.Now;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 

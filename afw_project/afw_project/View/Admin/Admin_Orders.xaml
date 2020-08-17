@@ -27,6 +27,7 @@
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width=".5*"/>
                             </Grid.ColumnDefinitions>
 
@@ -36,8 +37,14 @@
                                    Grid.Row="0" Grid.Column="2"/>
                             <Label Text="{Binding OrderState}"
                                    Grid.Row="0" Grid.Column="3"/>
-                            <Button Text="Cancel" IsVisible="{Binding IsCancelable}" CommandParameter="{Binding ID}" Command="{Binding Command_cancel}"
+                            <Button Text="{Binding ButtonName}" IsVisible="{Binding IsVisible}"
+                                    Command="{Binding Command_change}"
                                     Grid.Row="0" Grid.Column="4"/>
+                            <Button Text="Cancel" 
+                                    IsVisible="{Binding IsCancelable}" 
+                                    BackgroundColor="Red"
+                                    Command="{Binding Command_cancel}"
+                                    Grid.Row="0" Grid.Column="5"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

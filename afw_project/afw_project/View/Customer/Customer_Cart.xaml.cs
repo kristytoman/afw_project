@@ -1,5 +1,4 @@
-﻿using afw_project.View.Admin;
-using afw_project.View_Model;
+﻿using afw_project.View_Model;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

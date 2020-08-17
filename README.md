@@ -20,21 +20,21 @@
     - [ ] Winter sale
   - [ ] Creating new order
   - [ ] Viewing existing orders
-- [ ] Administrator side
+- [x] Administrator side
   - [x] Products
     - [x] Creating new product
     - [x] Viewing products
     - [x] Editing products
     - [x] Deleting products
-  - [ ] Orders
-    - [ ] Viewing all orders
-    - [ ] Accepting orders
-    - [ ] Sending orders
-    - [ ] Cancelling orders
-  - [ ] Saving database items
+  - [x] Orders
+    - [x] Viewing all orders
+    - [x] Accepting orders
+    - [x] Sending orders
+    - [x] Cancelling orders
+  - [x] Saving database items
     - [x] Products
-    - [ ] Orders
-    - [ ] Orders' product
+    - [x] Orders
+    - [x] Orders' product
     - [x] Customers
  ### Non-functional requirements
  - [ ] Using abstract class for sales
