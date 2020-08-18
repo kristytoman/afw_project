@@ -6,7 +6,7 @@
     
     <ContentPage.Content>
         <Grid>
-            <Picker Title="Select the sale type">
+            <Picker Title="Select the sale type" WidthRequest="150" HeightRequest="100">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Spring</x:String>

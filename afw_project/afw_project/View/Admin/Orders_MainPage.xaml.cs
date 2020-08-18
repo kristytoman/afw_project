@@ -21,5 +21,6 @@ namespace afw_project.View.Admin
                 Children.Add(new Orders(name));
             }
         }
+        #endregion
     }
 }

@@ -1,5 +1,5 @@
 ﻿using afw_project.View_Model;
-using afw_project.View_Model.Validation;
+using afw_project.Model.Validation.Objects;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
