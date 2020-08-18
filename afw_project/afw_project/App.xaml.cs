@@ -1,5 +1,8 @@
 ﻿using afw_project.Model;
 using afw_project.View;
+using afw_project.View_Model;
+using afw_project.View_Model.Sales;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -18,11 +21,36 @@ namespace afw_project
         /// </summary>
         public static Order Cart { get; set; }
 
+        public static Type SaleSeason { get; set; }
+
         public App()
         {
             InitializeComponent();
             User = new Customer();
             Cart = new Order { Customer = User };
+            switch(DateTime.Now.Month)
+            {
+                case 1:
+                case 2:
+                case 12:
+                    SaleSeason = typeof(WinterPrice);
+                    break;
+                case 3:
+                case 4:
+                case 5:
+                    SaleSeason = typeof(SpringPrice);
+                    break;
+                case 6:
+                case 7:
+                case 8:
+                    SaleSeason = typeof(SummerPrice);
+                    break;
+                case 9:
+                case 10:
+                case 11:
+                    SaleSeason = typeof(AutumnPrice);
+                    break;
+            }
             if (!ContextCredentials.GetSavedCredentials())
             {
                 MainPage = new Init();

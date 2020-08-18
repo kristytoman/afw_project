@@ -21,12 +21,12 @@ namespace afw_project.Model
         /// <summary>
         /// Gets or sets the product's price.
         /// </summary>
-        public int Price { get; set; }
+        public double Price { get; set; }
 
         /// <summary>
         /// Gets or sets the product's sale.
         /// </summary>
-        public int Sale { get; set; }
+        public byte Sale { get; set; }
 
         /// <summary>
         /// Gets or sets the number of products.
@@ -48,6 +48,7 @@ namespace afw_project.Model
         /// </summary>
         public List<ProductOrder> ProductOrders { get; set; }
         #endregion
+
 
         #region Constructors
         /// <summary>

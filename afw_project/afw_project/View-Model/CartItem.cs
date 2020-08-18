@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace afw_project.View_Model
 {
     internal class CartItem : VM_Base
@@ -9,16 +8,19 @@ namespace afw_project.View_Model
         /// </summary>
         private readonly VM_Cart viewModel;
 
+
         #region Item properties
         /// <summary>
         /// Gets or sets the ID of the product in the cart.
         /// </summary>
-        public int ID { get; private set; }
+        public int ID { get; set; }
+
 
         /// <summary>
         /// Gets or sets the name of the product in the cart.
         /// </summary>
         public string Name { get; set; }
+
 
         /// <summary>
         /// Amount of ordered goods of this type.
@@ -29,28 +31,20 @@ namespace afw_project.View_Model
         /// </summary>
         public int Amount
         {
-            get
-            {
-                return amount;
-            }
+            get => amount;
             set
             {
                 if (value != amount)
                 {
-                    double before = FinalPrice;
-                    amount = value;
-                    SummedPrice = originalPrice * value;
-                    FinalPrice = Math.Round((double)(SummedPrice - SummedPrice * Sale / 100), 2);
-                    viewModel.ChangeCost(FinalPrice - before);
+                    amount = value; 
+                    viewModel.Price.ChangeProductPrice(ID, value); 
+                    viewModel.SetTheCosts();
+
                     OnPropertyChanged();
                 }
             }
         }
 
-        /// <summary>
-        /// Original price of one product.
-        /// </summary>
-        private readonly double originalPrice;
 
         /// <summary>
         /// Original cost of the ordered goods.
@@ -61,11 +55,8 @@ namespace afw_project.View_Model
         /// </summary>
         public double SummedPrice
         {
-            get
-            {
-                return summedPrice;
-            }
-            private set
+            get => summedPrice;
+            set
             {
                 if (value != summedPrice)
                 {
@@ -75,10 +66,27 @@ namespace afw_project.View_Model
             }
         }
 
+
+        /// <summary>
+        /// Sale of the product.
+        /// </summary>
+        private byte sale;
         /// <summary>
         /// Gets or sets the sale of the product in the cart.
         /// </summary>
-        public int Sale { get; private set; }
+        public byte Sale 
+        {
+            get => sale;
+            set
+            {
+                if (value != sale)
+                {
+                    sale = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
 
         /// <summary>
         /// Total price of all products with a sale.
@@ -105,28 +113,7 @@ namespace afw_project.View_Model
         #endregion
 
 
-        /// <summary>
-        /// Creates a new cart item and count the price.
-        /// </summary>
-        /// <param name="viewModel">View-model of the current cart page.</param>
-        /// <param name="id">ID of the product.</param>
-        /// <param name="name">Name of the product.</param>
-        /// <param name="amount">Amount of the ordered product.</param>
-        /// <param name="price">Original price of the product.</param>
-        /// <param name="sale">Sale of the product.</param>
-        public CartItem(VM_Cart viewModel, int id, string name, int amount, int price, int sale)
-        {
-            this.viewModel = viewModel;
-
-            ID = id;
-            Name = name;
-            originalPrice = price;
-            this.amount = amount;
-            Sale = sale;
-
-            SummedPrice = originalPrice * Amount;
-            FinalPrice = Math.Round((double)(SummedPrice - SummedPrice * Sale / 100), 2);
-        }
+        public CartItem() { }
 
 
 

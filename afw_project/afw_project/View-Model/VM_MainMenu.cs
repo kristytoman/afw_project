@@ -39,7 +39,7 @@ namespace afw_project.View_Model
                 {
                     new MasterMenuItem { Id = 1,   Title = "Your products",      TargetType = typeof(Products_MainPage) },
                     new MasterMenuItem { Id = 2,   Title = "Customers' orders",  TargetType = typeof(Orders_MainPage) },
-                    new MasterMenuItem { Id = 3,   Title = "Season Sales",       TargetType = typeof(Sales) },
+                    new MasterMenuItem { Id = 3,   Title = "Season Sales",       TargetType = typeof(View.Admin.Sales) },
                 });
             }
             else

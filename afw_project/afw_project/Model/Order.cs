@@ -16,7 +16,7 @@ namespace afw_project.Model
         /// <summary>
         /// Gets or sets the order's price.
         /// </summary>
-        public int Price { get; set; }
+        public double Price { get; set; }
 
         /// <summary>
         /// Gets or sets the time of ordering.

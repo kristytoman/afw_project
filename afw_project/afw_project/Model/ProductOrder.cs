@@ -31,7 +31,7 @@
         /// <summary>
         /// Gets or sets the sale of the product in the current order.
         /// </summary>
-        public int Sale { get; set; }
+        public byte Sale { get; set; }
         #endregion
 
         #region Constructor
@@ -40,5 +40,6 @@
         /// </summary>
         public ProductOrder(){ }
         #endregion
+
     }
 }

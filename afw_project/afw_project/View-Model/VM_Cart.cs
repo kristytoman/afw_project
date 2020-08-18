@@ -1,7 +1,8 @@
 ﻿using afw_project.Model;
 using afw_project.View;
 using afw_project.View.Customer;
-using System.Collections.Generic;
+using afw_project.View_Model.Sales;
+using System;
 using System.Collections.ObjectModel;
 using Xamarin.Forms;
 
@@ -14,6 +15,24 @@ namespace afw_project.View_Model
         /// List of cart items.
         /// </summary>
         public ObservableCollection<CartItem> Cart_products { get; set; }
+
+        /// <summary>
+        /// The cost of order without sale.
+        /// </summary>
+        private double elementaryCost;
+
+        public double ElementaryCost
+        {
+            get => elementaryCost;
+            private set
+            {
+                if (value != elementaryCost)
+                {
+                    elementaryCost = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Total cost of all the wanted items.
@@ -43,7 +62,7 @@ namespace afw_project.View_Model
         /// </summary>
         public Command Continue { get; set; }
         #endregion
-
+        public Price Price { get; set; }
 
         #region Constructor
         /// <summary>
@@ -52,48 +71,22 @@ namespace afw_project.View_Model
         public VM_Cart()
         {
             FinalCost = 0;
-
-            List<ProductOrder> output = App.Cart.GetOrderProducts();
-            Cart_products = new ObservableCollection<CartItem>();
-            if (output != null)
-            {
-                foreach (ProductOrder orderedProduct in output)
-                {
-                    Cart_products.Add
-                    (
-                        new CartItem
-                        (
-                            this, 
-                            orderedProduct.Product.ID, 
-                            orderedProduct.Product.Name, 
-                            orderedProduct.Amount, 
-                            orderedProduct.Product.Price, 
-                            orderedProduct.Sale
-                        )
-                    );
-                    ChangeCost(Cart_products[Cart_products.Count - 1].FinalPrice);
-                }
-
-                Continue = new Command(SaveChanges);
-            }
+            Price = (Price)Activator.CreateInstance(App.SaleSeason, App.Cart.GetOrderProducts());
+            Cart_products = Price.GetSale();
+            ElementaryCost = Price.ElementaryPrice;
+            FinalCost = Price.NewPrice;
+            Continue = new Command(SaveChanges);
         }
         #endregion
 
 
 
         #region Methods
-        /// <summary>
-        /// Changes the total cost of the order.
-        /// </summary>
-        /// <param name="difference">Number to add to the total cost.</param>
-        public void ChangeCost(double difference)
+        public void SetTheCosts()
         {
-            if (FinalCost + difference > 0)
-            {
-                FinalCost += difference;
-            }
+            FinalCost = Price.NewPrice;
+            ElementaryCost = Price.ElementaryPrice;
         }
-
 
 
         /// <summary>
