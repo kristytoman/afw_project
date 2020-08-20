@@ -469,8 +469,7 @@ namespace afw_project.View_Model
                 else
                 {
                     App.User = c;
-                    App.Cart.Customer = App.User;
-                    if (!App.Cart.SendTheOrder())
+                    if (!App.User.SendTheOrder())
                     {
                         Application.Current.MainPage.DisplayAlert
                         (

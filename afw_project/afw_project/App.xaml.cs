@@ -17,17 +17,14 @@ namespace afw_project
         public static Customer User { get; set; }
 
         /// <summary>
-        /// Gets or sets the current user's cart.
+        /// Gets or sets the current sale season for the prices.
         /// </summary>
-        public static Order Cart { get; set; }
-
         public static Type SaleSeason { get; set; }
 
         public App()
         {
             InitializeComponent();
             User = new Customer();
-            Cart = new Order { Customer = User };
             switch(DateTime.Now.Month)
             {
                 case 1:
@@ -52,13 +49,9 @@ namespace afw_project
                     break;
             }
             if (!ContextCredentials.GetSavedCredentials())
-            {
                 MainPage = new Init();
-            }
             else
-            {
                 MainPage = new MainPage();
-            }
         }
     }
 }

@@ -31,11 +31,11 @@ namespace afw_project.View_Model
                         (
                             new Order_ProductItem
                             (
-                                name: product.Product.Name,
-                                amount: product.Amount.ToString() + " pcs",
-                                originalPrice: product.Product.Price.ToString() + " EUR",
-                                sale: product.Sale.ToString() + " %",
-                                finalPrice: ((product.Product.Price - product.Product.Price * product.Sale) * product.Amount).ToString() + " EUR"
+                                product.Product.Name,
+                                product.Amount.ToString() + " pcs",
+                                product.Product.Price.ToString() + " EUR",
+                                product.Sale == 0 ? string.Empty : product.Sale.ToString() + " %",
+                                ((product.Product.Price - product.Product.Price * product.Sale/100) * product.Amount).ToString() + " EUR"
                             )
                         );
                     }

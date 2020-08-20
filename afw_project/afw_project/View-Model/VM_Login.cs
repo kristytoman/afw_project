@@ -1,5 +1,6 @@
 ﻿using afw_project.Model;
 using afw_project.View;
+using afw_project.View.Admin;
 using Xamarin.Forms;
 
 namespace afw_project.View_Model
@@ -47,8 +48,7 @@ namespace afw_project.View_Model
                 Application.Current.MainPage = new MainPage();
                 return;
             }
-
-            App.User = Customer.GetCustomer(Email, Password);
+            App.User = Customer.GetCustomer(Email, Password,App.User.GetCart());
 
             /// Unsuccesful operation
             if (App.User == null)
@@ -61,7 +61,6 @@ namespace afw_project.View_Model
                );
                 return;
             }
-            App.Cart.Customer = App.User;
             Application.Current.MainPage = new MainPage();
         }
         #endregion

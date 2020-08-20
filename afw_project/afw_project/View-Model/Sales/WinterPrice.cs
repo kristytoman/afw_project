@@ -7,14 +7,30 @@ namespace afw_project.View_Model.Sales
 {
     class WinterPrice : Price
     {
+        /// <summary>
+        /// Index of the most expensive product in the list of product-orders.
+        /// </summary>
         private int iMostExpensive;
+
+        /// <summary>
+        /// Price of the most expensive product in the list of product-orders.
+        /// </summary>
         private double highestPrice;
-        public WinterPrice(List<ProductOrder> order) : base(order)
+
+
+        /// <summary>
+        /// Creates a new instance for the winter season's prices.
+        /// </summary>
+        /// <param name="order">The list of product orders of the cart.</param>
+        /// <param name="vM">View-model of the page.</param>
+        public WinterPrice(List<ProductOrder> order, VM_Cart vM) : base(order, vM)
         {
             NewPrice = 0;
             iMostExpensive = 0;
-
         }
+
+
+
         public override ObservableCollection<CartItem> GetSale()
         {
             ElementaryPrice = 0;
@@ -29,32 +45,15 @@ namespace afw_project.View_Model.Sales
                     iMostExpensive = i;
                     highestPrice = order[i].Product.Price;
                 }
-                cartItems.Add
-                (
-                    new CartItem
-                    {
-                        ID = order[i].Product.ID,
-                        Name = order[i].Product.Name,
-                        Amount = order[i].Amount,
-                        SummedPrice = summedPrice,
-                        FinalPrice = summedPrice
-                    }
-                );
+                cartItems.Add(new CartItem(viewModel, order[i].Product.ID, order[i].Product.Name, order[i].Amount, summedPrice));
             }
-            ChangeProductPrice(iMostExpensive, 30);
+            ChangeAmount(iMostExpensive, 30);
             NewPrice = ElementaryPrice - Math.Round(order[iMostExpensive].Product.Price * order[iMostExpensive].Product.Amount * 0.3, 2);
             return cartItems;
         }
 
-        protected override void RecalculatePrice(int newQuantity, int index)
-        {
-            if (order[index].Product.Price > highestPrice)
-            {
-                iMostExpensive = index;
-                highestPrice = order[index].Product.Price;
-                ChangeProductPrice(index, 30);
-                NewPrice = ElementaryPrice - Math.Round(order[iMostExpensive].Product.Price * order[iMostExpensive].Product.Amount * 0.3, 2);
-            }
-        }
+
+
+        protected override void RecalculatePrice(int newQuantity) { }
     }
 }

@@ -10,6 +10,7 @@ namespace afw_project.View_Model
 
 
         #region Item properties
+
         /// <summary>
         /// Gets or sets the ID of the product in the cart.
         /// </summary>
@@ -36,8 +37,8 @@ namespace afw_project.View_Model
             {
                 if (value != amount)
                 {
-                    amount = value; 
-                    viewModel.Price.ChangeProductPrice(ID, value); 
+                    amount = value;
+                    viewModel.Price.ChangeAmount(ID, value);
                     viewModel.SetTheCosts();
 
                     OnPropertyChanged();
@@ -74,7 +75,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Gets or sets the sale of the product in the cart.
         /// </summary>
-        public byte Sale 
+        public byte Sale
         {
             get => sale;
             set
@@ -110,19 +111,44 @@ namespace afw_project.View_Model
                 }
             }
         }
+
         #endregion
 
 
-        public CartItem() { }
-
-
+        #region Constructors
+        /// <summary>
+        /// Creates a new instance for a product-order to show in the cart page.
+        /// </summary>
+        /// <param name="vM">View-model of the page.</param>
+        /// <param name="id">ID of the product.</param>
+        /// <param name="name">Name of the product.</param>
+        /// <param name="amount">Amount of the product.</param>
+        /// <param name="summedPrice">Price of the ordered amount of the product.</param>
+        public CartItem(VM_Cart vM, int id, string name, int amount, double summedPrice)
+        {
+            viewModel = vM;
+            ID = id;
+            Name = name;
+            this.amount = amount;
+            SummedPrice = summedPrice;
+            FinalPrice = summedPrice;
+        }
 
         /// <summary>
-        /// Sends the new amount of the item to the model.
+        /// Creates a new instance for a product-order to show in the cart page.
         /// </summary>
-        public void ChangeTheAmount()
+        /// <param name="vM">View-model of the page.</param>
+        /// <param name="id">ID of the product.</param>
+        /// <param name="name">Name of the product.</param>
+        /// <param name="amount">Amount of the product.</param>
+        /// <param name="summedPrice">Price of the ordered amount of the product.</param>
+        /// <param name="sale">Sale for the ordered product.</param>
+        /// <param name="finalPrice">Price for the ordered product.</param>
+        public CartItem(VM_Cart vM, int id, string name, int amount, double summedPrice, byte sale, double finalPrice) : this(vM, id, name, amount, summedPrice)
         {
-            App.Cart.ChangeAmountOfProduct(ID, Amount);
+            Sale = sale;
+            FinalPrice = finalPrice;
         }
+        #endregion
     }
 }

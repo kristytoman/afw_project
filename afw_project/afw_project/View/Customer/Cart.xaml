@@ -5,7 +5,23 @@
              Title="Your cart">
     <ContentPage.Content>
         <Grid>
-            <ListView x:Name="productslist" ItemsSource="{Binding Cart_products}" Grid.Row="0" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <ListView x:Name="productslist" ItemsSource="{Binding Cart_products}" 
+                      Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
 
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -37,9 +53,10 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <Label Text="Total:" Grid.Row="1" Grid.Column="1"/>
-            <Label x:Name="total_price" Text="{Binding FinalCost}" Grid.Row="1" Grid.Column="2"/>
-            <Button Text="Next" Command="{Binding Continue}" Grid.Row="2" Grid.Column="2"/>
+            <Label Text="Total:" Grid.Row="2" Grid.Column="2"/>
+            <Label x:Name="basic_price" Text="{Binding ElementaryCost}" Grid.Row="2" Grid.Column="3" TextColor="Gray"/>
+            <Label x:Name="total_price" Text="{Binding FinalCost}" Grid.Row="3" Grid.Column="3"/>
+            <Button Text="Next" Command="{Binding Continue}" Grid.Row="4" Grid.Column="3"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

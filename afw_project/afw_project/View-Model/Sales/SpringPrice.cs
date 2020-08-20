@@ -7,35 +7,38 @@ namespace afw_project.View_Model.Sales
 {
     class SpringPrice : Price
     {
+        /// <summary>
+        /// Quantity of the ordered products.
+        /// </summary>
         int quantity;
-        public SpringPrice(List<ProductOrder> order) : base(order)
-        {
-            
-        }
+
+
+        /// <summary>
+        /// Creates a new instance for the spring season's prices.
+        /// </summary>
+        /// <param name="order">The list of product orders of the cart.</param>
+        /// <param name="vM">View-model of the page.</param>
+        public SpringPrice(List<ProductOrder> order, VM_Cart vM) : base(order, vM) { }
+
+
+
         public override ObservableCollection<CartItem> GetSale()
         {
-            cartItems = new ObservableCollection<CartItem>();
             ElementaryPrice = 0;
             quantity = 0;
+
+            cartItems = new ObservableCollection<CartItem>();
+
             foreach (ProductOrder item in order)
             {
-                double summedPrice = item.Product.Price * item.Amount;
-                ElementaryPrice += summedPrice;
                 item.Sale = 0;
                 quantity += item.Amount;
-                cartItems.Add
-                (
-                    new CartItem
-                    {
-                        ID = item.Product.ID,
-                        Name = item.Product.Name,
-                        Amount = item.Amount,
-                        SummedPrice = summedPrice,
-                        FinalPrice = summedPrice
-                    }
-                );
+
+                double summedPrice = item.Product.Price * item.Amount;
+                ElementaryPrice += summedPrice;
+
+                cartItems.Add(new CartItem(viewModel, item.Product.ID, item.Product.Name, item.Amount, summedPrice));
             }
-            ElementaryPrice = Math.Round(ElementaryPrice, 2);
 
             NewPrice = ElementaryPrice;
 
@@ -44,9 +47,7 @@ namespace afw_project.View_Model.Sales
                 sale = 40;
                 NewPrice -= Math.Round(NewPrice * 0.4, 2);
                 for (int i = 0; i < cartItems.Count; i++)
-                {
                     ChangeProductPrice(i, 40);
-                }
                 return cartItems;
             }
             if (quantity > 7)
@@ -54,9 +55,7 @@ namespace afw_project.View_Model.Sales
                 sale = 30;
                 NewPrice -= Math.Round(NewPrice * 0.3, 2);
                 for (int i = 0; i < cartItems.Count; i++)
-                {
                     ChangeProductPrice(i, 30);
-                }
                 return cartItems;
             }
             if (quantity > 2)
@@ -64,15 +63,16 @@ namespace afw_project.View_Model.Sales
                 sale = 20;
                 NewPrice -= Math.Round(NewPrice * 0.2, 2);
                 for (int i = 0; i < cartItems.Count; i++)
-                {
                     ChangeProductPrice(i, 20);
-                }
             }
             return cartItems;
         }
-        protected override void RecalculatePrice(int newQuantity, int index)
+
+
+
+        protected override void RecalculatePrice(int newQuantity)
         {
-            quantity -= newQuantity;
+            quantity += newQuantity;
             if (quantity > 11)
                 if (sale == 40)
                     return;
@@ -88,11 +88,10 @@ namespace afw_project.View_Model.Sales
             if (sale == 0)
                 return;
 
-            NewPrice -= Math.Round(NewPrice * sale/100, 2);
+            NewPrice = ElementaryPrice - Math.Round(NewPrice * sale/100, 2);
+
             for (int i = 0; i < cartItems.Count; i++)
-            {
                 ChangeProductPrice(i, sale);
-            }
         }
     }
 }

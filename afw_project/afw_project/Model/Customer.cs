@@ -114,12 +114,16 @@ namespace afw_project.Model
             {
                 using (Context db = new Context())
                 {
-                    db.Orders.Where(c => c.ID == ID);
+                    Orders = db.Orders.Where(o => o.Customer.ID == ID).ToList();
                 }
             }
             catch (Exception)
             {
-
+                Orders = new List<Order>();
+            }
+            finally
+            {
+                Orders.Add(Order.CreateNewCart());
             }
         }
 
@@ -144,20 +148,76 @@ namespace afw_project.Model
         /// <param name="email">Input e-mail value.</param>
         /// <param name="password">Input password value.</param>
         /// <returns>Customer instance or null if no account was found.</returns>
-        public static Customer GetCustomer(string email, string password)
+        public static Customer GetCustomer(string email, string password, Order cart)
         {
             Context db = new Context();
             try
             {
                 Customer user = db.Customers.Where(u => u.Email == email && ContextCredentials.GetHash(password) == u.Password).Single();
+                user.Orders = user.GetOrders();
+                user.Orders.Add(cart);
                 return user;
             }
             catch
             {
                 return null;
             }
-
         }
+
+
+
+        /// <summary>
+        /// Saves the order in the database.
+        /// </summary>
+        public bool SendTheOrder()
+        {
+            int index = Orders.Count - 1;
+            Orders[index].OrderTime = DateTime.Now;
+            try
+            {
+                using (Context db = new Context())
+                {
+                    foreach (ProductOrder item in Orders[index].ProductOrders)
+                    {
+                        db.ProductOrders.Add(item);
+                        db.Products.Attach(item.Product);
+                    }
+                    db.Orders.Add(Orders[index]);
+                    db.SaveChanges();
+                    Orders[index].Customer = this;
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Saves the order in the database.
+        /// </summary>
+        public bool SendTheOrder(double price)
+        {
+            Orders[Orders.Count - 1].Price = price;
+            return SendTheOrder();
+        }
+
+
+
+        /// <summary>
+        /// Returns the cart content.
+        /// </summary>
+        /// <returns>Order instance.</returns>
+        public Order GetCart()
+        {
+            return Orders[Orders.Count - 1].OrderTime == null ? Orders[Orders.Count - 1] : Order.CreateNewCart();
+        }
+
+
 
         /// <summary>
         /// Entries the instance into the database.
@@ -180,6 +240,8 @@ namespace afw_project.Model
                 return false;
             }
         }
+
+
 
         /// <summary>
         /// Gets orders of the user.

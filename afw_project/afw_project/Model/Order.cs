@@ -133,49 +133,28 @@ namespace afw_project.Model
             ProductOrders.First(p => p.Product.ID == id).Amount = amount;
         }
 
-
-
-        /// <summary>
-        /// Saves the order in the database
-        /// </summary>
-        public bool SendTheOrder()
-        {
-            OrderTime = DateTime.Now;
-            SendTime = null;
-            ReceivedTime = null;
-            Price = 0;
-            try
-            {
-                using (Context db = new Context())
-                {
-                    db.Attach(Customer);
-                    foreach (ProductOrder item in ProductOrders)
-                    {
-                        Price += (item.Product.Price - item.Sale * item.Product.Price) * item.Amount;
-
-                        item.Order = this;
-                        item.ProductID = item.Product.ID;
-
-                        db.ProductOrders.Add(item);
-                        db.Products.Attach(item.Product);
-                    }
-                    db.Orders.Add(this);
-
-                    db.SaveChanges();
-                    return true;
-                }
-            }
-            catch (Exception)
-            {
-                return false;
-            }
-        }
-
         #endregion
 
 
 
         #region Orders modification
+
+        /// <summary>
+        /// Creates a new instance for a cart.
+        /// </summary>
+        /// <returns>Initialized order.</returns>
+        public static Order CreateNewCart()
+        {
+            return new Order
+            {
+                Price = 0,
+                OrderTime = null,
+                SendTime = null,
+                ReceivedTime = null
+            };
+        }
+
+
 
         /// <summary>
         /// Sets the order as cancelled.
