@@ -180,6 +180,28 @@ namespace afw_project.Model
                 return false;
             }
         }
+
+
+
+        /// <summary>
+        /// Sets the sale of products to zero.
+        /// </summary>
+        public static void ResetSale()
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    foreach (Product product in db.Products.Where(p => p.Sale != 0).ToList())
+                    {
+                        product.Sale = 0;
+                        db.SaveChanges();
+                    }
+                }
+            }
+            catch (Exception) { }
+        }
+        
         #endregion
 
 

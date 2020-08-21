@@ -3,6 +3,7 @@ using afw_project.View;
 using afw_project.View_Model;
 using afw_project.View_Model.Sales;
 using System;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -51,7 +52,16 @@ namespace afw_project
             if (!ContextCredentials.GetSavedCredentials())
                 MainPage = new Init();
             else
+            {
                 MainPage = new MainPage();
+                using (Context db = new Context())
+                {
+                    if (db.Products.Where(p=>p.Sale!=0).Any())
+                    {
+                        SaleSeason = typeof(AutumnPrice);
+                    }
+                }
+            }
         }
     }
 }

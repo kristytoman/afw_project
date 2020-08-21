@@ -1,12 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewModel="clr-namespace:afw_project.View_Model"
              x:Class="afw_project.View.Admin.Sales"
              Title="Choose your sale">
-    
+
+    <ContentPage.BindingContext>
+        <viewModel:VM_Sales/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -16,17 +22,53 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Picker Title="Select the sale type"
-                    Grid.Row="1" Grid.Column="1">
+            <Picker x:Name="picker"
+                    Title="Select the sale type"
+                    Grid.Row="1" Grid.Column="1"
+                    SelectedItem="{Binding ItemSelected}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
-                        <x:String>Spring</x:String>
-                        <x:String>Summer</x:String>
-                        <x:String>Autumn</x:String>
-                        <x:String>Winter</x:String>
+                        <x:String>Spring season</x:String>
+                        <x:String>Summer season</x:String>
+                        <x:String>Autumn season</x:String>
+                        <x:String>Winter season</x:String>
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
+            <Button Text="Set the sale season" 
+                    Command="{Binding Command_SetSale}"
+                    Grid.Row="2" Grid.Column="1"/>
+            <ListView ItemsSource="{Binding List_products}" IsVisible="{Binding IsAutumn}"
+                     Grid.Row="3" Grid.Column="1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Text="{Binding ID}"
+                                       Grid.Column="0"/>
+                                <Label Text="{Binding Name}"
+                                       Grid.Column="1"/>
+                                <Label Text="{Binding Amount}"
+                                       Grid.Column="2"/>
+                                <Label Text="{Binding Price}"
+                                       Grid.Column="3"/>
+                                <Entry Placeholder="Sale" Text="{Binding Sale}"
+                                       Grid.Column="4"/>
+                                <Label Text="{Binding NewPrice}"
+                                       Grid.Column="5"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
