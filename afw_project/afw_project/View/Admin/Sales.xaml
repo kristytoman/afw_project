@@ -60,9 +60,9 @@
                                        Grid.Column="2"/>
                                 <Label Text="{Binding Price}"
                                        Grid.Column="3"/>
-                                <Entry Placeholder="Sale" Text="{Binding Sale}"
+                                <Entry Placeholder="Sale" Text="{Binding Entry_Sale}"
                                        Grid.Column="4"/>
-                                <Label Text="{Binding NewPrice}"
+                                <Label Text="{Binding FinalPrice}"
                                        Grid.Column="5"/>
                             </Grid>
                         </ViewCell>

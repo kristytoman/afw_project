@@ -22,6 +22,11 @@ namespace afw_project.View_Model
         public string Amount { get; set; }
 
         /// <summary>
+        /// Price of the product.
+        /// </summary>
+        private double price;
+
+        /// <summary>
         /// Bindable property that gets or sets the price of the product.
         /// </summary>
         public string Price { get; set; }
@@ -32,9 +37,48 @@ namespace afw_project.View_Model
         public string Sale { get; set; }
 
         /// <summary>
+        /// Sale of the product
+        /// </summary>
+        private byte sale;
+
+        /// <summary>
+        /// Bindable property that gets or sets the sale of the product.
+        /// </summary>
+        public byte Entry_Sale
+        {
+            get => sale;
+            set
+            {
+                if (value != sale)
+                {
+                    sale = value;
+                    Product.SetSale(ID, sale);
+                    FinalPrice = (price - price * sale / 100).ToString();
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Final price of the product.
+        /// </summary>
+        private string finalPrice;
+
+        /// <summary>
         /// Bindable property that gets or sets the final price of the product.
         /// </summary>
-        public string FinalPrice { get; set; }
+        public string FinalPrice 
+        {
+            get => finalPrice;
+            set
+            {
+                if (value!= finalPrice)
+                {
+                    finalPrice = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Shortened description of the product.
@@ -85,6 +129,7 @@ namespace afw_project.View_Model
             ID = template.ID;
             Name = template.Name;
             Amount = template.Amount.ToString();
+            price = template.Price;
             Price = template.Price.ToString() + " EUR";
             Sale = template.Sale != 0 ? template.Sale.ToString() + " %" : "";
             Category = "";
@@ -101,7 +146,7 @@ namespace afw_project.View_Model
         /// <param name="template">Product item.</param>
         /// <param name="amount">Amount of ordered products.</param>
         /// <param name="sale">Sale of the product/</param>
-        public ProductItem(Product template, int amount,int sale) : this(template)
+        public ProductItem(Product template, int amount, int sale) : this(template)
         {
             Amount = amount.ToString();
             Sale = sale.ToString();

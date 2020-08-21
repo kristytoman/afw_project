@@ -1,6 +1,5 @@
 ﻿using afw_project.Model;
 using afw_project.View;
-using afw_project.View_Model;
 using afw_project.View_Model.Sales;
 using System;
 using System.Linq;
@@ -26,7 +25,7 @@ namespace afw_project
         {
             InitializeComponent();
             User = new Customer();
-            switch(DateTime.Now.Month)
+            switch (DateTime.Now.Month)
             {
                 case 1:
                 case 2:
@@ -56,7 +55,7 @@ namespace afw_project
                 MainPage = new MainPage();
                 using (Context db = new Context())
                 {
-                    if (db.Products.Where(p=>p.Sale!=0).Any())
+                    if (db.Products.Where(p => p.Sale != 0).Any())
                     {
                         SaleSeason = typeof(AutumnPrice);
                     }

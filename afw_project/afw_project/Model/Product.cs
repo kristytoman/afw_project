@@ -202,6 +202,26 @@ namespace afw_project.Model
             catch (Exception) { }
         }
         
+
+
+        /// <summary>
+        /// Sets the sale of the product.
+        /// </summary>
+        /// <param name="ID">ID of the product.</param>
+        /// <param name="sale">Sale of the product.</param>
+        public static void SetSale(int ID, byte sale)
+        {
+            try
+            {
+                using(Context db = new Context())
+                {
+                    db.Products.Where(p => p.ID == ID).First().Sale = sale;
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception) { }
+        }
+        
         #endregion
 
 

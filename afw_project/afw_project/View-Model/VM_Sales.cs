@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace afw_project.View_Model
 {
-    class VM_Sales :VM_Base
+    class VM_Sales : VM_Base
     {
         #region Fields and properties
 
