@@ -24,7 +24,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Price of the product.
         /// </summary>
-        private double price;
+        private readonly double price;
 
         /// <summary>
         /// Bindable property that gets or sets the price of the product.

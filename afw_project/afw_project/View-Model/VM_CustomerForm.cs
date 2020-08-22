@@ -437,26 +437,25 @@ namespace afw_project.View_Model
                 );
                 return;
             }
-
-            /// Creates new instance for customer account.
-            Customer c = new Customer
-            (
-                email.Value,
-                password.Value == string.Empty ? null : password.Value,
-                firstName.Value,
-                lastName.Value,
-                phone.Value,
-                street.Value,
-                building.Value,
-                city.Value,
-                code.Value,
-                country
-            );
-
-            /// Tries to create a new record in a database.
-            if (c.CreateNewCustomer())
+            if (isSignUp)
             {
-                if (isSignUp)
+                /// Creates new instance for customer account.
+                Customer c = new Customer
+                (
+                    email.Value,
+                    password.Value == string.Empty ? null : password.Value,
+                    firstName.Value,
+                    lastName.Value,
+                    phone.Value,
+                    street.Value,
+                    building.Value,
+                    city.Value,
+                    code.Value,
+                    country
+                );
+
+                /// Tries to create a new record in a database.
+                if (c.CreateNewCustomer())
                 {
                     Application.Current.MainPage.DisplayAlert
                     (
@@ -466,37 +465,50 @@ namespace afw_project.View_Model
                     );
                     Application.Current.MainPage = new MainPage();
                 }
+
+
                 else
                 {
-                    App.User = c;
-                    if (!App.User.SendTheOrder())
-                    {
-                        Application.Current.MainPage.DisplayAlert
-                        (
-                            "Something went wrong",
-                            "We were unable to send the order.",
-                            "OK"
-                        );
-                    }
-                    else
-                    {
-                        Application.Current.MainPage.DisplayAlert
-                        (
-                            "Successful operation",
-                            "Your order has been sent.",
-                            "OK"
-                        );
-                    }
+                    Application.Current.MainPage.DisplayAlert
+                    (
+                        "Something went wrong",
+                        "The signing up failed",
+                        "OK"
+                    );
                 }
             }
             else
             {
-                Application.Current.MainPage.DisplayAlert
-                (
-                    "Something went wrong",
-                    "The signing up failed",
-                    "OK"
-                );
+               
+                if (!App.User.SaveCustomer(
+                    email.Value,
+                    password.Value == string.Empty ? null : password.Value,
+                    firstName.Value,
+                    lastName.Value,
+                    phone.Value,
+                    street.Value,
+                    building.Value,
+                    city.Value,
+                    code.Value,
+                    country
+                ))
+                {
+                    Application.Current.MainPage.DisplayAlert
+                    (
+                        "Something went wrong",
+                        "We were unable to send the order.",
+                        "OK"
+                    );
+                }
+                else
+                {
+                    Application.Current.MainPage.DisplayAlert
+                    (
+                        "Successful operation",
+                        "Your order has been sent.",
+                        "OK"
+                    );
+                }
             }
         }
         #endregion

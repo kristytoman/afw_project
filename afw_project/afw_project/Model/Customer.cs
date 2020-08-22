@@ -165,6 +165,61 @@ namespace afw_project.Model
         }
 
 
+        /// <summary>
+        /// Creates new order with a customer.
+        /// </summary>
+        /// <param name="email">Email addres of the user.</param>
+        /// <param name="password">Password of the user or null.</param>
+        /// <param name="firstName">First name of the user.</param>
+        /// <param name="lastName">Last name of the user.</param>
+        /// <param name="phone">Phone number of the user.</param>
+        /// <param name="street">Street address of the user.</param>
+        /// <param name="building">Building number of the user.</param>
+        /// <param name="city">City address of the user.</param>
+        /// <param name="code">Postal code of the user.</param>
+        /// <param name="country">Country of the user.</param>
+        /// <returns>True if creating was successful, false if a mistake occured.</returns>
+        public bool SaveCustomer(string email, string password, string firstName, string lastName, string phone, string street, string building, string city, string code, string country)
+        {
+            Email = email;
+            if (password != null && password != string.Empty)
+            {
+                Password = ContextCredentials.GetHash(password);
+            }
+            else
+            {
+                Password = null;
+            }
+            FirstName = firstName;
+            LastName = lastName;
+            Phone = phone;
+            Street = street;
+            Building = building;
+            City = city;
+            Code = code;
+            Country = country;
+            Orders[0].OrderTime = DateTime.Now;
+            try
+            {
+                using (Context db = new Context())
+                {
+                    foreach (ProductOrder item in Orders[0].ProductOrders)
+                    {
+                        db.ProductOrders.Add(item);
+                        db.Products.Attach(item.Product);
+                    }
+                    db.Customers.Add(this);
+                    db.Orders.Add(Orders[0]);
+                    db.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
 
         /// <summary>
         /// Saves the order in the database.
@@ -214,7 +269,15 @@ namespace afw_project.Model
         /// <returns>Order instance.</returns>
         public Order GetCart()
         {
-            return Orders[Orders.Count - 1].OrderTime == null ? Orders[Orders.Count - 1] : Order.CreateNewCart();
+            if (Orders == null)
+            {
+                Orders = new List<Order>();
+            }
+            else if (Orders.Count == 0 || Orders[Orders.Count - 1].OrderTime != null)
+            {
+                Orders.Add(Order.CreateNewCart());
+            }
+            return Orders[Orders.Count - 1];
         }
 
 

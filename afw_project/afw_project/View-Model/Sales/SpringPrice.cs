@@ -77,18 +77,18 @@ namespace afw_project.View_Model.Sales
                 if (sale == 40)
                     return;
                 else sale = 40;
-            if (quantity > 7)
+            else if (quantity > 7)
                 if (sale == 30)
                     return;
                 else sale = 30;
-            if (quantity > 2)
+            else if (quantity > 2)
                 if (sale == 20)
                     return;
                 else sale = 20;
             if (sale == 0)
                 return;
 
-            NewPrice = ElementaryPrice - Math.Round(NewPrice * sale/100, 2);
+            NewPrice = ElementaryPrice - Math.Round(ElementaryPrice * sale/100, 2);
 
             for (int i = 0; i < cartItems.Count; i++)
                 ChangeProductPrice(i, sale);

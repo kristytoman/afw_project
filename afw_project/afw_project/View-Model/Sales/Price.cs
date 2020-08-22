@@ -86,7 +86,7 @@ namespace afw_project.View_Model.Sales
         {
             int index = cartItems.IndexOf(c => c.ID == ID);
 
-            int newQuantity = amount - cartItems[index].Amount; /// The difference between the new and old quantity.
+            int newQuantity = amount - order[index].Amount; /// The difference between the new and old quantity.
             cartItems[index].Amount = amount;
             order[index].Amount = amount;
 

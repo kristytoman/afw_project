@@ -38,7 +38,7 @@ namespace afw_project.View_Model.Sales
             cartItems = new ObservableCollection<CartItem>();
             for (int i = 0; i < order.Count; i++)
             {
-                double summedPrice = order[i].Product.Price * order[i].Product.Amount;
+                double summedPrice = order[i].Product.Price * order[i].Amount;
                 ElementaryPrice += summedPrice;
                 if (order[i].Product.Price > highestPrice)
                 {
@@ -47,8 +47,8 @@ namespace afw_project.View_Model.Sales
                 }
                 cartItems.Add(new CartItem(viewModel, order[i].Product.ID, order[i].Product.Name, order[i].Amount, summedPrice));
             }
-            ChangeAmount(iMostExpensive, 30);
-            NewPrice = ElementaryPrice - Math.Round(order[iMostExpensive].Product.Price * order[iMostExpensive].Product.Amount * 0.3, 2);
+            ChangeProductPrice(iMostExpensive, 30);
+            NewPrice = ElementaryPrice - Math.Round(order[iMostExpensive].Product.Price * order[iMostExpensive].Amount * 0.3, 2);
             return cartItems;
         }
 

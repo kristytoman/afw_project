@@ -4,44 +4,52 @@
              x:Class="afw_project.View.Admin.Products">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        
         <ListView ItemsSource="{Binding ProductsList}" 
-                  Grid.Row="1" Grid.Column="0" Grid.RowSpan="6" Grid.ColumnSpan="2"
-                  VerticalOptions="FillAndExpand" HasUnevenRows="True"
+                  Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="2"
+                  VerticalOptions="Center" HasUnevenRows="True"
                   ItemSelected="Products_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
                             <Grid>
                                 <Label Text="{Binding Name}"
-                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"/>
+                                       HorizontalOptions="Center"
+                                       Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
                                 <Label Text="{Binding Description}"
-                                   Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"/>
-                                <Label Text="{Binding Price}"
-                                   Grid.Row="2" Grid.Column="0"/>
+                                       Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
+                                <Label Text="{Binding FinalPrice}"
+                                       Grid.Row="3" Grid.Column="1"/>
                                 <Label Text="{Binding Sale}"
-                                   Grid.Row="2" Grid.Column="1"/>
+                                       Grid.Row="3" Grid.Column="2"/>
                             </Grid>
 
                             <Grid x:Name="grid_edit" IsVisible="{Binding IsSelected}">
                                 <Button Text="Edit" Clicked="Edit_Clicked"
-                                        Grid.Row="3" Grid.Column="0"/>
+                                        Grid.Row="4" Grid.Column="1"/>
                                 <Button Text="Delete" Clicked="Delete_Clicked"
                                         BackgroundColor="Red"
-                                        Grid.Row="3" Grid.Column="1"/>
+                                        Grid.Row="4" Grid.Column="2"/>
                             </Grid>
                         </Grid>
                     </ViewCell>

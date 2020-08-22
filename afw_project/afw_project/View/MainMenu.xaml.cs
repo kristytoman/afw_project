@@ -53,6 +53,7 @@ namespace afw_project.View
         private void LogOut_Clicked(object sender, EventArgs e)
         {
             App.User = new Model.Customer();
+            
             DisplayAlert("Log out", "You were succesfully logged out.", "OK");
             Application.Current.MainPage = new MainPage();
         }

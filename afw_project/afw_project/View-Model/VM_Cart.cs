@@ -107,7 +107,10 @@ namespace afw_project.View_Model
                 ((MainPage)Application.Current.MainPage).Detail = new Products_MainPage();
             }
             else
+            {
+                App.User.GetCart().Price = Price.NewPrice;
                 ((MainPage)Application.Current.MainPage).Detail = new CustomerForm(false);
+            }
         }
 
         #endregion
