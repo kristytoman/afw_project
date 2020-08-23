@@ -23,6 +23,9 @@ namespace afw_project.View.Customer
         /// </summary>
         readonly VM_CustomerForm viewModel;
 
+       
+
+
         /// <summary>
         /// Initializing new Sign Up page.
         /// </summary>
@@ -45,11 +48,14 @@ namespace afw_project.View.Customer
             if (valid)
             {
                 entry.BackgroundColor = validColor;
-                return;
             }
-
-            entry.BackgroundColor = invalidColor;
+            else
+            {
+                entry.BackgroundColor = invalidColor;
+            }
         }
+
+
 
         /// <summary>
         /// Validates the email entry after unfocusing.
@@ -59,9 +65,10 @@ namespace afw_project.View.Customer
         private void Email_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            Email email = new Email(entry.Text);
-            ChangeEntry(entry, viewModel.Validate(email));
+            ChangeEntry(entry, viewModel.Validate(new Email(entry.Text)));
         }
+
+
 
         /// <summary>
         /// Validates the password entry after unfocusing.
@@ -71,9 +78,10 @@ namespace afw_project.View.Customer
         private void Password_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            Password password = new Password(entry.Text);
-            ChangeEntry(entry, viewModel.Validate(password));
+            ChangeEntry(entry, viewModel.Validate(new Password(entry.Text)));
         }
+
+
 
         /// <summary>
         /// Validates the firstName entry after unfocusing.
@@ -83,8 +91,10 @@ namespace afw_project.View.Customer
         private void Name_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(entry.Text, Name.type_firstName));
+            ChangeEntry(entry, viewModel.Validate(new Name(entry.Text)));
         }
+
+
 
         /// <summary>
         /// Validates the lastName entry after unfocusing.
@@ -94,8 +104,10 @@ namespace afw_project.View.Customer
         private void LastName_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(entry.Text, Name.type_lastName));
+            ChangeEntry(entry, viewModel.Validate(new Surname(entry.Text)));
         }
+
+
 
         /// <summary>
         /// Validates the phone entry after unfocusing.
@@ -105,9 +117,10 @@ namespace afw_project.View.Customer
         private void Phone_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            PhoneNumber phone = new PhoneNumber(entry.Text);
-            ChangeEntry(entry, viewModel.Validate(phone));
+            ChangeEntry(entry, viewModel.Validate(new PhoneNumber(entry.Text)));
         }
+
+
 
         /// <summary>
         /// Validates the street entry after unfocusing.
@@ -117,8 +130,10 @@ namespace afw_project.View.Customer
         private void Street_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(entry.Text,Name.type_street));
+            ChangeEntry(entry, viewModel.Validate(new StreetName(entry.Text)));
         }
+
+
 
         /// <summary>
         /// Validates the building entry after unfocusing.
@@ -128,9 +143,10 @@ namespace afw_project.View.Customer
         private void Building_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            Building building = new Building(entry.Text);
-            ChangeEntry(entry, viewModel.Validate(building));
+            ChangeEntry(entry, viewModel.Validate(new Building(entry.Text)));
         }
+
+
 
         /// <summary>
         /// Validates the city entry after unfocusing.
@@ -140,8 +156,10 @@ namespace afw_project.View.Customer
         private void City_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(entry.Text,Name.type_city));
+            ChangeEntry(entry, viewModel.Validate(new CityName(entry.Text)));
         }
+
+
 
         /// <summary>
         /// Validates the postalCode entry after unfocusing.
@@ -151,8 +169,20 @@ namespace afw_project.View.Customer
         private void Code_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            Number number = new Number(entry.Text);
-            ChangeEntry(entry, viewModel.Validate(number));
+            ChangeEntry(entry, viewModel.Validate(new PostalCode(entry.Text)));
+        }
+
+
+
+        /// <summary>
+        /// Validates the country input after changing the selected index.
+        /// </summary>
+        /// <param name="sender">Picker of the country.</param>
+        /// <param name="e"></param>
+        private void Picker_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            Picker picker = sender as Picker;
+            viewModel.Validate(new Country(picker.SelectedItem.ToString()));
         }
     }
 }

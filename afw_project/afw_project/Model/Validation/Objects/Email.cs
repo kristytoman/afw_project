@@ -7,10 +7,7 @@ namespace afw_project.Model.Validation.Objects
         /// Object for validating e-mail input.
         /// </summary>
         /// <param name="value">E-mail input value.</param>
-        public Email(string value) : base(value)
-        {
-            AddValidations();
-        }
+        public Email(string value) : base(value) { }
 
         protected override void AddValidations()
         {

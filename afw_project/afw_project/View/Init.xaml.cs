@@ -46,15 +46,13 @@ namespace afw_project.View
         private void Username_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            Name username = new Name(entry.Text,"username");
-            ChangeEntry(entry, viewModel.Validate(username));
+            ChangeEntry(entry, viewModel.Validate(new Username(entry.Text)));
         }
 
         private void Password_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            Password password = new Password(entry.Text);
-            ChangeEntry(entry, viewModel.Validate(password));
+            ChangeEntry(entry, viewModel.Validate(new Password(entry.Text)));
         }
 
     }

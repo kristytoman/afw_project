@@ -7,15 +7,12 @@ namespace afw_project.Model.Validation.Objects
         /// Creates new validatable object to test the password input.
         /// </summary>
         /// <param name="value">Password input value.</param>
-        public Password(string value) : base(value)
-        {
-            AddValidations();
-        }
+        public Password(string value) : base(value) { }
 
         protected override void AddValidations()
         {
-            validations.Add(new IsNotEmpty() { Message = "Password is required" });
-            validations.Add(new IsValidPassword() { Message = "Invalid password" });
+            validations.Add(new IsNotEmpty() { Message = "Password is required." });
+            validations.Add(new IsValidPassword() { Message = "Invalid password." });
         }
     }
 }

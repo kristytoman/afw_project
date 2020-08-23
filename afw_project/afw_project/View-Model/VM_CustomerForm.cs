@@ -86,7 +86,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Validatable object with last name input.
         /// </summary>
-        private Name lastName;
+        private Surname lastName;
         /// <summary>
         /// Error message to display with invalid last name input.
         /// </summary>
@@ -139,7 +139,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Validatable object with street address input.
         /// </summary>
-        private Name street;
+        private StreetName street;
         /// <summary>
         /// Error message to display with invalid street address input.
         /// </summary>
@@ -189,7 +189,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Validatable object with city address input.
         /// </summary>
-        private Name city;
+        private CityName city;
         /// <summary>
         /// Error message to display with invalid city address input.
         /// </summary>
@@ -214,7 +214,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Validatable object with postal code input.
         /// </summary>
-        private Number code;
+        private PostalCode code;
         /// <summary>
         /// Error message to display with invalid postal code input.
         /// </summary>
@@ -237,20 +237,242 @@ namespace afw_project.View_Model
 
 
         /// <summary>
+        /// Bindable property with the list of countries.
+        /// </summary>
+        public string[] Countries
+        {
+            get
+            {
+                return new string[]
+                {
+                    "Afghanistan",
+                    "Albania",
+                    "Algeria",
+                    "Andorra",
+                    "Angola",
+                    "Anguilla",
+                    "Antigua & Barbuda",
+                    "Argentina",
+                    "Armenia",
+                    "Aruba",
+                    "Australia",
+                    "Austria",
+                    "Azerbaijan",
+                    "Bahamas",
+                    "Bahrain",
+                    "Bangladesh",
+                    "Barbados",
+                    "Belarus",
+                    "Belgium",
+                    "Belize",
+                    "Benin",
+                    "Bermuda",
+                    "Bhutan",
+                    "Bolivia",
+                    "Bosnia & Herzegovina",
+                    "Botswana",
+                    "Brazil",
+                    "British Virgin Islands",
+                    "Brunei",
+                    "Bulgaria",
+                    "Burkina Faso",
+                    "Burundi",
+                    "Cambodia",
+                    "Cameroon",
+                    "Cape Verde",
+                    "Cayman Islands",
+                    "Chad",
+                    "Chile",
+                    "China",
+                    "Colombia",
+                    "Congo",
+                    "Cook Islands",
+                    "Costa Rica",
+                    "Cote D Ivoire",
+                    "Croatia",
+                    "Cruise Ship",
+                    "Cuba",
+                    "Cyprus",
+                    "Czech Republic",
+                    "Denmark",
+                    "Djibouti",
+                    "Dominica",
+                    "Dominican Republic",
+                    "Ecuador",
+                    "Egypt",
+                    "El Salvador",
+                    "Equatorial Guinea",
+                    "Estonia",
+                    "Ethiopia",
+                    "Falkland Islands",
+                    "Faroe Islands",
+                    "Fiji",
+                    "Finland",
+                    "France",
+                    "French Polynesia",
+                    "French West Indies",
+                    "Gabon",
+                    "Gambia",
+                    "Georgia",
+                    "Germany",
+                    "Ghana",
+                    "Gibraltar",
+                    "Greece",
+                    "Greenland",
+                    "Grenada",
+                    "Guam",
+                    "Guatemala",
+                    "Guernsey",
+                    "Guinea",
+                    "Guinea Bissau",
+                    "Guyana",
+                    "Haiti",
+                    "Honduras",
+                    "Hong Kong",
+                    "Hungary",
+                    "Iceland",
+                    "India",
+                    "Indonesia",
+                    "Iran",
+                    "Iraq",
+                    "Ireland",
+                    "Isle of Man",
+                    "Israel",
+                    "Italy",
+                    "Jamaica",
+                    "Japan",
+                    "Jersey",
+                    "Jordan",
+                    "Kazakhstan",
+                    "Kenya",
+                    "Kuwait",
+                    "Kyrgyz Republic",
+                    "Laos",
+                    "Latvia",
+                    "Lebanon",
+                    "Lesotho",
+                    "Liberia",
+                    "Libya",
+                    "Liechtenstein",
+                    "Lithuania",
+                    "Luxembourg",
+                    "Macau",
+                    "Macedonia",
+                    "Madagascar",
+                    "Malawi",
+                    "Malaysia",
+                    "Maldives",
+                    "Mali",
+                    "Malta",
+                    "Mauritania",
+                    "Mauritius",
+                    "Mexico",
+                    "Moldova",
+                    "Monaco",
+                    "Mongolia",
+                    "Montenegro",
+                    "Montserrat",
+                    "Morocco",
+                    "Mozambique",
+                    "Namibia",
+                    "Nepal",
+                    "Netherlands",
+                    "Netherlands Antilles",
+                    "New Caledonia",
+                    "New Zealand",
+                    "Nicaragua",
+                    "Niger",
+                    "Nigeria",
+                    "Norway",
+                    "Oman",
+                    "Pakistan",
+                    "Palestine",
+                    "Panama",
+                    "Papua New Guinea",
+                    "Paraguay",
+                    "Peru",
+                    "Philippines",
+                    "Poland",
+                    "Portugal",
+                    "Puerto Rico",
+                    "Qatar",
+                    "Reunion",
+                    "Romania",
+                    "Russia",
+                    "Rwanda",
+                    "Saint Pierre &Miquelon",
+                    "Samoa",
+                    "San Marino",
+                    "Satellite",
+                    "Saudi Arabia",
+                    "Senegal",
+                    "Serbia",
+                    "Seychelles",
+                    "Sierra Leone",
+                    "Singapore",
+                    "Slovakia",
+                    "Slovenia",
+                    "South Africa",
+                    "South Korea",
+                    "Spain",
+                    "Sri Lanka",
+                    "St Kitts &amp; Nevis",
+                    "St Lucia",
+                    "St Vincent",
+                    "St. Lucia",
+                    "Sudan",
+                    "Suriname",
+                    "Swaziland",
+                    "Sweden",
+                    "Switzerland",
+                    "Syria",
+                    "Taiwan",
+                    "Tajikistan",
+                    "Tanzania",
+                    "Thailand",
+                    "Timor L'Este",
+                    "Togo",
+                    "Tonga",
+                    "Trinidad &amp; Tobago",
+                    "Tunisia",
+                    "Turkey",
+                    "Turkmenistan",
+                    "Turks &amp; Caicos",
+                    "Uganda",
+                    "Ukraine",
+                    "United Arab Emirates",
+                    "United Kingdom",
+                    "Uruguay",
+                    "Uzbekistan",
+                    "Venezuela",
+                    "Vietnam",
+                    "Virgin Islands (US)",
+                    "Yemen",
+                    "Zambia",
+                    "Zimbabwe"
+
+                };
+            }
+        }
+        /// <summary>
         /// Country address input value.
         /// </summary>
-        private string country = "";
+        private Country country;
         /// <summary>
-        /// Bindable property that gets or sets the country input.
+        /// Error message to display when the country input is invalid
         /// </summary>
-        public string Country
+        private string error_country;
+        /// <summary>
+        /// Bindable property that gets or sets the error message to display when the country input is invalid.
+        /// </summary>
+        public string Error_country
         {
-            get => country;
+            get => error_country;
             set
             {
-                if (value != country)
+                if (value!=error_country)
                 {
-                    country = value;
+                    error_country = value;
                     OnPropertyChanged();
                 }
             }
@@ -294,111 +516,71 @@ namespace afw_project.View_Model
         /// </summary>
         /// <param name="input">Object for validating e-mail value.</param>
         /// <returns>True if the input is valid, false if it's invalid.</returns>
-        public bool Validate(Email input)
+        public bool Validate(ValidatableObject input)
         {
-            email = input;
-            Error_email = email.Validate();
-            return email.isValid;
-        }
-
-
-
-        /// <summary>
-        /// Validates the user input and shows/hides the error message for invalid password.
-        /// </summary>
-        /// <param name="input">Object for validating password value.</param>
-        /// <returns>True if the input is valid, false if it's invalid.</returns>
-        public bool Validate(Password input)
-        {
-            password = input;
-            Error_password = password.Validate();
-            return password.isValid;
-        }
-
-
-
-        /// <summary>
-        /// Validates the user input and shows/hides the error message for invalid input.
-        /// </summary>
-        /// <param name="value">User's input value.</param>
-        /// <param name="type">Type of name value.</param>
-        /// <returns>True if the input is valid, false if it's invalid.</returns>
-        public bool Validate(string value, string type)
-        {
-            switch (type)
+            if (input is Email input_email)
             {
-                case Name.type_firstName:
-
-                    firstName = new Name(value, type);
-                    Error_firstName = firstName.Validate();
-                    return firstName.isValid;
-
-                case Name.type_lastName:
-
-                    lastName = new Name(value, type);
-                    Error_lastName = lastName.Validate();
-                    return lastName.isValid;
-
-                case Name.type_street:
-
-                    street = new Name(value, type);
-                    Error_street = street.Validate();
-                    return street.isValid;
-
-                case Name.type_city:
-
-                    city = new Name(value, type);
-                    Error_city = city.Validate();
-                    return city.isValid;
-
-                default:
-                    return false;
+                email = input_email;
+                Error_email = email.Validate();
+                return email.isValid;
             }
+            else if (input is Password input_password)
+            {
+                password = input_password;
+                Error_password = password.Validate();
+                return password.isValid;
+            }
+            else if (input is Name input_name)
+            {
+                firstName = input_name;
+                Error_firstName = firstName.Validate();
+                return firstName.isValid;
+            }
+            else if (input is Surname input_surname)
+            {
+                lastName = input_surname;
+                Error_lastName = lastName.Validate();
+                return lastName.isValid;
+            }
+            else if (input is PhoneNumber input_phone)
+            {
+                phone = input_phone;
+                Error_phone = phone.Validate();
+                return phone.isValid;
+            }
+            else if (input is StreetName input_street)
+            {
+                street = input_street;
+                Error_street = street.Validate();
+                return street.isValid;
+            }
+            else if (input is Building input_building)
+            {
+                building = input_building;
+                Error_building = building.Validate();
+                return building.isValid;
+            }
+            else if (input is CityName input_city)
+            {
+                city = input_city;
+                Error_city = city.Validate();
+                return city.isValid;
+            }
+            else if (input is PostalCode input_code)
+            {
+                code = input_code;
+                Error_code = code.Validate();
+                return code.isValid;
+            }
+            else if (input is Country input_country)
+            {
+                country = input_country;
+                Error_country = country.Validate();
+                return country.isValid;
+            }
+            return false;
         }
-
-
-
-        /// <summary>
-        /// Validates the user input and shows/hides the error message for invalid phone number.
-        /// </summary>
-        /// <param name="input">Object for validating phone number value.</param>
-        /// <returns>True if the input is valid, false if it's invalid.</returns>
-        public bool Validate(PhoneNumber input)
-        {
-            phone = input;
-            Error_phone = phone.Validate();
-            return phone.isValid;
-        }
-
-
-
-        /// <summary>
-        /// Validates the user input and shows/hides the error message for invalid building number.
-        /// </summary>
-        /// <param name="input">Object for validating building number value.</param>
-        /// <returns>True if the input is valid, false if it's invalid.</returns>
-        public bool Validate(Building input)
-        {
-            building = input;
-            Error_building = building.Validate();
-            return building.isValid;
-        }
-
-
-
-        /// <summary>
-        /// Validates the user input and shows/hides the error message for invalid postal code.
-        /// </summary>
-        /// <param name="input">Object for validating postal code value.</param>
-        /// <returns>True if the input is valid, false if it's invalid.</returns>
-        public bool Validate(Number input)
-        {
-            code = input;
-            Error_code = code.Validate();
-            return code.isValid;
-        }
-
-
+       
 
         /// <summary>
         /// Checks whether all validatable objects are valid.
@@ -451,7 +633,7 @@ namespace afw_project.View_Model
                     building.Value,
                     city.Value,
                     code.Value,
-                    country
+                    country.Value
                 );
 
                 /// Tries to create a new record in a database.
@@ -490,7 +672,7 @@ namespace afw_project.View_Model
                     building.Value,
                     city.Value,
                     code.Value,
-                    country
+                    country.Value
                 ))
                 {
                     Application.Current.MainPage.DisplayAlert

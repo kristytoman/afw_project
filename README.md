@@ -13,11 +13,11 @@
   - [x] Adding a product to a cart
   - [x] Using an existing user account
   - [x] Creating new user account
-  - [ ] Counting a product sale
-    - [ ] Spring sale
-    - [ ] Summer sale
-    - [ ] Autumn sale
-    - [ ] Winter sale
+  - [x] Counting a product sale
+    - [x] Spring sale
+    - [x] Summer sale
+    - [x] Autumn sale
+    - [x] Winter sale
   - [x] Creating new order
   - [x] Viewing existing orders
 - [x] Administrator side
@@ -37,5 +37,5 @@
     - [x] Orders' product
     - [x] Customers
  ### Non-functional requirements
- - [ ] Using abstract class for sales
+ - [x] Using abstract class for sales
  - [x] Implementation of MVVM

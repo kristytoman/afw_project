@@ -7,10 +7,7 @@ namespace afw_project.Model.Validation.Objects
         /// Creates new validatable object to test the phone number input.
         /// </summary>
         /// <param name="value">Phone number input value.</param>
-        public PhoneNumber(string value) : base(value)
-        {
-            AddValidations();
-        }
+        public PhoneNumber(string value) : base(value) { }
 
         protected override void AddValidations()
         {

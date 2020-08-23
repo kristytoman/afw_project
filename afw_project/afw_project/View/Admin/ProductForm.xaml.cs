@@ -68,7 +68,7 @@ namespace afw_project.View.Admin
         private void Name_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(entry.Text, Description.type_productName));
+            ChangeEntry(entry, viewModel.Validate(new ProductName(entry.Text)));
             
         }
 
@@ -80,7 +80,7 @@ namespace afw_project.View.Admin
         private void Category_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(new Name(entry.Text, "category")));
+            ChangeEntry(entry, viewModel.Validate(new CategoryName(entry.Text)));
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace afw_project.View.Admin
         private void Description_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry,viewModel.Validate(entry.Text, Description.type_productDescription));
+            ChangeEntry(entry,viewModel.Validate(new Description(entry.Text)));
         }
 
         /// <summary>
@@ -102,7 +102,7 @@ namespace afw_project.View.Admin
         private void Price_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(new Number(entry.Text),"price"));
+            ChangeEntry(entry, viewModel.Validate(new Cost(entry.Text)));
         }
 
         /// <summary>
@@ -113,7 +113,7 @@ namespace afw_project.View.Admin
         private void Amount_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(new Number(entry.Text), "amount"));
+            ChangeEntry(entry, viewModel.Validate(new Amount(entry.Text)));
         }
 
     }

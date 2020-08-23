@@ -33,6 +33,7 @@ namespace afw_project.Model.Validation.Objects
             Value = value;
             validations = new List<IValidation>();
             isValid = false;
+            AddValidations();
         }
         #endregion
 

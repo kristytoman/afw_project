@@ -35,7 +35,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Username for administrator authentication.
         /// </summary>
-        private Name username;
+        private Username username;
         /// <summary>
         /// Label to view error if the username was invalid.
         /// </summary>
@@ -107,24 +107,23 @@ namespace afw_project.View_Model
         /// </summary>
         /// <param name="input">Validatable object with the username value.</param>
         /// <returns>True if the input is valid, false if invalid.</returns>
-        public bool Validate(Name input)
+        public bool Validate(ValidatableObject input)
         {
-            username = input;
-            Error_username = username.Validate();
-            return username.isValid;
+            if (input is Username input_username)
+            {
+                username = input_username;
+                Error_username = username.Validate();
+                return username.isValid;
+            }
+            else if (input is Password input_password)
+            {
+                password = input_password;
+                Error_password = password.Validate();
+                return password.isValid;
+            }
+            return false;
         }
 
-        /// <summary>
-        /// Validates the administator password input.
-        /// </summary>
-        /// <param name="input">Validatable object with the password value.</param>
-        /// <returns>True if the input is valid, false if invalid.</returns>
-        public bool Validate(Password input)
-        {
-            password = input;
-            Error_password = password.Validate();
-            return password.isValid;
-        }
 
         /// <summary>
         /// Checks if all input values are valid.

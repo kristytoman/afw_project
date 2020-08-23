@@ -18,7 +18,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Validatable object with name input.
         /// </summary>
-        private Description validation_name;
+        private ProductName validation_name;
         /// <summary>
         /// Error message to display with invalid name input.
         /// </summary>
@@ -63,7 +63,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Validatable object with category input.
         /// </summary>
-        private Name validation_category;
+        private CategoryName validation_category;
         /// <summary>
         /// Error message to display with invalid category input.
         /// </summary>
@@ -147,7 +147,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Validatable object with price input.
         /// </summary>
-        private Number validation_price;
+        private Cost validation_price;
         /// <summary>
         /// Error message to display with invalid price input.
         /// </summary>
@@ -189,7 +189,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Validatable object with amount input.
         /// </summary>
-        private Number validation_amount;
+        private Amount validation_amount;
         /// <summary>
         /// Error message to display with invalid amount input.
         /// </summary>
@@ -267,19 +267,19 @@ namespace afw_project.View_Model
         {
             product_id = edited.ID;
             Input_name = edited.Name;
-            validation_name = new Description(Input_name, "name");
+            validation_name = new ProductName(Input_name);
             validation_name.Validate();
             Input_category = edited.Category;
-            validation_category = new Name(Input_category, "category");
+            validation_category = new CategoryName(Input_category);
             validation_category.Validate();
             Input_description = edited.Description;
-            validation_description = new Description(Input_description, "description");
+            validation_description = new Description(Input_description);
             validation_description.Validate();
             Input_price = edited.Price;
-            validation_price = new Number(Input_price);
+            validation_price = new Cost(Input_price);
             validation_price.Validate();
             Input_amount = edited.Amount;
-            validation_amount = new Number(Input_amount);
+            validation_amount = new Amount(Input_amount);
             validation_amount.Validate();
             isEdited = true;
             Commit = new Command(AddNewProduct);
@@ -290,62 +290,47 @@ namespace afw_project.View_Model
 
 
         #region Validations
-        /// <summary>
-        /// Validates the admin input and shows/hides the error message for invalid description.
-        /// </summary>
-        /// <param name="value">Description entry value.</param>
-        /// <param name="type">Type of description.</param>
-        /// <returns>True if the entry is valid, false if it is invalid</returns>
-        public bool Validate(string value, string type)
-        {
-            switch (type)
-            {
-                case Description.type_productName:
-                    validation_name = new Description(value, type);
-                    Error_name = validation_name.Validate();
-                    return validation_name.isValid;
-                case Description.type_productDescription:
-                    validation_description = new Description(value, type);
-                    Error_description = validation_description.Validate();
-                    return validation_description.isValid;
-                default:
-                    return false;
-            }
-        }
 
         /// <summary>
         /// Validates the admin input and shows/hides the error message for invalid category.
         /// </summary>
         /// <param name="input">Category entry's value.</param>
         /// <returns>True if the entry is valid, false if it is invalid</returns>
-        public bool Validate(Name input)
+        public bool Validate(ValidatableObject input)
         {
-            validation_category = input;
-            Error_category = validation_category.Validate();
-            return validation_category.isValid;
-        }
-
-        /// <summary>
-        /// Validates the admin input and shows/hides the error message for invalid price/amount.
-        /// </summary>
-        /// <param name="input">Validatable object with number value</param>
-        /// <param name="type">"price" or "amount"</param>
-        /// <returns>True if the entry is valid, false if it is invalid</returns>
-        public bool Validate(Number input, string type)
-        {
-            switch (type)
+            if (input is ProductName input_name)
             {
-                case "price":
-                    validation_price = input;
-                    validation_price.Validate();
-                    return validation_price.isValid;
-                case "amount":
-                    validation_amount = input;
-                    validation_amount.Validate();
-                    return validation_amount.isValid;
+                validation_name = input_name;
+                Error_name = validation_name.Validate();
+                return validation_name.isValid;
+            }
+            else if (input is CategoryName input_category)
+            {
+                validation_category = input_category;
+                Error_category = validation_category.Validate();
+                return validation_category.isValid;
+            }
+            else if (input is Description input_description)
+            {
+                validation_description = input_description;
+                Error_description = validation_description.Validate();
+                return validation_description.isValid;
+            }
+            else if (input is Cost input_cost)
+            {
+                validation_price = input_cost;
+                validation_price.Validate();
+                return validation_price.isValid;
+            }
+            else if (input is Amount input_amount)
+            {
+                validation_amount = input_amount;
+                validation_amount.Validate();
+                return validation_amount.isValid;
             }
             return false;
         }
+
 
         /// <summary>
         /// Checks whether all validatable objects are valid.
