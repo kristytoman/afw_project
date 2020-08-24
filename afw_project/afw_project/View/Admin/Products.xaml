@@ -5,40 +5,40 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width=".5*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width=".5*"/>
         </Grid.ColumnDefinitions>
         
         <ListView ItemsSource="{Binding ProductsList}" 
-                  Grid.Row="0" Grid.Column="1" Grid.RowSpan="6" Grid.ColumnSpan="2"
+                  Grid.Column="1"
                   VerticalOptions="Center" HasUnevenRows="True"
                   ItemSelected="Products_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
                             <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
                                 <Label Text="{Binding Name}"
-                                       HorizontalOptions="Center"
+                                       FontSize="Subtitle" HorizontalOptions="Center"
                                        Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"/>
                                 <Label Text="{Binding Description}"
                                        Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
-                                <Label Text="{Binding FinalPrice}"
+                                <Label Text="{Binding Price}"
                                        Grid.Row="3" Grid.Column="1"/>
                                 <Label Text="{Binding Sale}"
                                        Grid.Row="3" Grid.Column="2"/>

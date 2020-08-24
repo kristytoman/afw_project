@@ -2,6 +2,9 @@
 using afw_project.View;
 using afw_project.Model.Validation.Objects;
 using Xamarin.Forms;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Collections.ObjectModel;
 
 namespace afw_project.View_Model
 {
@@ -60,6 +63,50 @@ namespace afw_project.View_Model
 
 
 
+        public ObservableCollection<string> Categories { get; set; }
+        private bool selectingCategory;
+        public bool SelectingCategory
+        {
+            get => selectingCategory;
+            set
+            {
+                if (value!=selectingCategory)
+                {
+                    selectingCategory = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+        private string selectedCategory;
+        public string SelectedCategory
+        {
+            get => selectedCategory;
+            set
+            {
+                if (value != selectedCategory)
+                {
+                    selectedCategory = value;
+                    if (selectedCategory == "Add new category")
+                    {
+                        NewCategory = true;
+                        SelectingCategory = false;
+                    }
+                }
+            }
+        }
+        private bool newCategory;
+        public bool NewCategory
+        {
+            get => newCategory;
+            set
+            {
+                if (value!=newCategory)
+                {
+                    newCategory = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
         /// <summary>
         /// Validatable object with category input.
         /// </summary>
@@ -143,7 +190,16 @@ namespace afw_project.View_Model
         }
 
 
-
+        /// <summary>
+        /// Bindable property that sets whether the price can be edited.
+        /// </summary>
+        public bool PriceEdit
+        {
+            get
+            {
+                return !isEdited;
+            }
+        }
         /// <summary>
         /// Validatable object with price input.
         /// </summary>
@@ -255,6 +311,14 @@ namespace afw_project.View_Model
         public VM_ProductForm()
         {
             Commit = new Command(AddNewProduct);
+            Categories = new ObservableCollection<string>();
+            Categories.Add("Add new category");
+            newCategory = false;
+            selectingCategory = true;
+            foreach (Category item in Category.GetCategories())
+            {
+                Categories.Add(item.Name);
+            }
             isEdited = false;
         }
 
@@ -263,13 +327,14 @@ namespace afw_project.View_Model
         /// Creates a new View-model for an edited product.
         /// </summary>
         /// <param name="edited"></param>
-        public VM_ProductForm(ProductItem edited)
+        public VM_ProductForm(ProductItem edited) : this()
         {
             product_id = edited.ID;
             Input_name = edited.Name;
             validation_name = new ProductName(Input_name);
             validation_name.Validate();
             Input_category = edited.Category;
+            SelectedCategory = edited.Category;
             validation_category = new CategoryName(Input_category);
             validation_category.Validate();
             Input_description = edited.Description;
@@ -282,8 +347,6 @@ namespace afw_project.View_Model
             validation_amount = new Amount(Input_amount);
             validation_amount.Validate();
             isEdited = true;
-            Commit = new Command(AddNewProduct);
-
         }
         #endregion
 
@@ -339,7 +402,7 @@ namespace afw_project.View_Model
         private bool IsValid()
         {
             if (!validation_name.isValid) return false;
-            if (!validation_category.isValid) return false;
+            if (NewCategory && !validation_category.isValid) return false;
             if (!validation_description.isValid) return false;
             if (!validation_price.isValid) return false;
             if (!validation_amount.isValid) return false;
@@ -370,9 +433,9 @@ namespace afw_project.View_Model
                 Product p = new Product
                 (
                     validation_name.Value,
-                    validation_category.Value,
+                    SelectingCategory ? SelectedCategory : validation_category.Value,
                     validation_description.Value,
-                    int.Parse(validation_price.Value),
+                    double.Parse(validation_price.Value),
                     int.Parse(validation_amount.Value)
                 );
 

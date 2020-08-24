@@ -35,7 +35,6 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-                                
                                 <Label Text="{Binding Name}" 
                                        FontSize="Subtitle" HorizontalOptions="Center"
                                        Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3"/>

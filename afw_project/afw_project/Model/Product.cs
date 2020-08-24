@@ -59,7 +59,7 @@ namespace afw_project.Model
         /// <param name="description">Product's description input.</param>
         /// <param name="price">Product's price input.</param>
         /// <param name="amount">Product's amount input.</param>
-        public Product(string name, string categoryName, string description, int price, int amount)
+        public Product(string name, string categoryName, string description, double price, int amount)
         {
             Name = name;
             Description = description;
