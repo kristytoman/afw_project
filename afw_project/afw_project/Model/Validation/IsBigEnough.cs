@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace afw_project.Model.Validation.Objects
+﻿
+namespace afw_project.Model.Validation
 {
     class IsBigEnough : IValidation
     {
