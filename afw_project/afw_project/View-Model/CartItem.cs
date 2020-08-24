@@ -1,4 +1,6 @@
 ﻿
+using Xamarin.Forms;
+
 namespace afw_project.View_Model
 {
     internal class CartItem : VM_Base
@@ -38,10 +40,21 @@ namespace afw_project.View_Model
                 if (value != amount)
                 {
                     amount = value;
-                    viewModel.Price.ChangeAmount(ID, value);
-                    viewModel.SetTheCosts();
+                    if (viewModel.Price.ChangeAmount(ID, value))
+                    {
+                        viewModel.SetTheCosts();
 
-                    OnPropertyChanged();
+                        OnPropertyChanged();
+                    }
+                    else
+                    {
+                        Application.Current.MainPage.DisplayAlert
+                        (
+                            "Can't order that much.", 
+                            "There is not enough of this product to fulfill the requirement.", 
+                            "OK"
+                        );
+                    }    
                 }
             }
         }

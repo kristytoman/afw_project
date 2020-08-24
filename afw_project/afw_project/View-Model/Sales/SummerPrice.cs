@@ -17,10 +17,11 @@ namespace afw_project.View_Model.Sales
 
         public override ObservableCollection<CartItem> GetSale()
         {
+            cartItems = new ObservableCollection<CartItem>();
+          
             ElementaryPrice = CountThePrice();
             NewPrice = ElementaryPrice;
 
-            cartItems = new ObservableCollection<CartItem>();
             
             if (App.User.Password == null || App.User.Password == string.Empty)
             {

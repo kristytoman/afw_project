@@ -82,12 +82,16 @@ namespace afw_project.View_Model.Sales
         /// </summary>
         /// <param name="ID">ID of the product.</param>
         /// <param name="amount">Neq quantity of the product.</param>
-        public void ChangeAmount(int ID, int amount)
+        public bool ChangeAmount(int ID, int amount)
         {
+            if (!Product.CheckProduct(ID,amount))
+            {
+                return false;
+            }
             int index = cartItems.IndexOf(c => c.ID == ID);
-
+            
+            
             int newQuantity = amount - order[index].Amount; /// The difference between the new and old quantity.
-            cartItems[index].Amount = amount;
             order[index].Amount = amount;
 
             /// Changes the Elementary total cost.
@@ -102,6 +106,7 @@ namespace afw_project.View_Model.Sales
 
             /// Recalculates the prices for the spring sale dependent on the amount.
             RecalculatePrice(newQuantity);
+            return true;
         }
 
 

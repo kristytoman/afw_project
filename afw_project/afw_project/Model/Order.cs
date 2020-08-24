@@ -73,14 +73,22 @@ namespace afw_project.Model
             {
                 if (ProductOrders.Where(p => p.Product.ID == id).Count() == 1)
                 {
-                    ProductOrders.First(p => p.Product.ID == id).Amount++;
-                    return true;
+                    if (ProductOrders.First(p => p.Product.ID == id).Product.Amount >= ProductOrders.First(p => p.Product.ID == id).Amount + 1)
+                    {
+                        ProductOrders.First(p => p.Product.ID == id).Amount++;
+                        return true;
+                    }
+                    return false;
                 }
                 else if (ProductOrders.Where(p => p.Product.ID == id).Count() == 0)
                 {
                     Product product = Product.GetProduct(id);
-                    ProductOrders.Add(new ProductOrder { Product = product, Order = this, Amount = 1, Sale = product.Sale });
-                    return true;
+                    if (product.Amount > 0)
+                    {
+                        ProductOrders.Add(new ProductOrder { Product = product, Order = this, Amount = 1, Sale = product.Sale });
+                        return true;
+                    }
+                    return false;
                 }
                 else
                 {
@@ -90,7 +98,6 @@ namespace afw_project.Model
             catch (Exception)
             {
                 return false;
-
             }
         }
 

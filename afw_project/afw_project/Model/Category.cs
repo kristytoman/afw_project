@@ -95,6 +95,7 @@ namespace afw_project.Model
                     List<ProductItem> results = new List<ProductItem>();
                     foreach (Product p in db.Products.Where(p => p.Category.Name == Name && p.Amount>=0).ToList())
                     {
+                        p.Category = this;
                         results.Add(new ProductItem(p));
                     }
                     if (results.Count == 0)

@@ -55,7 +55,7 @@
 
 
             
-            <Label Text="Password*"
+            <Label Text="{Binding Label_password}"
                    Grid.Row="2" Grid.Column="3"/>
             
             <Entry Placeholder="Password" IsPassword="True" 
@@ -91,7 +91,7 @@
 
 
             
-            <Label Text="Phone numer"
+            <Label Text="Phone numer*"
                    Grid.Row="8" Grid.Column="1"/>
             
             <Entry Placeholder="+420xxxxxxxxx" 

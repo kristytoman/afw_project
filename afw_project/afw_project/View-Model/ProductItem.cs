@@ -128,14 +128,14 @@ namespace afw_project.View_Model
         {
             ID = template.ID;
             Name = template.Name;
-            Amount = template.Amount.ToString();
+            Amount = template.Amount.ToString() + " pcs";
             price = template.Price;
             Price = template.Price.ToString() + " EUR";
             Sale = template.Sale != 0 ? template.Sale.ToString() + " %" : "";
-            Category = "";
+            Category = template.Category.Name;
             shortDescription = template.Description.Substring(0, template.Description.Length < 50 ? template.Description.Length : 50);
             longDescription = template.Description;
-            FinalPrice = Math.Round((double)(template.Price - template.Price * template.Sale / 100), 2).ToString();
+            FinalPrice = Math.Round((double)(template.Price - template.Price * template.Sale / 100), 2).ToString() + " EUR";
             isSelected = false;
         }
 

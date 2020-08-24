@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\krist\source\repos\afw_project\afw_project\afw_project.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2020-08-24T15:16:33.071</Modified>
+      <Modified>2020-08-24T20:11:21.982</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\krist\source\repos\afw_project\afw_project\afw_project.UWP\bin\x86\Debug\afw_project.UWP.exe">
       <PackagePath>entrypoint\afw_project.UWP.exe</PackagePath>
-      <Modified>2020-08-24T15:16:29.239</Modified>
+      <Modified>2020-08-24T20:11:18.125</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\krist\.nuget\packages\bouncycastle.netcore\1.8.3\lib\netstandard2.0\BouncyCastle.Crypto.dll">
       <PackagePath>BouncyCastle.Crypto.dll</PackagePath>
@@ -228,7 +228,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\krist\source\repos\afw_project\afw_project\afw_project\bin\Debug\netstandard2.0\afw_project.dll">
       <PackagePath>afw_project.dll</PackagePath>
-      <Modified>2020-08-24T15:16:22.285</Modified>
+      <Modified>2020-08-24T20:10:57.604</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.Entity.dll">
       <PackagePath>System.Data.Entity.dll</PackagePath>
@@ -391,11 +391,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\krist\source\repos\afw_project\afw_project\afw_project.UWP\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2020-08-24T14:54:37.612</Modified>
+      <Modified>2020-08-24T20:11:17.480</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\krist\source\repos\afw_project\afw_project\afw_project.UWP\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2020-08-24T14:54:37.612</Modified>
+      <Modified>2020-08-24T20:11:17.480</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.17763.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -411,11 +411,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\krist\source\repos\afw_project\afw_project\afw_project.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2020-08-24T13:15:30.690</Modified>
+      <Modified>2020-08-24T18:22:30.014</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\krist\source\repos\afw_project\afw_project\afw_project.UWP\bin\x86\Debug\Core\afw_project.UWP.exe">
       <PackagePath>afw_project.UWP.exe</PackagePath>
-      <Modified>2020-08-24T15:16:33.048</Modified>
+      <Modified>2020-08-24T20:11:21.964</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

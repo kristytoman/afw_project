@@ -40,8 +40,12 @@
                                        Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"/>
                                 <Label Text="{Binding Price}"
                                        Grid.Row="3" Grid.Column="1"/>
-                                <Label Text="{Binding Sale}"
+                                <Label Text="{Binding Amount}"
                                        Grid.Row="3" Grid.Column="2"/>
+                                <Label Text="{Binding Sale}"
+                                       Grid.Row="4" Grid.Column="1"/>
+                                <Label Text="{Binding FinalPrice}"
+                                       Grid.Row="4" Grid.Column="2"/>
                             </Grid>
 
                             <Grid x:Name="grid_edit" IsVisible="{Binding IsSelected}">

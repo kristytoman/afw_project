@@ -205,11 +205,24 @@ namespace afw_project.Model
                 {
                     foreach (ProductOrder item in Orders[0].ProductOrders)
                     {
-                        db.ProductOrders.Add(item);
-                        db.Products.Attach(item.Product);
+                        if (item.Product.Amount >= item.Amount)
+                        {
+                            db.ProductOrders.Add(item);
+                            db.Products.Attach(item.Product);
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     db.Customers.Add(this);
                     db.Orders.Add(Orders[0]);
+                    db.SaveChanges();
+                    foreach (ProductOrder item in Orders[0].ProductOrders)
+                    {
+                        Product product = db.Products.Where(p => p.ID == item.Product.ID).First();
+                        product.Amount -= item.Amount;
+                    }
                     db.SaveChanges();
                     return true;
                 }
@@ -234,12 +247,25 @@ namespace afw_project.Model
                 {
                     foreach (ProductOrder item in Orders[index].ProductOrders)
                     {
-                        db.ProductOrders.Add(item);
-                        db.Products.Attach(item.Product);
+                        if (item.Product.Amount >= item.Amount)
+                        {
+                            db.Products.Attach(item.Product);
+                            db.ProductOrders.Add(item);
+                        }
+                        else
+                        {
+                            return false;
+                        }
                     }
                     db.Orders.Add(Orders[index]);
                     db.SaveChanges();
                     Orders[index].Customer = this;
+                    db.SaveChanges();
+                    foreach (ProductOrder item in Orders[index].ProductOrders)
+                    {
+                        Product product = db.Products.Where(p => p.ID == item.Product.ID).First();
+                        product.Amount -= item.Amount;
+                    }
                     db.SaveChanges();
                     return true;
                 }

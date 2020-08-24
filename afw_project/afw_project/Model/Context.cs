@@ -36,7 +36,7 @@ namespace afw_project.Model
             {
                 entity.HasKey(e => e.ID);
                 entity.Property(e => e.ID).ValueGeneratedOnAdd();
-                entity.HasOne(c => c.Category).WithMany(p => p.Products);
+                entity.HasOne(c => c.Category).WithMany(p => p.Products).HasForeignKey(k => k.CategoryID);
             });
             modelBuilder.Entity<Order>(entity =>
             {

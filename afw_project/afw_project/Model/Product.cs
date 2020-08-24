@@ -39,6 +39,11 @@ namespace afw_project.Model
         public string Description { get; set; }
 
         /// <summary>
+        /// Gets or sets the foreign key for the category.
+        /// </summary>
+        public int CategoryID { get; set; }
+
+        /// <summary>
         /// Gets or sets the product's category.
         /// </summary>
         public Category Category { get; set; }
@@ -159,6 +164,29 @@ namespace afw_project.Model
 
 
         /// <summary>
+        /// Checks whether the ordered amount is available.
+        /// </summary>
+        /// <param name="id">ID of the product.</param>
+        /// <param name="orderedAmount">Required amount.</param>
+        /// <returns></returns>
+        public static bool CheckProduct(int id, int orderedAmount)
+        {
+            try
+            {
+                using (Context db = new Context())
+                {
+                    return db.Products.Where(p => p.ID == id).First().Amount >= orderedAmount;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
         /// Marks the product as deleted.
         /// </summary>
         /// <param name="id">Identification number of the product.</param>
@@ -240,6 +268,7 @@ namespace afw_project.Model
                     List<ProductItem> results = new List<ProductItem>();
                     foreach (Product p in db.Products.Where(p=>p.Amount>=0).ToList())
                     {
+                        p.Category = db.Categories.Where(c => c.ID == p.CategoryID).First();
                         results.Add(new ProductItem(p));
                     }
                     if (results.Count == 0)

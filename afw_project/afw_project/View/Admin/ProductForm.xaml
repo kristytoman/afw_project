@@ -61,7 +61,7 @@
                    Grid.Row="4" Grid.Column="2"/>
             <Entry Placeholder="Description" Text="{Binding Input_description}" 
                    Unfocused="Description_Unfocused" 
-                   Grid.Row="5" Grid.Column="2" Grid.RowSpan="4"/>
+                   Grid.Row="5" Grid.Column="2"/>
             <Label Text="{Binding Error_description}" TextColor="Red"
                    Grid.Row="6" Grid.Column="1"/>
 

@@ -9,7 +9,7 @@
 
 ## Requirements
 ### Functional requirements
-- [ ] Client side
+- [x] Client side
   - [x] Adding a product to a cart
   - [x] Using an existing user account
   - [x] Creating new user account

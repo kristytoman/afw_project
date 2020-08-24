@@ -447,7 +447,7 @@ namespace afw_project.View_Model
                         "You are succesfully signed up",
                         "OK"
                     );
-                    Application.Current.MainPage = new MainPage();
+                    ((MainPage)Application.Current.MainPage).Detail = new Products_MainPage();
                 }
 
 
@@ -466,7 +466,7 @@ namespace afw_project.View_Model
                
                 if (!App.User.SaveCustomer(
                     email.Value,
-                    password.Value == string.Empty ? null : password.Value,
+                    password == null ? null : password.Value,
                     firstName.Value,
                     lastName.Value,
                     phone.Value,
@@ -492,6 +492,7 @@ namespace afw_project.View_Model
                         "Your order has been sent.",
                         "OK"
                     );
+                    ((MainPage)Application.Current.MainPage).Detail = new Products_MainPage();
                 }
             }
         }
