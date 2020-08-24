@@ -13,7 +13,9 @@ namespace afw_project.Model.Validation.Objects
 
         protected override void AddValidations()
         {
-            validations.Add(new IsNotEmpty() { Message = $"Please fill in the description." });
+            validations.Add(new IsNotEmpty { Message = $"Description input required." });
+            validations.Add(new HasRightFormat { Message = "Invalid input format.", Format= @"^[\p{L}\p{M}\d\s()\+\=%&\*€°,\.:\-\'/]+$" });
+
         }
     }
 }

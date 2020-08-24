@@ -16,7 +16,7 @@ namespace afw_project.Model.Validation
             Context db = new Context();
             try
             {
-                var mail = db.Customers.Where(c => c.Email == value).Single();
+                var mail = db.Customers.Where(c => c.Email == value && c.Password != null).Single();
             }
             catch
             {

@@ -239,7 +239,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Bindable property with the list of countries.
         /// </summary>
-        public string[] Countries
+        public static string[] Countries
         {
             get
             {

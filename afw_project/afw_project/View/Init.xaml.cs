@@ -52,7 +52,7 @@ namespace afw_project.View
         private void Password_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(new Password(entry.Text)));
+            ChangeEntry(entry, viewModel.Validate(new Password(entry.Text, true)));
         }
 
     }

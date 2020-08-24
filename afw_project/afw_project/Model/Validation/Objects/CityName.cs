@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace afw_project.Model.Validation.Objects
 {
     class CityName : ValidatableObject
@@ -12,7 +9,9 @@ namespace afw_project.Model.Validation.Objects
 
         protected override void AddValidations()
         {
-            validations.Add(new IsNotEmpty { Message = "Please fill in the city address." });
+            validations.Add(new IsNotEmpty { Message = "City name required." });
+            validations.Add(new HasRightFormat { Message = "Invalid format.", Format = @"^[\p{L}\p{M}\s,\.\-0-9']+$"});
+            validations.Add(new IsShortEnough { Message = "City input is too long.", Max = 250 });
         }
     }
 }

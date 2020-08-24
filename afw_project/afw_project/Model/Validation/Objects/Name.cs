@@ -13,8 +13,10 @@ namespace afw_project.Model.Validation.Objects
 
         protected override void AddValidations()
         {
-            validations.Add(new IsNotEmpty() { Message = $"Please fill your first name."});
-            validations.Add(new IsSupported() { Message = $"Not suported format for first name." });
+            validations.Add(new IsNotEmpty { Message = "Name input required."});
+            validations.Add(new HasRightFormat { Message = "Invalid name format.", Format = @"^[\p{L}\p{M}\s,\.\-']+$" });
+            validations.Add(new HasRightEnding { Message = "Invalid name ending.", End = @"[^\s-]$" });
+            validations.Add(new IsShortEnough { Message = "Name input is too long.", Max = 250 });
         }
     }
 }

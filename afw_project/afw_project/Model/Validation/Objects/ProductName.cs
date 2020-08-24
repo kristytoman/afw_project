@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace afw_project.Model.Validation.Objects
 {
     class ProductName : ValidatableObject
@@ -12,7 +9,10 @@ namespace afw_project.Model.Validation.Objects
 
         protected override void AddValidations()
         {
-            validations.Add(new IsNotEmpty { Message = "Please fill in the product name." });
+            validations.Add(new IsNotEmpty { Message = "Name input required." });
+            validations.Add(new HasRightFormat { Message = "Invalid name format.", Format = @"^[\p{L}\p{M}\d\s(),\.-'/]+$" });
+            validations.Add(new HasRightStart { Message = "Invalid input beginning.", Start = @"^[\p{L}\p{M}\d\]+" });
+            validations.Add(new IsShortEnough { Message = "Name input is too long.", Max = 250 });
         }
     }
 }

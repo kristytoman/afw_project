@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace afw_project.Model.Validation.Objects
 {
     class StreetName : ValidatableObject
@@ -10,7 +7,9 @@ namespace afw_project.Model.Validation.Objects
 
         protected override void AddValidations()
         {
-            validations.Add(new IsNotEmpty { Message = "Please fill in the street name." });
+            validations.Add(new IsNotEmpty { Message = "Street name required." });
+            validations.Add(new HasRightFormat { Message = "Invalid street name format.", Format = @"^[\p{L}\p{M}\d\s,\.\-']+$" });
+            validations.Add(new IsShortEnough { Message = "Street name is too long.", Max = 250 });
         }
     }
 }

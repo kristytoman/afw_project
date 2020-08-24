@@ -11,11 +11,11 @@ namespace afw_project.Model.Validation.Objects
         /// <summary>
         /// Minimum value of the input.
         /// </summary>
-        public int Min { get; set; }
+        public double Min { get; set; }
 
         public bool Check(string value)
         {
-            return int.Parse(value) >= Min;
+            return double.Parse(value) >= Min;
         }
     }
 }

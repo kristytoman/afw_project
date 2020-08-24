@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace afw_project.Model.Validation.Objects
 {
     internal class Username : ValidatableObject
@@ -10,7 +7,10 @@ namespace afw_project.Model.Validation.Objects
 
         protected override void AddValidations()
         {
-            validations.Add(new IsNotEmpty { Message = "Input required." });
+            validations.Add(new IsNotEmpty { Message = "Username input required." });
+            validations.Add(new HasRightFormat { Message = "Invalid username format.", Format = @"^[\p{L}\p{M}\s]+$" });
+            validations.Add(new HasRightEnding { Message = "Invalid username ending.", End = @"[^\s]$" });
+            validations.Add(new IsShortEnough { Message = "Username input is too long.", Max = 250 });
         }
     }
 }

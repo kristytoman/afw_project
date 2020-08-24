@@ -9,18 +9,22 @@ namespace afw_project.Model.Validation
 
         public bool Check(string value)
         {
-            try
+            if (value != null || value != string.Empty)
             {
-                if (Regex.IsMatch(value, @"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[\]:;<>,.?/~_+-=|\\]).{8,}$"))
+                try
                 {
-                    return true;
+                    if (Regex.IsMatch(value, @"^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[\]:;<>,.?/~_+-=|\\]).{8,}$"))
+                    {
+                        return true;
+                    }
+                    return false;
                 }
-                return false;
+                catch (Exception)
+                {
+                    return false;
+                }
             }
-            catch (Exception)
-            {
-                return false;
-            }
+            return true;
         }
     }
 }

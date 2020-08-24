@@ -78,7 +78,7 @@ namespace afw_project.View.Customer
         private void Password_Unfocused(object sender, FocusEventArgs e)
         {
             Entry entry = (Entry)sender;
-            ChangeEntry(entry, viewModel.Validate(new Password(entry.Text)));
+            ChangeEntry(entry, viewModel.Validate(new Password(entry.Text,viewModel.isSignUp)));
         }
 
 
