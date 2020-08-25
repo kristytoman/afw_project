@@ -6,7 +6,7 @@
              mc:Ignorable="d"
              x:Class="afw_project.View.Admin.Orders">
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding ListOrders}" 
+        <ListView ItemsSource="{Binding List_Orders}" 
                   HasUnevenRows="True" 
                   SelectionMode="None"
                   IsGroupingEnabled="True"

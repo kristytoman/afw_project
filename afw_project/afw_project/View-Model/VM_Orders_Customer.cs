@@ -1,5 +1,6 @@
 ﻿using afw_project.Model;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace afw_project.View_Model
 {
@@ -8,7 +9,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Gets or sets the list of orders for customer.
         /// </summary>
-        public List<OrderItem> List_Orders { get; private set; }
+        public ObservableCollection<OrderItem> List_Orders { get; private set; }
 
 
         /// <summary>
@@ -17,7 +18,7 @@ namespace afw_project.View_Model
         public VM_Orders_Customer()
         {
             List<Order> result = App.User.GetOrders();
-            List_Orders = new List<OrderItem>();
+            List_Orders = new ObservableCollection<OrderItem>();
             if (result != null)
             {
                 foreach (Order item in result)

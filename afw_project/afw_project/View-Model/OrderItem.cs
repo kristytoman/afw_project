@@ -79,7 +79,7 @@ namespace afw_project.View_Model
         {
             get
             {
-                if (OrderState == "Ordered") return "Send";
+                if (OrderState == "Waiting") return "Send";
                 if (OrderState == "Send") return "Received";
                 return "";
             }

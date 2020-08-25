@@ -1,5 +1,6 @@
 ﻿using afw_project.Model;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace afw_project.View_Model
 {
@@ -8,7 +9,7 @@ namespace afw_project.View_Model
         /// <summary>
         /// Gets or sets the list of orders.
         /// </summary>
-        public List<OrderItem> List_Orders { get; set; }
+        public ObservableCollection<OrderItem> List_Orders { get; set; }
 
 
         /// <summary>
@@ -18,7 +19,7 @@ namespace afw_project.View_Model
         public VM_Orders_Admin(string name)
         {
             List<Order> result;
-            List_Orders = new List<OrderItem>();
+            List_Orders = new ObservableCollection<OrderItem>();
             switch (name)
             {
                 case "All":
